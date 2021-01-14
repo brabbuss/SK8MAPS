@@ -1,7 +1,8 @@
 export const skateSpots = [
   {
+    id: 1,
     title: "Old church",
-    description: 'some description',
+    description: 'some description,some fine cracks, small pebbles can kill,stairs front of school good lan',
     location: {
       lat: 39.82597138963928, 
       lng: -105.08527641669075
@@ -17,6 +18,7 @@ export const skateSpots = [
     }
   },
   {
+    id: 2,
     title: "Secrest Park",
     location: {
       lat: 39.8155,
@@ -24,6 +26,7 @@ export const skateSpots = [
     },
   },
   {
+    id: 3,
     title: "Scott's butt",
     location: {
       lat: 39.816,
@@ -31,6 +34,7 @@ export const skateSpots = [
     },
   },
   {
+    id: 4,
     title: "Arvada SkatePark",
     location: {
       lat: 39.82663239233444,

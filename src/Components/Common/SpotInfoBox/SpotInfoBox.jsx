@@ -2,19 +2,19 @@ import React from "react";
 import { InfoWindow } from "@react-google-maps/api";
 import './SpotInfoBox.css'
 
-const SpotInfoBox = ({ selectedSpot, setSelectedSpot }) => {
+const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
   return (
     <InfoWindow
       onCloseClick={() => {
-        setSelectedSpot(null);
+        setSelectedMarker(null);
       }}
       position={{
-        lat: selectedSpot?.location.lat,
-        lng: selectedSpot?.location.lng,
+        lat: selectedMarker?.location.lat,
+        lng: selectedMarker?.location.lng,
       }}>
       <div className="info-box">
-        <h3>{selectedSpot?.title}</h3>
-        <p>{selectedSpot?.description}</p>
+        <h3>{selectedMarker?.title}</h3>
+        <p>{selectedMarker?.description}</p>
       </div>
     </InfoWindow>
   );

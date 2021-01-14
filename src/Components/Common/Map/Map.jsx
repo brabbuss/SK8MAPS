@@ -22,14 +22,14 @@ const addMarker = latLng => {
   position = latLng;
 };
 
-const Map = ({ skateSpots }) => {
+const Map = ({ skateSpots, setSelectedSpot }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
   });
 
   const [map, setMap] = useState(null);
-  const [selectedSpot, setSelectedSpot] = useState(null);
+  const [selectedMarker, setSelectedMarker] = useState(null);
   // const [userLoc, setUserLoc] = useState(null);
   
   const onLoad = useCallback(function callback(map) {
@@ -59,16 +59,19 @@ const Map = ({ skateSpots }) => {
       key={Date.now() + i}
       position={spot.location}
       label={spot.title}
-      onClick={() => setSelectedSpot(spot)}
+      onClick={() => {
+        setSelectedMarker(spot)
+        setSelectedSpot(spot)
+      }}
     />
   ));
 
   // const spotInfoBox = (
   //   <InfoWindow
-  //     onCloseClick={() => {setSelectedSpot(null)}}
+  //     onCloseClick={() => {setSelectedMarker(null)}}
   //     position={{
-  //       lat: selectedSpot?.location.lat,
-  //       lng: selectedSpot?.location.lng,
+  //       lat: selectedMarker?.location.lat,
+  //       lng: selectedMarker?.location.lng,
   //     }}>
   //     <p>Oh hey there</p>
   //   </InfoWindow>
@@ -86,9 +89,10 @@ const Map = ({ skateSpots }) => {
         onClick={e => addMarker(e.latLng)}>
         {/* Child components, such as markers, info windows, etc. */}
         {markers}
-        {selectedSpot && 
+        {selectedMarker && 
           <SpotInfoBox 
-            selectedSpot={selectedSpot} 
+            selectedMarker={selectedMarker} 
+            setSelectedMarker={setSelectedMarker}
             setSelectedSpot={setSelectedSpot}
           />
         }
