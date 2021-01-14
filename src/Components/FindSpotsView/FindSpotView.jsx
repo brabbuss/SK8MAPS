@@ -6,9 +6,8 @@ function FindSpotView({ skateSpots, setSelectedSpot }) {
 
   return (
     <section className="fs-container">
-      <h2>Find some spots</h2>
+      <h2>Find spots by:</h2>
       <div className="fs-sort-container">
-        <nav className="fs-navbar">NAVBAR</nav>
         <ul className="fs-ul">
           <li className="fs-">rails</li>
           <li className="fs-">curbs</li>

@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
-import logo from "./logo.svg";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import AddSpotView from "../AddSpotView/AddSpotView";
 import FindSpotView from "../FindSpotsView/FindSpotView";
 import SpotDetails from '../SpotDetails/SpotDetails'
-import {sk8Logo} from '../Common/logo'
 import {skateSpots} from '../../sk8SpotData'
-
+import NavBar from '../Common/NavBar/NavBar'
 function App() {
 
   const [selectedSpot, setSelectedSpot] = useState(null)
@@ -15,19 +13,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className='app-title'>
-          {sk8Logo}
-          <img src={logo} className="App-logo" alt="logo" />
-        </div>
+        <NavBar/>
         <Switch>
           <Route path="/spots/:spot_id">
             <SpotDetails selectedSpot={selectedSpot} />
           </Route>
-          <Route path="/find">
+          <Route path="/search">
             <FindSpotView setSelectedSpot={setSelectedSpot} skateSpots={skateSpots} />
           </Route>
           <Route path="/add">
             <AddSpotView skateSpots={skateSpots} />
+          </Route>
+          <Route path="/"> 
+            <div>
+              <h1>Find some skate spots or add one</h1>
+            </div>
           </Route>
         </Switch>
       </header>

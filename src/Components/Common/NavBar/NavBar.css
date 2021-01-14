@@ -1,0 +1,73 @@
+/* LATER add column stack for navbar on home page with simple prompt */
+.nav-container { 
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.link-container {
+  display: flex;
+  width: fit-content;
+}
+
+.nav-title {
+  display: flex;
+}
+
+.nav-btn {
+  flex: 1;
+  padding: 0.2em 0.4em;
+  height: fit-content;
+  width: fit-content;
+  font-size: clamp(13px, 1em, 2em);
+  font-weight: 300;
+  border: 1.4px solid white;
+  border-radius: 10px;
+  transition: ease-in-out 0.2s;
+  margin: 0 0.6em;
+}
+
+.nav-btn-link {
+  color: white;
+  width: 45%;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.nav-btn:hover {
+  background: #e100a9;
+  color: #282c34;
+  border-color: #e100a9;
+}
+
+.app-header {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  border-bottom: 2px solid white;
+  background-color: #282c34;
+}
+
+.app-name-link h1 {
+  font-size: 2em;
+  /* font-style: italic; */
+  font-weight: 300;
+}
+
+.app-name {
+}
+
+.app-name-link {
+  text-decoration: none;
+  color: white;
+  z-index: 1;
+}
