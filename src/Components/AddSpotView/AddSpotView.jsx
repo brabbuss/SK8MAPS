@@ -3,20 +3,26 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { Marker } from "@react-google-maps/api";
 
 const containerStyle = {
-  width: "400px",
-  height: "400px",
+  width: "800px",
+  height: "500px",
 };
 
-const center = {
+let position = {
   lat: 39.816,
   lng: -105.065,
 };
 
-const recenter = (latLng) => {
-  console.log(latLng.lat(), latLng.lng())
-}
+const addMarker = latLng => {
+  let loc = {
+    lat: +latLng.lat().toFixed(3),
+    lng: +latLng.lng().toFixed(3),
+  };
+  console.log(position);
+  position = loc;
+  console.log(position);
+};
 
-function Map({ skateSpots }) {
+function AddSpotView({ skateSpots }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
@@ -34,33 +40,33 @@ function Map({ skateSpots }) {
     setMap(null);
   }, []);
 
-  const markers = skateSpots.map((spot,i) => (
-    <Marker key={Date.now()+i} position={spot.location} label={spot.title} />
+  const markers = skateSpots.map((spot, i) => (
+    <Marker key={Date.now() + i} position={spot.location} label={spot.title} />
   ));
 
-
+  // accessibility concerns
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={center}
-      zoom={14}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-      onClick={e => recenter(e.latLng)}  
-    >
-      {/* map over available spots */}
-      {/* <Marker position={center} label={"this is mah house"} /> */}
-      {markers}
-      {/* Child components, such as markers, info windows, etc. */}
-      <></>
-    </GoogleMap>
+    <section>
+      click to add a spot
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={position}
+        zoom={14}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        onClick={e => addMarker(e.latLng)}>
+        {markers}
+        {/* Child components, such as markers, info windows, etc. */}
+        <></>
+      </GoogleMap>
+    </section>
   ) : (
     <></>
   );
 }
 
-export default React.memo(Map);
+export default React.memo(AddSpotView);
 
 // const Map = () => {
 //   return (

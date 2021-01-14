@@ -1,6 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Map from "./Map";
+import AddSpotView from "../AddSpotView/AddSpotView";
+import FindSpotView from "../FindSpotsView/FindSpotView";
 
 const skateSpots = [
   {
@@ -31,7 +32,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Map
+        <AddSpotView
           skateSpots={skateSpots}
         />
       </header>
