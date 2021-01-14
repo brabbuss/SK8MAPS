@@ -4,8 +4,9 @@ import {
   GoogleMap,
   useJsApiLoader,
   Marker,
-  InfoWindow,
+  // InfoWindow,
 } from "@react-google-maps/api";
+import SpotInfoBox from '../SpotInfoBox/SpotInfoBox'
 
 const containerStyle = {
   width: "800px",
@@ -30,7 +31,7 @@ const Map = ({ skateSpots }) => {
   const [map, setMap] = useState(null);
   const [selectedSpot, setSelectedSpot] = useState(null);
   // const [userLoc, setUserLoc] = useState(null);
-
+  
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
@@ -62,18 +63,16 @@ const Map = ({ skateSpots }) => {
     />
   ));
 
-  const spotInfoBox = (
-    <InfoWindow
-      onCloseClick={() => {
-        setSelectedSpot(null);
-      }}
-      position={{
-        lat: selectedSpot?.location.lat,
-        lng: selectedSpot?.location.lng,
-      }}>
-      <p>Oh hey there</p>
-    </InfoWindow>
-  );
+  // const spotInfoBox = (
+  //   <InfoWindow
+  //     onCloseClick={() => {setSelectedSpot(null)}}
+  //     position={{
+  //       lat: selectedSpot?.location.lat,
+  //       lng: selectedSpot?.location.lng,
+  //     }}>
+  //     <p>Oh hey there</p>
+  //   </InfoWindow>
+  // );
 
   return isLoaded ? (
     <div className="map-container">
@@ -87,7 +86,7 @@ const Map = ({ skateSpots }) => {
         onClick={e => addMarker(e.latLng)}>
         {/* Child components, such as markers, info windows, etc. */}
         {markers}
-        {selectedSpot && spotInfoBox}
+        {selectedSpot && <SpotInfoBox selectedSpot={selectedSpot} setSelectedSpot={setSelectedSpot}/>}
       </GoogleMap>
     </div>
   ) : (
