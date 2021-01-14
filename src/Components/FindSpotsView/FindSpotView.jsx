@@ -1,7 +1,11 @@
-import React from "react";
-import './FindSpotView.css'
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import { Marker } from "@react-google-maps/api";
+import React, { useState } from "react";
+import "./FindSpotView.css";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   width: "800px",
@@ -29,7 +33,8 @@ function FindSpotView({ skateSpots }) {
     googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
   });
 
-  const [map, setMap] = React.useState(null);
+  const [map, setMap] = useState(null);
+  const [selectedSpot, setSelectedSpot] = useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
@@ -42,33 +47,54 @@ function FindSpotView({ skateSpots }) {
   }, []);
 
   const markers = skateSpots.map((spot, i) => (
-    <Marker key={Date.now() + i} position={spot.location} label={spot.title} />
+    <Marker
+      key={Date.now() + i}
+      position={spot.location}
+      label={spot.title}
+      onClick={() => setSelectedSpot(spot)}
+    />
   ));
+
+  const spotInfo = (
+    <InfoWindow
+      onCloseClick={() => {
+        setSelectedSpot(null);
+      }}
+      position={{
+        lat: selectedSpot?.location.lat,
+        lng: selectedSpot?.location.lng,
+      }}>
+      <p>Oh hey there</p>
+    </InfoWindow>
+  );
 
   return isLoaded ? (
     <section className="fs-container">
       <h2>Find some spots</h2>
       <div className="fs-sort-container">
-        <nav className='fs-navbar'>NAVBAR</nav>
-        <ul className='fs-ul'>
-          <li className='fs-'>rails</li>
-          <li className='fs-'>curbs</li>
-          <li className='fs-'>flats</li>
-          <li className='fs-'>stairs</li>
-          <li className='fs-'>hills</li>
-          <li className='fs-'>parks</li>
+        <nav className="fs-navbar">NAVBAR</nav>
+        <ul className="fs-ul">
+          <li className="fs-">rails</li>
+          <li className="fs-">curbs</li>
+          <li className="fs-">flats</li>
+          <li className="fs-">stairs</li>
+          <li className="fs-">hills</li>
+          <li className="fs-">parks</li>
         </ul>
       </div>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={position}
-        zoom={14}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-        onClick={e => addMarker(e.latLng)}>
-        {markers}
-        {/* Child components, such as markers, info windows, etc. */}
-      </GoogleMap>
+      <div className="map-container">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={position}
+          zoom={14}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          onClick={e => addMarker(e.latLng)}>
+          {markers}
+          {selectedSpot && spotInfo}
+          {/* Child components, such as markers, info windows, etc. */}
+        </GoogleMap>
+      </div>
     </section>
   ) : (
     <></>
