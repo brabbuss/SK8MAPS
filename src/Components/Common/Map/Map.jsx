@@ -3,14 +3,13 @@ import "./Map.css";
 import {
   GoogleMap,
   useJsApiLoader,
-  Marker,
-  // InfoWindow,
+  Marker
 } from "@react-google-maps/api";
-import SpotInfoBox from '../SpotInfoBox/SpotInfoBox'
+import SpotInfoBox from "../SpotInfoBox/SpotInfoBox";
 
 const containerStyle = {
-  width: "800px",
-  height: "500px",
+  width: "1000px",
+  height: "600px",
 };
 
 let position = {
@@ -23,36 +22,23 @@ const addMarker = latLng => {
 };
 
 const Map = ({ skateSpots, setSelectedSpot }) => {
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
   });
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
-  // const [userLoc, setUserLoc] = useState(null);
-  
+
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map);
-    // let currentLocation = getUserLoc()
-    // setUserLoc(currentLocation)
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
-
-  // const success = (pos) => {
-  //   var crd = pos.coords;
-
-  //   console.log('Your current position is:');
-  //   console.log(`Latitude : ${crd.latitude}`);
-  //   console.log(`Longitude: ${crd.longitude}`);
-  //   console.log(`More or less ${crd.accuracy} meters.`);
-  // }
-  // const getUserLoc = () => (navigator.geolocation.getCurrentPosition(success)}
 
   const markers = skateSpots?.map((spot, i) => (
     <Marker
@@ -60,47 +46,41 @@ const Map = ({ skateSpots, setSelectedSpot }) => {
       position={spot.location}
       label={spot.title}
       onClick={() => {
-        setSelectedMarker(spot)
-        setSelectedSpot(spot)
+        setSelectedMarker(spot);
+        setSelectedSpot(spot);
       }}
     />
   ));
 
-  // const spotInfoBox = (
-  //   <InfoWindow
-  //     onCloseClick={() => {setSelectedMarker(null)}}
-  //     position={{
-  //       lat: selectedMarker?.location.lat,
-  //       lng: selectedMarker?.location.lng,
-  //     }}>
-  //     <p>Oh hey there</p>
-  //   </InfoWindow>
-  // );
+  const renderMap = () => {
+    return (
+      <div className="map-container">
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          defaultCenter={{ lat: -34.397, lng: 150.644 }}
+          center={position}
+          zoom={1}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          onClick={e => addMarker(e.latLng)}>
+          {/* Child components, such as markers, info windows, etc. */}
+          {markers}
+          {selectedMarker && (
+            <SpotInfoBox
+              selectedMarker={selectedMarker}
+              setSelectedMarker={setSelectedMarker}
+              setSelectedSpot={setSelectedSpot}
+            />
+          )}
+        </GoogleMap>
+      </div>
+    );
+  };
 
-  return isLoaded ? (
-    <div className="map-container">
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-        center={position}
-        zoom={1}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-        onClick={e => addMarker(e.latLng)}>
-        {/* Child components, such as markers, info windows, etc. */}
-        {markers}
-        {selectedMarker && 
-          <SpotInfoBox 
-            selectedMarker={selectedMarker} 
-            setSelectedMarker={setSelectedMarker}
-            setSelectedSpot={setSelectedSpot}
-          />
-        }
-      </GoogleMap>
-    </div>
-  ) : (
-    <></>
-  );
+  if (loadError) {
+    return <div>Can't find the map right now. I'll keep looking, come back later...</div>;
+  }
+  return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
 };
 
 export default React.memo(Map);
