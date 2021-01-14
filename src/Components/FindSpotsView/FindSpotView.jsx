@@ -1,4 +1,5 @@
 import React from "react";
+import './FindSpotView.css'
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { Marker } from "@react-google-maps/api";
 
@@ -67,7 +68,6 @@ function FindSpotView({ skateSpots }) {
         onClick={e => addMarker(e.latLng)}>
         {markers}
         {/* Child components, such as markers, info windows, etc. */}
-        <></>
       </GoogleMap>
     </section>
   ) : (
