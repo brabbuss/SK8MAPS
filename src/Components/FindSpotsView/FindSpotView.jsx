@@ -2,7 +2,7 @@ import React from "react";
 import "./FindSpotView.css";
 import Map from "../Common/Map/Map";
 
-function FindSpotView({ skateSpots, setSelectedSpot }) {
+function FindSpotView({ skateSpots, updateSelection }) {
 
   return (
     <section className="fs-container">
@@ -18,7 +18,7 @@ function FindSpotView({ skateSpots, setSelectedSpot }) {
         </ul>
       </div>
       <div className="map-container">
-        <Map setSelectedSpot={setSelectedSpot} skateSpots={skateSpots} />
+        <Map updateSelection={updateSelection} skateSpots={skateSpots} />
       </div>
     </section>
   );
