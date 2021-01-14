@@ -86,7 +86,12 @@ const Map = ({ skateSpots }) => {
         onClick={e => addMarker(e.latLng)}>
         {/* Child components, such as markers, info windows, etc. */}
         {markers}
-        {selectedSpot && <SpotInfoBox selectedSpot={selectedSpot} setSelectedSpot={setSelectedSpot}/>}
+        {selectedSpot && 
+          <SpotInfoBox 
+            selectedSpot={selectedSpot} 
+            setSelectedSpot={setSelectedSpot}
+          />
+        }
       </GoogleMap>
     </div>
   ) : (

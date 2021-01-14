@@ -1,8 +1,8 @@
 import React from "react";
 import { InfoWindow } from "@react-google-maps/api";
+import './SpotInfoBox.css'
 
-
-const SpotInfoBox = ({selectedSpot, setSelectedSpot}) => {
+const SpotInfoBox = ({ selectedSpot, setSelectedSpot }) => {
   return (
     <InfoWindow
       onCloseClick={() => {
@@ -12,7 +12,10 @@ const SpotInfoBox = ({selectedSpot, setSelectedSpot}) => {
         lat: selectedSpot?.location.lat,
         lng: selectedSpot?.location.lng,
       }}>
-      <p>Oh hey there</p>
+      <div className="info-box">
+        <h3>{selectedSpot?.title}</h3>
+        <p>{selectedSpot?.description}</p>
+      </div>
     </InfoWindow>
   );
 };
