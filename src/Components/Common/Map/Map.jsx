@@ -25,10 +25,6 @@ const Map = ({ skateSpots, updateSelection }) => {
   const [center, setCenter] = useState(defaultPosition);
   const [zoom, setZoom] = useState(12);
 
-  const recenter = latLng => {
-    setCenter(latLng);
-  };
-
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
@@ -36,27 +32,28 @@ const Map = ({ skateSpots, updateSelection }) => {
     setMap(map);
     map.panTo(defaultPosition);
   }, []);
-
+  
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+  
+  const recenter = latLng => {
+    setCenter(latLng);
+  };
 
   const handleMarkerClick = (e, spot) => {
     setSelectedMarker(spot);
-    setZoom(14)
+    setZoom(14);
     setCenter(defaultPosition);
-    map.panTo(defaultPosition);    
+    map.panTo(defaultPosition);
     updateSelection(spot);
-  }
+  };
 
   const markers = skateSpots?.map((spot, i) => (
-    <Marker
+    <SpotMarker
       key={Date.now() + i}
-      position={spot.location}
-      label={spot.title}
-      onClick={(e) => {
-        handleMarkerClick(e, spot)
-      }}
+      spot={spot}
+      handleMarkerClick={handleMarkerClick}
     />
   ));
 
@@ -71,15 +68,7 @@ const Map = ({ skateSpots, updateSelection }) => {
           onUnmount={onUnmount}
           // onClick={e => recenter(e.latLng)}
         >
-          {/* Child components, such as markers, info windows, etc. */}
           {markers}
-          {/* {skateSpots && (
-            <SpotMarker
-              setSelectedMarker={setSelectedMarker}
-              updateSelection={updateSelection}
-              skateSpots={skateSpots}
-            />
-          )} */}
           {selectedMarker && (
             <SpotInfoBox
               selectedMarker={selectedMarker}
