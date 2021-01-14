@@ -58,7 +58,6 @@ function AddSpotView({ skateSpots }) {
         onClick={e => addMarker(e.latLng)}>
         {markers}
         {/* Child components, such as markers, info windows, etc. */}
-        <></>
       </GoogleMap>
     </section>
   ) : (
