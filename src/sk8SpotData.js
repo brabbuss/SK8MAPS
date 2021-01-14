@@ -12,7 +12,8 @@ export const skateSpots = [
       rails: {has: true, description: ['good', 'about 10ft long']},
       stairs: {has: true, description: ['pristine', '10 stairs front of school good landing']},
       security: {has: true, description: ['chill', 'guards were chill']},
-      public: false
+      public: false,
+      hazards: 'low'
     }
   },
   {
