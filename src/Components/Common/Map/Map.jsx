@@ -3,6 +3,7 @@ import "./Map.css";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
+const API_KEY = process.env.REACT_APP_YOUR_API_KEY
 
 const containerStyle = {
   width: "1000px",
@@ -17,7 +18,7 @@ let defaultPosition = {
 const Map = ({ skateSpots, updateSelection }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
+    googleMapsApiKey: API_KEY,
   });
 
   const [map, setMap] = useState(null);

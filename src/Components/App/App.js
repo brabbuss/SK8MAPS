@@ -27,7 +27,7 @@ function App() {
             <FindSpotView updateSelection={updateSelection} skateSpots={skateSpots} />
           </Route>
           <Route path="/add">
-            <AddSpotView skateSpots={skateSpots} />
+            <AddSpotView updateSelection={updateSelection} skateSpots={skateSpots} />
           </Route>
           <Route path="/"> 
             <div>
