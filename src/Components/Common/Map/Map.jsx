@@ -23,14 +23,14 @@ const Map = () => {
   });
 
   const [state, dispatch] = useContext(AppContext);
-  console.log('state called in MAP', state)
+  // console.log('state called in MAP', state)
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [zoom, setZoom] = useState(17);
 
   const onLoad = useCallback(async function callback(map) {
-    console.log("ONLOAD MAP");
+    // console.log("ONLOAD MAP");
     const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     map.setCenter(center);
@@ -78,10 +78,11 @@ const Map = () => {
 
   const handleMarkerClick = (e, spot) => {
     setSelectedMarker(spot);
-    map.zoom = 14;
+    map.zoom = 19;
     setCenter(e.latLng);
     map.panTo(e.latLng);
     updateSelection(spot);
+    handleZoom()
   };
 
   const markers = state.storedSpots?.map((spot, i) => (
@@ -96,6 +97,7 @@ const Map = () => {
     return (
       <div className="map-container">
         <GoogleMap
+          clickableIcons={false}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={12}
