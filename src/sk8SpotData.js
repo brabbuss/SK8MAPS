@@ -42,6 +42,7 @@ export const mockAPISkateSpots = [
       hazards: "some big cracks",
       public: false,
     },
+    images: "https://3.bp.blogspot.com/-6wKDdxzO8AI/WBjzlwaP6dI/AAAAAAAABnY/Vh3Y4pTrQE0jh7WFpTpIjdULQhljrp9ywCEw/s1600/04%2BJoe.PNG"
   },
   {
     id: 2,
@@ -76,6 +77,7 @@ export const mockAPISkateSpots = [
       hazards: "small pebbles or chunks of pucks in the rink",
       public: true,
     },
+    images: "https://3.bp.blogspot.com/-6wKDdxzO8AI/WBjzlwaP6dI/AAAAAAAABnY/Vh3Y4pTrQE0jh7WFpTpIjdULQhljrp9ywCEw/s1600/04%2BJoe.PNG"
   },
   {
     id: 3,
@@ -104,6 +106,7 @@ export const mockAPISkateSpots = [
       hazards: "landing runs right into a busy street",
       public: true,
     },
+    images: "https://3.bp.blogspot.com/-6wKDdxzO8AI/WBjzlwaP6dI/AAAAAAAABnY/Vh3Y4pTrQE0jh7WFpTpIjdULQhljrp9ywCEw/s1600/04%2BJoe.PNG"
   },
   {
     id: 4,
@@ -147,5 +150,6 @@ export const mockAPISkateSpots = [
       hazards: "scooter kids",
       public: true,
     },
+    images: "https://3.bp.blogspot.com/-6wKDdxzO8AI/WBjzlwaP6dI/AAAAAAAABnY/Vh3Y4pTrQE0jh7WFpTpIjdULQhljrp9ywCEw/s1600/04%2BJoe.PNG"
   },
 ];

@@ -1,19 +1,9 @@
+
 .info-box {
   color: black;
   padding: 0 1em;
   display: flex;
   flex-direction: column;
-  
+
 }
 
-.feature-container {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-}
-
-.feature-details {
-  display: flex;
-  flex-direction: row;
-  margin: 5px;
-}
