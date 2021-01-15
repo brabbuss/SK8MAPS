@@ -3,6 +3,7 @@ import "./Map.css";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
+const API_KEY = process.env.REACT_APP_YOUR_API_KEY
 
 const containerStyle = {
   width: "1000px",
@@ -17,17 +18,13 @@ let defaultPosition = {
 const Map = ({ skateSpots, updateSelection }) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyCjoD7gA6zlBj9bDgWw0ug2LpbMvu9ypB0",
+    googleMapsApiKey: API_KEY,
   });
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [zoom, setZoom] = useState(12);
-
-  const recenter = latLng => {
-    setCenter(latLng);
-  };
 
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
@@ -36,27 +33,25 @@ const Map = ({ skateSpots, updateSelection }) => {
     setMap(map);
     map.panTo(defaultPosition);
   }, []);
-
+  
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
-
+  
   const handleMarkerClick = (e, spot) => {
+    console.log(spot)
     setSelectedMarker(spot);
-    setZoom(14)
-    setCenter(defaultPosition);
-    map.panTo(defaultPosition);    
+    setZoom(14);
+    setCenter(e.latLng);
+    map.panTo(e.latLng);
     updateSelection(spot);
-  }
+  };
 
   const markers = skateSpots?.map((spot, i) => (
-    <Marker
+    <SpotMarker
       key={Date.now() + i}
-      position={spot.location}
-      label={spot.title}
-      onClick={(e) => {
-        handleMarkerClick(e, spot)
-      }}
+      spot={spot}
+      handleMarkerClick={handleMarkerClick}
     />
   ));
 
@@ -69,17 +64,8 @@ const Map = ({ skateSpots, updateSelection }) => {
           zoom={zoom}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          // onClick={e => recenter(e.latLng)}
         >
-          {/* Child components, such as markers, info windows, etc. */}
           {markers}
-          {/* {skateSpots && (
-            <SpotMarker
-              setSelectedMarker={setSelectedMarker}
-              updateSelection={updateSelection}
-              skateSpots={skateSpots}
-            />
-          )} */}
           {selectedMarker && (
             <SpotInfoBox
               selectedMarker={selectedMarker}
