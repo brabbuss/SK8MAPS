@@ -7,6 +7,7 @@ import AddSpotView from "../AddSpotView/AddSpotView";
 import FindSpotView from "../FindSpotsView/FindSpotView";
 import SpotDetails from "../SpotDetails/SpotDetails";
 import NavBar from "../Common/NavBar/NavBar";
+import DetailsForm from '../DetailsForm/DetailsForm'
 
 export const myReducer = (state, action) => {
   switch (action.type) {
@@ -34,6 +35,7 @@ function App() {
           <NavBar />
           <Switch>
             <Route path="/spots/:spot_id" component={SpotDetails} />
+            <Route path='/add/details' component={DetailsForm}/>
             <Route path="/search" component={FindSpotView} />
             <Route path="/add" component={AddSpotView} />
             <Route path="/">
