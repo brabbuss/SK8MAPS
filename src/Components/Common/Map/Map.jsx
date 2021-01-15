@@ -30,11 +30,12 @@ const Map = () => {
   const [zoom, setZoom] = useState(17);
 
   const onLoad = useCallback(async function callback(map) {
+    console.log("ONLOAD MAP");
     const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     map.setCenter(center);
-    map.panTo(defaultPosition);
     setMap(map);
+    map.panTo(center);
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
@@ -61,17 +62,23 @@ const Map = () => {
   }
 
   const handleMapClick = (e) => {
+    // console.log('handle MAP click')
     if (state.appView === "add-spot") {
-      const newPos = e
-      setZoom(22);
+      // console.log('MAP.ZOOM', map.zoom)
+      // console.log('MAPgetZoom()', map.getZoom())
+      // console.log('handle MAP ADD click')
+      // console.log(e.latLng)
+      map.zoom = 22
+      const newPos = e.latLng
       setCenter(newPos);
       map.panTo(newPos);
+      handleZoom()
     } 
   }
 
   const handleMarkerClick = (e, spot) => {
     setSelectedMarker(spot);
-    setZoom(14);
+    map.zoom = 14;
     setCenter(e.latLng);
     map.panTo(e.latLng);
     updateSelection(spot);
@@ -91,9 +98,9 @@ const Map = () => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={zoom}
+          zoom={12}
           onZoomChanged={handleZoom}
-          onClick={(e) => handleMapClick(e.latLng)}
+          onClick={(e) => handleMapClick(e)}
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
