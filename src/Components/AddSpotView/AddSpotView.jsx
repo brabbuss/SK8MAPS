@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import AppContext from "../App/AppContext";
 import Map from "../Common/Map/Map";
 
-function AddSpotView({ skateSpots, updateSelection }) {
+function AddSpotView({ updateSelection }) {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function AddSpotView({ skateSpots, updateSelection }) {
   return (
     <section>
       <h1>click to add a spot</h1>
-      <Map updateSelection={updateSelection} skateSpots={skateSpots} />
+      <Map />
     </section>
   ) 
 }

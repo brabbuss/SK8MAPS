@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useContext } from "react";
 import AppContext from "../../App/AppContext";
 import "./Map.css";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
 const API_KEY = process.env.REACT_APP_YOUR_API_KEY;
@@ -16,13 +16,14 @@ let defaultPosition = {
   lng: -105.065,
 };
 
-const Map = ({ skateSpots, updateSelection }) => {
+const Map = () => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
   });
 
   const [state, dispatch] = useContext(AppContext);
+  console.log('state called in MAP', state)
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
@@ -39,9 +40,13 @@ const Map = ({ skateSpots, updateSelection }) => {
     setMap(null);
   }, []);
 
+  const updateSelection = selectedMarker => {
+    const action = {type: 'UPDATE_SELECTED_SPOT', spot: selectedMarker}
+    dispatch(action)
+  };
+
   const handleZoom = () => {
     if (map) {
-      console.log(map.getZoom())
       if (map.getZoom() >= 19) {
         if (map.getMapTypeId() != window.google.maps.MapTypeId.HYBRID) {
           map.setMapTypeId(window.google.maps.MapTypeId.HYBRID)
@@ -71,7 +76,7 @@ const Map = ({ skateSpots, updateSelection }) => {
     updateSelection(spot);
   };
 
-  const markers = skateSpots?.map((spot, i) => (
+  const markers = state.storedSpots?.map((spot, i) => (
     <SpotMarker
       key={Date.now() + i}
       spot={spot}
@@ -95,7 +100,6 @@ const Map = ({ skateSpots, updateSelection }) => {
             <SpotInfoBox
               selectedMarker={selectedMarker}
               setSelectedMarker={setSelectedMarker}
-              updateSelection={updateSelection}
             />
           )}
         </GoogleMap>

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import {getLocal, saveLocal} from '../Common/Utilities/localStorage'
+import React, {useContext} from "react";
 import './SpotDetails.css'
+import AppContext from "../App/AppContext";
 
-const SpotDetails = ({ selectedSpot, match }) => {
+const SpotDetails = () => {
+const [state, dispatch] = useContext(AppContext);
+const {selectedSpot} = state
 
   const featureList = (
     <div className="features-section">
-      {/* <h2>Features:</h2> */}
-      {/* <div> */}
         {selectedSpot?.features.map((f, i) => (
           <div className="feature-details" key={Date.now() + i}>
             <div className='feature-type'>
@@ -17,7 +17,6 @@ const SpotDetails = ({ selectedSpot, match }) => {
             {f.has && <p>{f.description}</p>}
           </div>
         ))}
-      {/* </div> */}
     </div>
   );
 

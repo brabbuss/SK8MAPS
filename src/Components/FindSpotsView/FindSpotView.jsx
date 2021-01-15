@@ -3,7 +3,7 @@ import AppContext from '../App/AppContext'
 import "./FindSpotView.css";
 import Map from "../Common/Map/Map";
 
-function FindSpotView({ skateSpots, updateSelection }) {
+function FindSpotView() {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ function FindSpotView({ skateSpots, updateSelection }) {
           <li className="fs-">parks</li>
         </ul>
       </div>
-      <div className="map-container">
-        <Map updateSelection={updateSelection} skateSpots={skateSpots} />
+      <div className="find-map-container">
+        <Map />
       </div>
     </section>
   );
