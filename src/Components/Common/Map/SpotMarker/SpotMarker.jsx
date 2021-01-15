@@ -5,7 +5,7 @@ const SpotMarker = ({ spot, handleMarkerClick }) => {
   return (
     <Marker
       position={spot.location}
-      label={spot.title}
+      title={spot.title}
       onClick={e => {
         handleMarkerClick(e, spot);
       }}
