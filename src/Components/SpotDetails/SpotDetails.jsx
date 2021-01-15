@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {getLocal, saveLocal} from '../Common/Utilities/localStorage'
 
 const SpotDetails = ({ selectedSpot, match }) => {
-  const { id, title, description, location, features } = selectedSpot;
 
   const featureList = (
-    <div className='feature-container'>
+    <div className="feature-container">
       <h2>Features:</h2>
       <div>
-        {features.map(f => (
-          <div className='feature-details' key={Date.now()}>
-            <h3>{`${f.type} ${f.has ? '✅': '❌'}`}</h3>
+        {selectedSpot?.features.map((f, i) => (
+          <div className="feature-details" key={Date.now() + i}>
+            <h3>{`${f.type} ${f.has ? "✅" : "❌"}`}</h3>
             {f.has && <p>{f.description}</p>}
           </div>
         ))}
@@ -17,19 +17,12 @@ const SpotDetails = ({ selectedSpot, match }) => {
     </div>
   );
 
-  const onLoad = () => {
-    // const id = match.params.spot_id;
-    // if (+id !== movie_id) {
-    //   syncMovieID(id);
-    // }
-  };
-
   if (selectedSpot) {
     return (
       <div>
-        <h1>{title} is the spot!</h1>
-        <p>{description}</p>
-        <ul>{featureList}</ul>
+        <h1>{selectedSpot.title}</h1>
+        <p>{selectedSpot.description}</p>
+        {featureList}
       </div>
     );
   } else {
