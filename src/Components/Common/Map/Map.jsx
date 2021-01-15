@@ -38,15 +38,12 @@ const Map = ({ skateSpots, updateSelection }) => {
     setMap(null);
   }, []);
   
-  const recenter = latLng => {
-    setCenter(latLng);
-  };
-
   const handleMarkerClick = (e, spot) => {
+    console.log(spot)
     setSelectedMarker(spot);
     setZoom(14);
-    setCenter(defaultPosition);
-    map.panTo(defaultPosition);
+    setCenter(e.latLng);
+    map.panTo(e.latLng);
     updateSelection(spot);
   };
 
@@ -67,7 +64,6 @@ const Map = ({ skateSpots, updateSelection }) => {
           zoom={zoom}
           onLoad={onLoad}
           onUnmount={onUnmount}
-          // onClick={e => recenter(e.latLng)}
         >
           {markers}
           {selectedMarker && (

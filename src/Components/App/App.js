@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import { getFromLocal, saveToLocal } from "../Common/Utilities/localStorage";
 import { Switch, Route } from "react-router-dom";
 import AddSpotView from "../AddSpotView/AddSpotView";
 import FindSpotView from "../FindSpotsView/FindSpotView";
 import SpotDetails from "../SpotDetails/SpotDetails";
-import { skateSpots } from "../../sk8SpotData";
 import NavBar from "../Common/NavBar/NavBar";
 
 function App() {
-  const [selectedSpot, setSelectedSpot] = useState(null);
-  const [storedSpots, setStoredSpots] = useState(skateSpots)
+  const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"));
+  const [storedSpots, setStoredSpots] = useState(getFromLocal("USER-SK8MAPS"));
+
+  useEffect(() => {
+    console.log("useEffect APP");
+  }, []);
 
   const updateSelection = spot => {
     setSelectedSpot(spot);
-  };
-
-  // const findSpotByID = (id) => {
-  //   storedSpots
-  // }
-
-  const getSpotDetails = async id => {
-    // await getMovieDetailsAPI(id).then(movie => checkBudgetInfo(movie)).then(movie =>
-    //   this.setState({ selectedMovie: movie })
-
-    // );
-    // await getMovieVideoAPI(id).then(videos =>
-    //   this.setState({ selectedMovieVideos: videos })
-    // );
-    // typeof this.state.selectedMovie === "number" // if movieDetails is a number, then it is an error code returned from API call!
-    //   ? this.handleError(this.state.selectedMovie)
-    //   : this.setState({ statusError: false });
+    saveToLocal("SELECTED-SK8MAP", spot);
   };
 
   return (
@@ -41,7 +29,13 @@ function App() {
             path="/spots/:spot_id"
             render={props => {
               return (
-                <SpotDetails updateSelection={updateSelection} selectedSpot={selectedSpot} {...props} />
+                <SpotDetails
+                  updateSelection={setSelectedSpot}
+                  storedSpots={storedSpots}
+                  selectedSpot={selectedSpot}
+                  {...props}
+                />
+                // <SpotDetails syncSelectedSpot={syncSelectedSpot} selectedSpot={selectedSpot} {...props} />
               );
             }}
           />
@@ -49,14 +43,23 @@ function App() {
             path="/search"
             render={props => {
               return (
-                <FindSpotView updateSelection={updateSelection} skateSpots={storedSpots} {...props} />
+                <FindSpotView
+                  updateSelection={updateSelection}
+                  skateSpots={storedSpots}
+                  {...props}
+                />
               );
             }}
           />
-          <Route path="/add"
+          <Route
+            path="/add"
             render={props => {
-              return(
-                <AddSpotView updateSelection={updateSelection} skateSpots={storedSpots} {...props}/>  
+              return (
+                <AddSpotView
+                  updateSelection={updateSelection}
+                  skateSpots={storedSpots}
+                  {...props}
+                />
               );
             }}
           />

@@ -24,4 +24,3 @@ const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
 };
 
 export default SpotInfoBox;
-// return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
