@@ -1,4 +1,4 @@
-export const skateSpots = [
+export const mockAPISkateSpots = [
   {
     id: 1,
     title: "Old church",
