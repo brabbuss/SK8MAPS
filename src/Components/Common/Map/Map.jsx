@@ -25,11 +25,10 @@ const Map = ({ skateSpots, updateSelection }) => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [zoom, setZoom] = useState(12);
-
+  
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
-    setCenter(defaultPosition);
     setMap(map);
     map.panTo(defaultPosition);
   }, []);
@@ -40,6 +39,7 @@ const Map = ({ skateSpots, updateSelection }) => {
   
   const handleMarkerClick = (e, spot) => {
     console.log(spot)
+    console.log(e.latLng)
     setSelectedMarker(spot);
     setZoom(14);
     setCenter(e.latLng);
@@ -55,6 +55,8 @@ const Map = ({ skateSpots, updateSelection }) => {
     />
   ));
 
+  
+
   const renderMap = () => {
     return (
       <div className="map-container">
@@ -62,6 +64,7 @@ const Map = ({ skateSpots, updateSelection }) => {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={zoom}
+          // onClick={(e) => console.log(e.latLng)}
           onLoad={onLoad}
           onUnmount={onUnmount}
         >

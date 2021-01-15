@@ -35,7 +35,6 @@ function App() {
                   selectedSpot={selectedSpot}
                   {...props}
                 />
-                // <SpotDetails syncSelectedSpot={syncSelectedSpot} selectedSpot={selectedSpot} {...props} />
               );
             }}
           />
