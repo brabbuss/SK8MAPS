@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import "./App.css";
+import AppContext from './AppContext'
 import { getFromLocal, saveToLocal } from "../Common/Utilities/localStorage";
 import { Switch, Route } from "react-router-dom";
 import AddSpotView from "../AddSpotView/AddSpotView";
@@ -7,9 +8,26 @@ import FindSpotView from "../FindSpotsView/FindSpotView";
 import SpotDetails from "../SpotDetails/SpotDetails";
 import NavBar from "../Common/NavBar/NavBar";
 
+export const myReducer = (state, action) => {
+  switch (action.type) {
+    // case 'TOGGLE_THEME':
+    //   const newTheme = state.theme === 'light' ? 'dark' : 'light';
+    //   return {...state, theme: newTheme}
+    // case 'ADD_IDEA':
+    //   return {...state, ideas:[...state.ideas, action.idea]}
+    case 'CHANGE_VIEW':
+      const currentView = action.view;
+      return {...state, appView: currentView}
+    default:
+      return state
+  }
+}
+
 function App() {
   const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"));
   const [storedSpots, setStoredSpots] = useState(getFromLocal("USER-SK8MAPS"));
+  // const [appView, setAppView] = useState(null)
+  const [state, dispatch] = useReducer(myReducer, {selectedSpot, storedSpots}) 
 
   useEffect(() => {
     console.log("useEffect APP");
@@ -21,6 +39,8 @@ function App() {
   };
 
   return (
+    <AppContext.Provider value={[state,dispatch]}>
+
     <div className="App">
       <header className="App-header">
         <NavBar />
@@ -70,6 +90,8 @@ function App() {
         </Switch>
       </header>
     </div>
+    </AppContext.Provider>
+
   );
 }
 

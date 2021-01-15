@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import AppContext from "../App/AppContext";
 import Map from "../Common/Map/Map";
 
 function AddSpotView({ skateSpots, updateSelection }) {
+  const [state, dispatch] = useContext(AppContext);
+
+  useEffect(() => {
+    changeViewAdd()
+  },[])
+
+  const changeViewAdd = () => {
+    const action = {type: 'CHANGE_VIEW', view: 'add-spot'}
+    dispatch(action)
+  };
 
   return (
     <section>

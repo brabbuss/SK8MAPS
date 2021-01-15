@@ -1,8 +1,19 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import AppContext from '../App/AppContext'
 import "./FindSpotView.css";
 import Map from "../Common/Map/Map";
 
 function FindSpotView({ skateSpots, updateSelection }) {
+  const [state, dispatch] = useContext(AppContext);
+
+  useEffect(() => {
+    changeViewFind()
+  },[])
+
+  const changeViewFind = () => {
+    const action = {type: "CHANGE_VIEW", view: 'find-spot'}
+    dispatch(action)
+  };
 
   return (
     <section className="fs-container">
