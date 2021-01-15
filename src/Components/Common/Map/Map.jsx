@@ -27,13 +27,14 @@ const Map = () => {
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
-  const [zoom, setZoom] = useState(12);
+  const [zoom, setZoom] = useState(17);
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
+  const onLoad = useCallback(async function callback(map) {
+    const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
-    setMap(map);
+    map.setCenter(center);
     map.panTo(defaultPosition);
+    setMap(map);
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
