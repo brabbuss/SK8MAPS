@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
-import './SpotInfoBox.css'
+import "./SpotInfoBox.css";
 
 const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
   return (
@@ -13,7 +14,9 @@ const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
         lng: selectedMarker?.location.lng,
       }}>
       <div className="info-box">
-        <h3>{selectedMarker?.title}</h3>
+        <Link to={`/spots/${selectedMarker?.id}`}>
+          <h3>{selectedMarker?.title}</h3>
+        </Link>
         <p>{selectedMarker?.description}</p>
       </div>
     </InfoWindow>
@@ -21,3 +24,4 @@ const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
 };
 
 export default SpotInfoBox;
+// return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
