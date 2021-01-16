@@ -120,7 +120,7 @@ const Map = () => {
           {state.selectedSpot && (
             <SpotInfoBox
               selectedMarker={state.selectedSpot}
-              setSelectedMarker={state.selectedSpot}
+              updateSelection={updateSelection}
               resetZoom={resetZoom}
             />
           )}
