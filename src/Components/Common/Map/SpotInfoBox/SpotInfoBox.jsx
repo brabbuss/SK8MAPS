@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
 import "./SpotInfoBox.css";
 
-const SpotInfoBox = ({ pixelOffset, selectedMarker, setSelectedMarker }) => {
+const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
   const featureDetails = (
     <section className='feature-container'>
       {selectedMarker &&

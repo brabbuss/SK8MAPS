@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import AppContext from "../App/AppContext";
 import Map from "../Common/Map/Map";
 
-function AddSpotView({ updateSelection }) {
+function AddSpotView() {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(() => {
