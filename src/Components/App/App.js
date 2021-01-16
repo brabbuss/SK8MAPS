@@ -18,15 +18,16 @@ export const myReducer = (state, action) => {
     case "CHANGE_VIEW":
       const currentView = action.view;
       return { ...state, appView: currentView };
+    case "ADD_NEW_SPOT_MARKER":
+      const newSpot = action.newSpot;
+      return { ...state, newSpot: newSpot };
     default:
       return state;
   }
 };
 
 function App() {
-  const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"));
-  const [storedSpots, setStoredSpots] = useState(getFromLocal("USER-SK8MAPS"));
-  const [state, dispatch] = useReducer(myReducer, {selectedSpot, storedSpots});
+  const [state, dispatch] = useReducer(myReducer, {selectedSpot: getFromLocal("SELECTED-SK8MAP"), storedSpots: getFromLocal("USER-SK8MAPS")});
 
   return (
     <AppContext.Provider value={[state, dispatch]}>
