@@ -1,10 +1,26 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import './SpotDetails.css'
 import AppContext from "../App/AppContext";
 
-const SpotDetails = () => {
-const [state, dispatch] = useContext(AppContext);
-const {selectedSpot} = state
+const SpotDetails = ({match}) => {
+  const [state, dispatch] = useContext(AppContext);
+  const {selectedSpot} = state
+  
+  useEffect(() => {
+    // console.log(+match.params.spot_id === selectedSpot.id)
+    syncSelectedSpot()
+  },[])
+  
+  const syncSelectedSpot = () => {
+    if (match.params.spot_id !== selectedSpot?.id || !selectedSpot) {
+      // console.log(state.storedSpots)
+      const matchedSpot = state.storedSpots.find(s => s.id === +match.params.spot_id)
+      // console.log(matchedSpot);
+      const action = {type: "UPDATE_SELECTED_SPOT", selectedSpot: matchedSpot}
+      dispatch(action)
+      return
+    }
+  }
 
   const featureList = (
     <div className="features-section">

@@ -25,7 +25,7 @@ const Map = () => {
 
   const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState(null);
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  // const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
 
   const onLoad = useCallback(async function callback(map) {
@@ -42,7 +42,9 @@ const Map = () => {
   }, []);
 
   const updateSelection = selectedMarker => {
-    const action = {type: 'UPDATE_SELECTED_SPOT', spot: selectedMarker}
+    // setSelectedMarker(selectedMarker)
+    const action = {type: 'UPDATE_SELECTED_SPOT', selectedSpot: selectedMarker}
+    console.log(action.selectedSpot)
     dispatch(action)
   };
   
@@ -84,7 +86,7 @@ const Map = () => {
   }
 
   const handleMarkerClick = (e, spot) => {
-    setSelectedMarker(spot);
+    // setSelectedMarker(spot);
     map.zoom = 19;
     setCenter(e.latLng);
     map.panTo(e.latLng);
@@ -115,10 +117,10 @@ const Map = () => {
           {markers}
           {state.marker && (
             <ConfirmationMarker />)}
-          {selectedMarker && (
+          {state.selectedSpot && (
             <SpotInfoBox
-              selectedMarker={selectedMarker}
-              setSelectedMarker={setSelectedMarker}
+              selectedMarker={state.selectedSpot}
+              setSelectedMarker={state.selectedSpot}
               resetZoom={resetZoom}
             />
           )}
