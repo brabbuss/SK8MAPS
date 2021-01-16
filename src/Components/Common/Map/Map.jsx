@@ -28,10 +28,6 @@ const Map = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
 
-  useEffect(() => {
-    console.log('MAP', state)
-  },[])
-
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
