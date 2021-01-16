@@ -63,17 +63,11 @@ const DetailsForm = () => {
     images: [images],
   };
 
+
   const submitNewSk8Map = e => {
-    // e.preventDefault();
     dispatch({ type: "SAVE_NEW_SK8MAP", newSk8Map: newSk8MapObject });
     clearInputs();
   };
-
-  // const submitIdea = event => {
-  //   event.preventDefault();
-  //   dispatch({ type: "ADD_IDEA", idea: newIdea });
-  //   clearInputs();
-  // };
 
   const clearInputs = () => {
     setTitle("");
