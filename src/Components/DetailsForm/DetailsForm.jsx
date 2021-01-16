@@ -35,10 +35,10 @@ const DetailsForm = () => {
   };
 
   return (
-    <section className='form'>
+    <section className="form">
       <div className="detail-view">
         <div className="detail-title-container form-left">
-          <div className='input-label'>
+          <div className="input-label">
             <h1>title</h1>
             <input
               type="text"
@@ -48,7 +48,7 @@ const DetailsForm = () => {
               onChange={event => setTitle(event.target.value)}
             />
           </div>
-          <div className='input-label'>
+          <div className="input-label">
             <h3>description</h3>
             <input
               type="text"
@@ -58,7 +58,7 @@ const DetailsForm = () => {
               onChange={event => setDescription(event.target.value)}
             />
           </div>
-          <div className='input-label'>
+          <div className="input-label">
             <h3>image link</h3>
             <input
               type="text"
@@ -79,75 +79,83 @@ const DetailsForm = () => {
         </div>
         <div className="info-wrapper form-right">
           <div className="features-section">
-            <div className="feature-details">
+            <div className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Curbs</h3>
-                <div className='form-yes-no'>
+                <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <input
-                type="text"
-                placeholder="Description (waxed, chunky, new...)"
-                name="curbs"
-                value={curbs}
-                onChange={event => setCurbs(event.target.value)}
-              />
+              <div className='feature-input'>
+                <input
+                  type="text"
+                  placeholder="Description (waxed, chunky, new...)"
+                  name="curbs"
+                  value={curbs}
+                  onChange={event => setCurbs(event.target.value)}
+                />
+              </div>
             </div>
-            <div className="feature-details">
+            <div className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Flats</h3>
-                <div className='form-yes-no'>
+                <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <input
-                type="text"
-                placeholder="Description (waxed, chunky, new...)"
-                name="flats"
-                value={flats}
-                onChange={event => setFlats(event.target.value)}
-              />
+              <div className='feature-input'>
+                <input
+                  type="text"
+                  placeholder="Description (waxed, chunky, new...)"
+                  name="flats"
+                  value={flats}
+                  onChange={event => setFlats(event.target.value)}
+                />
+              </div>
             </div>
-            <div className="feature-details">
+            <div className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Rails</h3>
-                <div className='form-yes-no'>
+                <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <input
-                type="text"
-                placeholder="Description (waxed, chunky, new...)"
-                name="rails"
-                value={rails}
-                onChange={event => setRails(event.target.value)}
-              />
+              <div className='feature-input'>
+                <input
+                  type="text"
+                  placeholder="Description (waxed, chunky, new...)"
+                  name="rails"
+                  value={rails}
+                  onChange={event => setRails(event.target.value)}
+                />
+              </div>
             </div>
-            <div className="feature-details">
+            <div className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Stairs</h3>
-                <div className='form-yes-no'>
+                <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <input
-                type="text"
-                placeholder="Description (waxed, chunky, new...)"
-                name="stairs"
-                value={stairs}
-                onChange={event => setStairs(event.target.value)}
-              />
+              <div className='feature-input'>
+                <input
+                  type="text"
+                  placeholder="Description (waxed, chunky, new...)"
+                  name="stairs"
+                  value={stairs}
+                  onChange={event => setStairs(event.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <form>
-        <button onClick={submitIdea}>SUBMIT</button>
+        <button className='nav-button' onClick={submitIdea}>SUBMIT</button>
       </form>
     </section>
   );
