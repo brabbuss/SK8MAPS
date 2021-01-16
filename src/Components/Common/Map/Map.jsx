@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import AppContext from "../../App/AppContext";
 import "./Map.css";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
+import ConfirmationMarker from './ConfirmationMarker/ConfirmationMarker'
 const API_KEY = process.env.REACT_APP_YOUR_API_KEY;
 
 const containerStyle = {
@@ -23,14 +24,15 @@ const Map = () => {
   });
 
   const [state, dispatch] = useContext(AppContext);
-  // console.log('state called in MAP', state)
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
-  const [zoom, setZoom] = useState(17);
+
+  useEffect(() => {
+    console.log('MAP', state)
+  },[])
 
   const onLoad = useCallback(async function callback(map) {
-    // console.log("ONLOAD MAP");
     const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     map.setCenter(center);
@@ -46,6 +48,12 @@ const Map = () => {
     const action = {type: 'UPDATE_SELECTED_SPOT', spot: selectedMarker}
     dispatch(action)
   };
+  
+  const addNewMarkerToState = (loc) => {
+    const newSpot = { id: Date.now() + 1, location: loc }
+    const action = {type: 'ADD_NEW_SPOT_MARKER', newSpot: newSpot}
+    dispatch(action)
+  }
 
   const handleZoom = () => {
     if (map) {
@@ -62,16 +70,12 @@ const Map = () => {
   }
 
   const handleMapClick = (e) => {
-    // console.log('handle MAP click')
     if (state.appView === "add-spot") {
-      // console.log('MAP.ZOOM', map.zoom)
-      // console.log('MAPgetZoom()', map.getZoom())
-      // console.log('handle MAP ADD click')
-      // console.log(e.latLng)
-      map.zoom = 22
       const newPos = e.latLng
+      map.zoom = 22
       setCenter(newPos);
       map.panTo(newPos);
+      addNewMarkerToState(newPos)
       handleZoom()
     } 
   }
@@ -83,7 +87,7 @@ const Map = () => {
     map.panTo(e.latLng);
     updateSelection(spot);
     handleZoom()
-  };
+  };   
 
   const markers = state.storedSpots?.map((spot, i) => (
     <SpotMarker
@@ -106,6 +110,8 @@ const Map = () => {
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
+          {state.newSpot && (
+            <ConfirmationMarker />)}
           {selectedMarker && (
             <SpotInfoBox
               selectedMarker={selectedMarker}

@@ -82,4 +82,6 @@ add the completed newSpot to user's contributions
 add the completed newSpot to all spots
 set the completed newSpot as the selectedSpot
   navigate to details page for newSpot
+push into array of spots
+set newSpot to null
 */
