@@ -11,6 +11,10 @@ import DetailsForm from '../DetailsForm/DetailsForm'
 
 export const myReducer = (state, action) => {
   switch (action.type) {
+    case "SYNC_DATA":
+      const userMaps = getFromLocal("USER-SK8MAPS")
+      const allMaps = getFromLocal("ALL-SK8MAPS")
+      return { ...state, storedSpots: allMaps, userMaps: userMaps };
     case "UPDATE_SELECTED_SPOT":
       const currentSpot = action.spot;
       saveToLocal("SELECTED-SK8MAP", currentSpot);
@@ -24,13 +28,19 @@ export const myReducer = (state, action) => {
     case "CREATE_SK8MAP":
       const newSk8Map = action.newSk8Map
       return { ...state, newSk8Map: newSk8Map };
+    case "SAVE_NEW_SK8MAP":
+      const newUserSk8Map = action.newSk8Map
+      const updatedSk8Maps = [...state.storedSpots, newUserSk8Map]
+      saveToLocal("ALL-SK8MAPS", updatedSk8Maps)
+      saveToLocal("USER-SK8MAPS", updatedSk8Maps)
+      return { ...state, storedSpots: updatedSk8Maps };
     default:
       return state;
   }
 };
 
 function App() {
-  const [state, dispatch] = useReducer(myReducer, {selectedSpot: getFromLocal("SELECTED-SK8MAP"), storedSpots: getFromLocal("USER-SK8MAPS")});
+  const [state, dispatch] = useReducer(myReducer, {selectedSpot: getFromLocal("SELECTED-SK8MAP"), storedSpots: getFromLocal("ALL-SK8MAPS")});
 
   return (
     <AppContext.Provider value={[state, dispatch]}>

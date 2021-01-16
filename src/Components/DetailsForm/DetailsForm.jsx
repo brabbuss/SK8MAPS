@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import "./DetailsForm.css";
 import AppContext from "../App/AppContext";
 
@@ -18,20 +19,74 @@ const DetailsForm = () => {
 
   const { newSk8Map } = state;
 
-  const submitIdea = event => {
-    event.preventDefault();
-    const newIdea = {
-      id: Date.now(),
-      title,
-      description,
-    };
-    dispatch({ type: "ADD_IDEA", idea: newIdea });
+  const newSk8MapObject = {
+    id: newSk8Map.id,
+    difficulty: difficulty,
+    title: title,
+    description: description,
+    location: newSk8Map.location,
+    features: [
+      {
+        type: "Curbs",
+        has: curbs ? true : false,
+        condition: 5,
+        description: curbs,
+      },
+      {
+        type: "Flats",
+        has: flats ? true : false,
+        condition: 3,
+        description: flats,
+      },
+      {
+        type: "Rails",
+        has: rails ? true : false,
+        condition: 3,
+        description: rails,
+      },
+      {
+        type: "Stairs",
+        has: stairs ? true : false,
+        condition: 5,
+        description: stairs,
+      },
+    ],
+    safety: {
+      security: {
+        has: true,
+        cheese_level: 1,
+        description: "guards were chill",
+      },
+      hazards: "some big cracks",
+      public: false,
+    },
+    images: [images],
+  };
+
+  const submitNewSk8Map = e => {
+    // e.preventDefault();
+    dispatch({ type: "SAVE_NEW_SK8MAP", newSk8Map: newSk8MapObject });
     clearInputs();
   };
+
+  // const submitIdea = event => {
+  //   event.preventDefault();
+  //   dispatch({ type: "ADD_IDEA", idea: newIdea });
+  //   clearInputs();
+  // };
 
   const clearInputs = () => {
     setTitle("");
     setDescription("");
+    setDifficulty("");
+    setImages("");
+    setCurbs("");
+    setFlats("");
+    setRails("");
+    setStairs("");
+    setSecurity("");
+    setHazards("");
+    setPublicSkating("");
   };
 
   return (
@@ -79,7 +134,7 @@ const DetailsForm = () => {
         </div>
         <div className="info-wrapper form-right">
           <div className="features-section">
-            <div className="feature-details feature-input-wrapper">
+            <article className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Curbs</h3>
                 <div className="form-yes-no">
@@ -87,7 +142,7 @@ const DetailsForm = () => {
                   <div>❌</div>
                 </div>
               </div>
-              <div className='feature-input'>
+              <div className="feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -96,8 +151,8 @@ const DetailsForm = () => {
                   onChange={event => setCurbs(event.target.value)}
                 />
               </div>
-            </div>
-            <div className="feature-details feature-input-wrapper">
+            </article>
+            <article className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Flats</h3>
                 <div className="form-yes-no">
@@ -105,7 +160,7 @@ const DetailsForm = () => {
                   <div>❌</div>
                 </div>
               </div>
-              <div className='feature-input'>
+              <div className="feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -114,8 +169,8 @@ const DetailsForm = () => {
                   onChange={event => setFlats(event.target.value)}
                 />
               </div>
-            </div>
-            <div className="feature-details feature-input-wrapper">
+            </article>
+            <article className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Rails</h3>
                 <div className="form-yes-no">
@@ -123,7 +178,7 @@ const DetailsForm = () => {
                   <div>❌</div>
                 </div>
               </div>
-              <div className='feature-input'>
+              <div className="feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -132,8 +187,8 @@ const DetailsForm = () => {
                   onChange={event => setRails(event.target.value)}
                 />
               </div>
-            </div>
-            <div className="feature-details feature-input-wrapper">
+            </article>
+            <article className="feature-details feature-input-wrapper">
               <div className="feature-type">
                 <h3>Stairs</h3>
                 <div className="form-yes-no">
@@ -141,7 +196,7 @@ const DetailsForm = () => {
                   <div>❌</div>
                 </div>
               </div>
-              <div className='feature-input'>
+              <div className="feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -150,12 +205,16 @@ const DetailsForm = () => {
                   onChange={event => setStairs(event.target.value)}
                 />
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>
       <form>
-        <button className='nav-button' onClick={submitIdea}>SUBMIT</button>
+        <Link to={`/spots/${newSk8Map.id}`} className="nav-btn-link">
+          <button className="nav-button" onClick={e => submitNewSk8Map(e)}>
+            SUBMIT
+          </button>
+        </Link>
       </form>
     </section>
   );
