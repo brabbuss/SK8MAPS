@@ -16,9 +16,9 @@ export const myReducer = (state, action) => {
       const allMaps = getFromLocal("ALL-SK8MAPS")
       return { ...state, storedSpots: allMaps, userMaps: userMaps };
     case "UPDATE_SELECTED_SPOT":
-      const currentSpot = action.spot;
-      saveToLocal("SELECTED-SK8MAP", currentSpot);
-      return { ...state, selectedSpot: currentSpot };
+      const selectedSpot = action.selectedSpot;
+      saveToLocal("SELECTED-SK8MAP", selectedSpot);
+      return { ...state, selectedSpot: selectedSpot };
     case "CHANGE_VIEW":
       const currentView = action.view;
       return { ...state, appView: currentView };
