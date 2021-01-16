@@ -26,7 +26,7 @@ const {selectedSpot} = state
         <div className='detail-title-container'>
           <h1>{selectedSpot.title}</h1>
           <p>{selectedSpot.description}</p>
-          {<img alt='skating a curb' src={selectedSpot.images[0]} />}
+          {selectedSpot?.images && <img alt='skating a curb' src={selectedSpot.images[0]} />}
         </div>
         <div className='info-wrapper'>
           {featureList}
