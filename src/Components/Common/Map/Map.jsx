@@ -36,6 +36,7 @@ const Map = () => {
     const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     map.setCenter(center);
+    map.zoom = 12;
     setMap(map);
     map.panTo(center);
   }, []);
@@ -67,6 +68,12 @@ const Map = () => {
         map.setTilt(0);
       }
     }
+  }
+
+  const resetZoom = () => {
+    map.zoom = 15
+    map.panTo(center);
+    handleZoom()
   }
 
   const handleMapClick = (e) => {
@@ -116,6 +123,7 @@ const Map = () => {
             <SpotInfoBox
               selectedMarker={selectedMarker}
               setSelectedMarker={setSelectedMarker}
+              resetZoom={resetZoom}
             />
           )}
         </GoogleMap>
