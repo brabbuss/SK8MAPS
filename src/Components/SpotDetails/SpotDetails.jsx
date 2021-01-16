@@ -1,21 +1,19 @@
 import React, {useContext, useEffect} from "react";
 import './SpotDetails.css'
 import AppContext from "../App/AppContext";
+import {longboard1} from '../Common/Assets/longboard1'
 
 const SpotDetails = ({match}) => {
   const [state, dispatch] = useContext(AppContext);
   const {selectedSpot} = state
   
   useEffect(() => {
-    // console.log(+match.params.spot_id === selectedSpot.id)
     syncSelectedSpot()
   },[])
   
   const syncSelectedSpot = () => {
     if (match.params.spot_id !== selectedSpot?.id || !selectedSpot) {
-      // console.log(state.storedSpots)
       const matchedSpot = state.storedSpots.find(s => s.id === +match.params.spot_id)
-      // console.log(matchedSpot);
       const action = {type: "UPDATE_SELECTED_SPOT", selectedSpot: matchedSpot}
       dispatch(action)
       return
@@ -36,13 +34,28 @@ const SpotDetails = ({match}) => {
     </div>
   );
 
+  const images = () => {
+    if (selectedSpot?.images && selectedSpot?.images[0]) {
+      return(
+        <img alt='skating a curb' src={selectedSpot.images[0]} />
+      )
+    } else {
+      return(
+        <div>
+          {longboard1}
+          {/* <img src={longboard1} className="App-logo longboard-icon" alt="logo" /> */}
+        </div>
+        )
+    }
+  }
+
   if (selectedSpot) {
     return (
       <div className='detail-view'>
         <div className='detail-title-container'>
           <h1>{selectedSpot.title}</h1>
           <p>{selectedSpot.description}</p>
-          {selectedSpot?.images && <img alt='skating a curb' src={selectedSpot.images[0]} />}
+          {images()}
         </div>
         <div className='info-wrapper'>
           {featureList}
