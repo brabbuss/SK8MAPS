@@ -49,9 +49,9 @@ const Map = () => {
     dispatch(action)
   };
   
-  const addNewMarkerToState = (loc) => {
-    const newSpot = { id: Date.now() + 1, location: loc }
-    const action = {type: 'ADD_NEW_SPOT_MARKER', newSpot: newSpot}
+  const showConfirmationMarker = (loc) => {
+    const marker = { location: loc }
+    const action = {type: 'ADD_CONFIRMATION_MARKER', marker: marker}
     dispatch(action)
   }
 
@@ -75,7 +75,7 @@ const Map = () => {
       map.zoom = 22
       setCenter(newPos);
       map.panTo(newPos);
-      addNewMarkerToState(newPos)
+      showConfirmationMarker(newPos)
       handleZoom()
     } 
   }
@@ -110,7 +110,7 @@ const Map = () => {
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
-          {state.newSpot && (
+          {state.marker && (
             <ConfirmationMarker />)}
           {selectedMarker && (
             <SpotInfoBox
