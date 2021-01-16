@@ -35,30 +35,39 @@ const DetailsForm = () => {
   };
 
   return (
-    <section>
+    <section className='form'>
       <div className="detail-view">
-        <div className="detail-title-container">
-          <input
-            type="text"
-            placeholder="What's this place called?"
-            name="title"
-            value={title}
-            onChange={event => setTitle(event.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Enter a short description"
-            name="description"
-            value={description}
-            onChange={event => setDescription(event.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="URL for an image"
-            name="image"
-            value={images}
-            onChange={event => setImages(event.target.value)}
-          />
+        <div className="detail-title-container form-left">
+          <div className='input-label'>
+            <h1>title</h1>
+            <input
+              type="text"
+              placeholder="What's this place called?"
+              name="title"
+              value={title}
+              onChange={event => setTitle(event.target.value)}
+            />
+          </div>
+          <div className='input-label'>
+            <h3>description</h3>
+            <input
+              type="text"
+              placeholder="Enter a short description"
+              name="description"
+              value={description}
+              onChange={event => setDescription(event.target.value)}
+            />
+          </div>
+          <div className='input-label'>
+            <h3>image link</h3>
+            <input
+              type="text"
+              placeholder="URL for an image"
+              name="image"
+              value={images}
+              onChange={event => setImages(event.target.value)}
+            />
+          </div>
           <div>
             {newSk8Map?.images && (
               <img
@@ -68,7 +77,7 @@ const DetailsForm = () => {
             )}
           </div>
         </div>
-        <div className="info-wrapper">
+        <div className="info-wrapper form-right">
           <div className="features-section">
             <div className="feature-details">
               <div className="feature-type">

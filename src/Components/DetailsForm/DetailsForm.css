@@ -1,3 +1,29 @@
+.form {
+  width: 100%;
+}
+
+.form .input-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-left {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.form-left input {
+  padding: 1em;
+  margin: 1em;
+}
+
+.feature-details input {
+  padding: 1em;
+  margin: 1em;
+  width: 100%;
+}
+
 .form-yes-no {
   width: 100%;
   height: 2em;
@@ -5,4 +31,16 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  overflow: hidden;
+}
+
+.form-yes-no div {
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  filter: grayscale(100%);
+}
+
+.form-yes-no div:hover {
+  transform: scale(1.2);
+  filter: grayscale(0%);
 }
