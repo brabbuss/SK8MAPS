@@ -1,11 +1,22 @@
-import React, {useState, useContext} from "react";
+import React, { useState, useContext } from "react";
 import "./DetailsForm.css";
-import AppContext from '../App/AppContext'
+import AppContext from "../App/AppContext";
 
 const DetailsForm = () => {
+  const [state, dispatch] = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [state, dispatch] = useContext(AppContext);
+  const [difficulty, setDifficulty] = useState("");
+  const [images, setImages] = useState("");
+  const [curbs, setCurbs] = useState("");
+  const [flats, setFlats] = useState("");
+  const [rails, setRails] = useState("");
+  const [stairs, setStairs] = useState("");
+  const [security, setSecurity] = useState("");
+  const [hazards, setHazards] = useState("");
+  const [publicSkating, setPublicSkating] = useState("");
+
+  const { newSk8Map } = state;
 
   const submitIdea = event => {
     event.preventDefault();
@@ -24,30 +35,116 @@ const DetailsForm = () => {
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        placeholder="Title"
-        name="title"
-        value={title}
-        onChange={event => setTitle(event.target.value)}
-      />
-
-      <input
-        type="text"
-        placeholder="Description"
-        name="description"
-        value={description}
-        onChange={event => setDescription(event.target.value)}
-      />
-
-      <button onClick={submitIdea}>SUBMIT</button>
-    </form>
+    <section>
+      <div className="detail-view">
+        <div className="detail-title-container">
+          <input
+            type="text"
+            placeholder="What's this place called?"
+            name="title"
+            value={title}
+            onChange={event => setTitle(event.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Enter a short description"
+            name="description"
+            value={description}
+            onChange={event => setDescription(event.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="URL for an image"
+            name="image"
+            value={images}
+            onChange={event => setImages(event.target.value)}
+          />
+          <div>
+            {newSk8Map?.images && (
+              <img
+                alt={newSk8Map.images[0]?.description && "skating a curb"}
+                src={newSk8Map.images[0]}
+              />
+            )}
+          </div>
+        </div>
+        <div className="info-wrapper">
+          <div className="features-section">
+            <div className="feature-details">
+              <div className="feature-type">
+                <h3>Curbs</h3>
+                <div className='form-yes-no'>
+                  <div>✅</div>
+                  <div>❌</div>
+                </div>
+              </div>
+              <input
+                type="text"
+                placeholder="Description (waxed, chunky, new...)"
+                name="curbs"
+                value={curbs}
+                onChange={event => setCurbs(event.target.value)}
+              />
+            </div>
+            <div className="feature-details">
+              <div className="feature-type">
+                <h3>Flats</h3>
+                <div className='form-yes-no'>
+                  <div>✅</div>
+                  <div>❌</div>
+                </div>
+              </div>
+              <input
+                type="text"
+                placeholder="Description (waxed, chunky, new...)"
+                name="flats"
+                value={flats}
+                onChange={event => setFlats(event.target.value)}
+              />
+            </div>
+            <div className="feature-details">
+              <div className="feature-type">
+                <h3>Rails</h3>
+                <div className='form-yes-no'>
+                  <div>✅</div>
+                  <div>❌</div>
+                </div>
+              </div>
+              <input
+                type="text"
+                placeholder="Description (waxed, chunky, new...)"
+                name="rails"
+                value={rails}
+                onChange={event => setRails(event.target.value)}
+              />
+            </div>
+            <div className="feature-details">
+              <div className="feature-type">
+                <h3>Stairs</h3>
+                <div className='form-yes-no'>
+                  <div>✅</div>
+                  <div>❌</div>
+                </div>
+              </div>
+              <input
+                type="text"
+                placeholder="Description (waxed, chunky, new...)"
+                name="stairs"
+                value={stairs}
+                onChange={event => setStairs(event.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <form>
+        <button onClick={submitIdea}>SUBMIT</button>
+      </form>
+    </section>
   );
 };
 
 export default DetailsForm;
-
 
 // begin with
 /*
