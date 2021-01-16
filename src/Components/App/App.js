@@ -18,9 +18,12 @@ export const myReducer = (state, action) => {
     case "CHANGE_VIEW":
       const currentView = action.view;
       return { ...state, appView: currentView };
-    case "ADD_NEW_SPOT_MARKER":
-      const newSpot = action.newSpot;
-      return { ...state, newSpot: newSpot };
+    case "ADD_CONFIRMATION_MARKER":
+      const marker = action.marker;
+      return { ...state, marker: marker };
+    case "CREATE_SK8MAP":
+      const newSk8Map = action.newSk8Map
+      return { ...state, newSk8Map: newSk8Map };
     default:
       return state;
   }
