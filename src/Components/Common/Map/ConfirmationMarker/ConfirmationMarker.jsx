@@ -20,7 +20,11 @@ const ConfirmationMarker = () => {
   const createSk8Map = () => {
     const newSk8Map = {
       id: Date.now()+1,
-      location: state.marker.location
+      location: state.marker.location,
+      // location: {
+      //   lat: state.marker.location.lat(), 
+      //   lng: state.marker.location.lng()
+      // }
     }
     const action = {type: 'CREATE_SK8MAP', newSk8Map: newSk8Map}
     dispatch(action)
