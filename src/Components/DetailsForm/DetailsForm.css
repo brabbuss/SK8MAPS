@@ -1,0 +1,98 @@
+.form {
+  width: 100%;
+}
+
+.form .input-label {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-left {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.form-left input {
+  padding: 1em;
+  margin: 1em;
+}
+
+.form-right {
+  max-width: 100%;
+}
+
+.feature-input-wrapper {
+  height: 100%;
+}
+
+.feature-input-wrapper .feature-input {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.form input {
+  padding: 2rem;
+  border-radius: 10px;
+  margin-left: 1em;
+  width: 100%;
+}
+/* .feature-input-wrapper input {
+  padding: 2rem;
+  border-radius: 10px;
+  margin-left: 1em;
+  width: 100%;
+} */
+
+input[type=text] {
+  font-size: 1em;
+}
+/* .feature-input-wrapper input[type=text] {
+  font-size: 1em;
+} */
+
+.form-yes-no {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+
+.form-yes-no div {
+  cursor: pointer;
+  transition: ease-in-out 0.2s;
+  filter: grayscale(100%);
+}
+
+.form-yes-no div:hover {
+  transform: scale(1.2);
+  filter: grayscale(0%);
+}
+
+.form button {
+  flex: 1 1;
+  padding: 0.2em 0.4em;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: clamp(13px, 1em, 2em);
+  font-weight: 300;
+  color:white;
+  background-color: rgb(40,44,52);
+  border: 1.4px solid white;
+  border-radius: 10px;
+  transition: ease-in-out 0.2s;
+  margin: 0 0.6em;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background: #e100a9;
+  color: #282c34;
+  border-color: #e100a9;
+}

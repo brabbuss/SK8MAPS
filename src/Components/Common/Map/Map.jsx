@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import AppContext from "../../App/AppContext";
 import "./Map.css";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
+import ConfirmationMarker from './ConfirmationMarker/ConfirmationMarker'
 const API_KEY = process.env.REACT_APP_YOUR_API_KEY;
 
 const containerStyle = {
@@ -23,17 +24,17 @@ const Map = () => {
   });
 
   const [state, dispatch] = useContext(AppContext);
-  console.log('state called in MAP', state)
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
-  const [zoom, setZoom] = useState(12);
 
-  const onLoad = useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
+  const onLoad = useCallback(async function callback(map) {
+    const bounds = await new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
+    map.setCenter(center);
+    map.zoom = 12;
     setMap(map);
-    map.panTo(defaultPosition);
+    map.panTo(center);
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
@@ -44,6 +45,12 @@ const Map = () => {
     const action = {type: 'UPDATE_SELECTED_SPOT', spot: selectedMarker}
     dispatch(action)
   };
+  
+  const showConfirmationMarker = (loc) => {
+    const marker = { location: loc }
+    const action = {type: 'ADD_CONFIRMATION_MARKER', marker: marker}
+    dispatch(action)
+  }
 
   const handleZoom = () => {
     if (map) {
@@ -59,22 +66,31 @@ const Map = () => {
     }
   }
 
+  const resetZoom = () => {
+    map.zoom = 15
+    map.panTo(center);
+    handleZoom()
+  }
+
   const handleMapClick = (e) => {
     if (state.appView === "add-spot") {
-      const newPos = e
-      setZoom(22);
+      const newPos = e.latLng
+      map.zoom = 22
       setCenter(newPos);
       map.panTo(newPos);
+      showConfirmationMarker(newPos)
+      handleZoom()
     } 
   }
 
   const handleMarkerClick = (e, spot) => {
     setSelectedMarker(spot);
-    setZoom(14);
+    map.zoom = 19;
     setCenter(e.latLng);
     map.panTo(e.latLng);
     updateSelection(spot);
-  };
+    handleZoom()
+  };   
 
   const markers = state.storedSpots?.map((spot, i) => (
     <SpotMarker
@@ -88,18 +104,22 @@ const Map = () => {
     return (
       <div className="map-container">
         <GoogleMap
+          clickableIcons={false}
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={zoom}
+          zoom={12}
           onZoomChanged={handleZoom}
-          onClick={(e) => handleMapClick(e.latLng)}
+          onClick={(e) => handleMapClick(e)}
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
+          {state.marker && (
+            <ConfirmationMarker />)}
           {selectedMarker && (
             <SpotInfoBox
               selectedMarker={selectedMarker}
               setSelectedMarker={setSelectedMarker}
+              resetZoom={resetZoom}
             />
           )}
         </GoogleMap>

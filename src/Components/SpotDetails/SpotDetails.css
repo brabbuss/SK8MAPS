@@ -1,14 +1,19 @@
 .detail-view {
   display: flex;
   flex-direction: row;
+  margin: 1em;
 }
 
 .detail-view .detail-title-container {
  flex: 1;
 }
 
+.detail-view .detail-title-container img {
+ max-width: 100%;
+}
+
 .detail-view .info-wrapper {
- flex: 2;
+ flex: 1;
 }
 
 .feature-container {

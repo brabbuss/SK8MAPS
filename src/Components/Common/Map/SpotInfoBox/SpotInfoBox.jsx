@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
 import "./SpotInfoBox.css";
 
-const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
+const SpotInfoBox = ({ resetZoom, selectedMarker, setSelectedMarker }) => {
   const featureDetails = (
     <section className='feature-container'>
       {selectedMarker &&
@@ -20,22 +20,27 @@ const SpotInfoBox = ({ selectedMarker, setSelectedMarker }) => {
     </section>
   );
 
+  const infoBox = (
+    <div className="info-box">
+      <Link to={`/spots/${selectedMarker?.id}`}>
+        <h1>{selectedMarker?.title}</h1>
+      </Link>
+      <p>{selectedMarker?.description}</p>
+      {featureDetails}
+    </div>
+  )
+
   return (
     <InfoWindow
+      marker={selectedMarker.location}
+      options={{pixelOffset: new window.google.maps.Size(0, -43)}}
       onCloseClick={() => {
-        setSelectedMarker(null);
+        resetZoom()
+        setSelectedMarker(null)
       }}
-      position={{
-        lat: selectedMarker?.location.lat,
-        lng: selectedMarker?.location.lng,
-      }}>
-      <div className="info-box">
-        <Link to={`/spots/${selectedMarker?.id}`}>
-          <h1>{selectedMarker?.title}</h1>
-        </Link>
-        <p>{selectedMarker?.description}</p>
-        {featureDetails}
-      </div>
+      position={selectedMarker.location}
+    >
+      {infoBox}
     </InfoWindow>
   );
 };

@@ -20,9 +20,11 @@ export const saveToLocal = (type, skateData) => {
     const data = JSON.parse(localStorage.getItem(type))
     switch(type) {
       case "USER-SK8MAPS":
-        return data ? data : mockAPISkateSpots;
+        return data ? data : null;
       case "SELECTED-SK8MAP":
         return data ? data : null;
+      case "ALL-SK8MAPS":
+        return data ? data : mockAPISkateSpots;
       default:
         break;
     }
