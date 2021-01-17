@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
 import "./ConfirmationMarker.css";
 
-const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom}) => {
+const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom, createNewSk8Map}) => {
   // const [state, dispatch] = useContext(AppContext);
   
   const handleConfirm = () => {
@@ -15,11 +15,9 @@ const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom}
   const createSk8Map = () => {
     const newSk8Map = {
       id: Date.now()+1,
-      location: confirmMarker.location,
+      location: confirmMarker,
     }
-    
-    // const action = {type: 'CREATE_SK8MAP', newSk8Map: newSk8Map}
-    // dispatch(action)
+    createNewSk8Map(newSk8Map)
   };
 
   const handleClose = () => {

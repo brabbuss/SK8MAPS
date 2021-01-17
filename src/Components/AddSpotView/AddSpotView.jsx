@@ -2,7 +2,7 @@ import React, {useContext, useEffect} from "react";
 import AppContext from "../App/AppContext";
 import Map from "../Common/Map/Map";
 
-function AddSpotView() {
+function AddSpotView({createNewSk8Map}) {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function AddSpotView() {
   return (
     <section>
       <h1>click to add a spot</h1>
-      <Map />
+      <Map createNewSk8Map={createNewSk8Map} />
     </section>
   ) 
 }

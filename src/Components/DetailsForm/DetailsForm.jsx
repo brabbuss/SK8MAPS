@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 import "./DetailsForm.css";
-import AppContext from "../App/AppContext";
+// import AppContext from "../App/AppContext";
 
-const DetailsForm = () => {
-  const [state, dispatch] = useContext(AppContext);
+const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
+  // const [state, dispatch] = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -17,55 +17,60 @@ const DetailsForm = () => {
   const [hazards, setHazards] = useState("");
   const [publicSkating, setPublicSkating] = useState("");
 
-  const { newSk8Map } = state;
+console.log(newSk8Map);
 
-  const newSk8MapObject = {
-    id: newSk8Map.id,
-    difficulty: difficulty,
-    title: title,
-    description: description,
-    location: newSk8Map.location,
-    features: [
-      {
-        type: "Curbs",
-        has: curbs ? true : false,
-        condition: 5,
-        description: curbs,
+  const makeNewSk8MapObject = () => {
+    const newSk8MapObject = {
+      id: newSk8Map.id,
+      difficulty: difficulty,
+      title: title,
+      description: description,
+      location: newSk8Map.location,
+      features: [
+        {
+          type: "Curbs",
+          has: curbs ? true : false,
+          condition: 5,
+          description: curbs,
+        },
+        {
+          type: "Flats",
+          has: flats ? true : false,
+          condition: 3,
+          description: flats,
+        },
+        {
+          type: "Rails",
+          has: rails ? true : false,
+          condition: 3,
+          description: rails,
+        },
+        {
+          type: "Stairs",
+          has: stairs ? true : false,
+          condition: 5,
+          description: stairs,
+        },
+      ],
+      safety: {
+        security: {
+          has: true,
+          cheese_level: 1,
+          description: "guards were chill",
+        },
+        hazards: "some big cracks",
+        public: false,
       },
-      {
-        type: "Flats",
-        has: flats ? true : false,
-        condition: 3,
-        description: flats,
-      },
-      {
-        type: "Rails",
-        has: rails ? true : false,
-        condition: 3,
-        description: rails,
-      },
-      {
-        type: "Stairs",
-        has: stairs ? true : false,
-        condition: 5,
-        description: stairs,
-      },
-    ],
-    safety: {
-      security: {
-        has: true,
-        cheese_level: 1,
-        description: "guards were chill",
-      },
-      hazards: "some big cracks",
-      public: false,
-    },
-    images: [images],
-  };
+      images: [images],
+    };
+    return newSk8MapObject
+    }
 
 
   const submitNewSk8Map = e => {
-    dispatch({ type: "SAVE_NEW_SK8MAP", newSk8Map: newSk8MapObject });
+    e.preventDefault()
+    saveNewSk8Map(makeNewSk8MapObject())
+    console.log(makeNewSk8MapObject())
     clearInputs();
   };
 
@@ -83,7 +88,8 @@ const DetailsForm = () => {
     setPublicSkating("");
   };
 
-  return (
+  const form = () => {
+    return (
     <section className="form">
       <div className="detail-view">
         <div className="detail-title-container form-left">
@@ -211,7 +217,10 @@ const DetailsForm = () => {
         </Link>
       </form>
     </section>
-  );
+  )
+  };
+
+  return newSk8Map ? form() : <Redirect to='/' />
 };
 
 export default DetailsForm;

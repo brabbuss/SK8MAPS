@@ -17,7 +17,7 @@ let defaultPosition = {
   lng: -105.065,
 };
 
-const Map = () => {
+const Map = ({createNewSk8Map}) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
@@ -27,8 +27,6 @@ const Map = () => {
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [confirmMarker, setConfirmMarker] = useState(null)
-
-  console.log(confirmMarker)
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -122,7 +120,7 @@ const Map = () => {
             confirmMarker={confirmMarker}
             resetZoom={resetZoom}
             toggleConfirmationMarker={toggleConfirmationMarker}
-              // confirmationLocation={(e) => getLatLng(e)}
+            createNewSk8Map={createNewSk8Map}
             />)}
           {state.selectedSpot && (
             <SpotInfoBox

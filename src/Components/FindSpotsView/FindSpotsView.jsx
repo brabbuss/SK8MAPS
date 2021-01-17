@@ -15,8 +15,6 @@ function FindSpotView() {
     dispatch(action)
   };
 
-  // console.log(state)
-
   return (
     <section className="fs-container">
       <h2>Find spots by:</h2>
