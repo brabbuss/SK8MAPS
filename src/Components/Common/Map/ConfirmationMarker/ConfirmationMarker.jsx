@@ -1,47 +1,44 @@
 import React, {useContext} from "react";
-import AppContext from "../../../App/AppContext";
+// import AppContext from "../../../App/AppContext";
 import { Link } from "react-router-dom";
-import { InfoWindow, Marker } from "@react-google-maps/api";
+import { InfoWindow } from "@react-google-maps/api";
 import "./ConfirmationMarker.css";
 
-const ConfirmationMarker = () => {
-  const [state, dispatch] = useContext(AppContext);
+const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom}) => {
+  // const [state, dispatch] = useContext(AppContext);
   
-  const handleClick = () => {
+  const handleConfirm = () => {
     createSk8Map()
-    removeConfirmation()
-  }
-
-  const removeConfirmation = () => {
-    const action = {type: 'ADD_CONFIRMATION_MARKER', marker: null}
-    dispatch(action)
+    toggleConfirmationMarker()
   }
 
   const createSk8Map = () => {
     const newSk8Map = {
       id: Date.now()+1,
-      location: state.marker.location,
-      // location: {
-      //   lat: state.marker.location.lat(), 
-      //   lng: state.marker.location.lng()
-      // }
+      location: confirmMarker.location,
     }
-    const action = {type: 'CREATE_SK8MAP', newSk8Map: newSk8Map}
-    dispatch(action)
+    
+    // const action = {type: 'CREATE_SK8MAP', newSk8Map: newSk8Map}
+    // dispatch(action)
   };
+
+  const handleClose = () => {
+    resetZoom(17)
+    toggleConfirmationMarker()
+  }
 
   const infoBox = (
     <div className="info-box">
       <p>Add a new SK8MAP here?</p>
       <Link to='/add/details' className="confirm-button">
-        <div onClick={handleClick}>Confirm Placement</div>
+        <div onClick={handleConfirm}>Confirm Placement</div>
       </Link>
     </div>
   )
   
-  if (state.marker.location) {
+  if (confirmMarker) {
     return (
-      <InfoWindow position={state.marker.location} onCloseClick={removeConfirmation}>
+      <InfoWindow position={confirmMarker} onCloseClick={handleClose}>
         {infoBox}
       </InfoWindow>
     );

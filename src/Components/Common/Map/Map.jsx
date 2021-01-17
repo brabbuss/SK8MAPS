@@ -26,8 +26,9 @@ const Map = () => {
   const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
+  const [confirmMarker, setConfirmMarker] = useState(null)
 
-  // console.log(state)
+  console.log(confirmMarker)
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -47,10 +48,13 @@ const Map = () => {
     dispatch(action)
   };
   
-  const showConfirmationMarker = (loc) => {
-    const marker = { location: loc }
-    const action = {type: 'ADD_CONFIRMATION_MARKER', marker: marker}
-    dispatch(action)
+  const toggleConfirmationMarker = (loc) => {
+    if (loc) {
+      setConfirmMarker(loc)
+      // setConfirmMarker(marker)
+    } else {
+      setConfirmMarker(null)
+    }
   }
 
   const handleZoom = () => {
@@ -67,8 +71,8 @@ const Map = () => {
     }
   }
 
-  const resetZoom = () => {
-    map.zoom = 15
+  const resetZoom = (level) => {
+    level ? map.zoom = 18 : map.zoom = 15
     map.panTo(center);
     handleZoom()
   }
@@ -79,15 +83,15 @@ const Map = () => {
       map.zoom = 22
       setCenter(newPos);
       map.panTo(newPos);
-      showConfirmationMarker(newPos)
+      toggleConfirmationMarker(newPos)
       handleZoom()
     } 
   }
 
   const handleMarkerClick = (e, spot) => {
+    map.panTo(e.latLng);
     map.zoom = 19;
     setCenter(e.latLng);
-    map.panTo(e.latLng);
     updateSelection(spot);
     handleZoom()
   };   
@@ -113,8 +117,13 @@ const Map = () => {
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
-          {state.marker && (
-            <ConfirmationMarker />)}
+          {confirmMarker && (
+            <ConfirmationMarker
+            confirmMarker={confirmMarker}
+            resetZoom={resetZoom}
+            toggleConfirmationMarker={toggleConfirmationMarker}
+              // confirmationLocation={(e) => getLatLng(e)}
+            />)}
           {state.selectedSpot && (
             <SpotInfoBox
               selectedMarker={state.selectedSpot}
@@ -138,4 +147,4 @@ const Map = () => {
   return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
 };
 
-export default React.memo(Map);
+export default Map;
