@@ -2,6 +2,7 @@ import React, { useState, useCallback, useContext, useEffect } from "react";
 import AppContext from "../../App/AppContext";
 import "./Map.css";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
+import {getFromLocal} from '../Utilities/localStorage'
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
 import ConfirmationMarker from './ConfirmationMarker/ConfirmationMarker'
@@ -27,6 +28,7 @@ const Map = ({createNewSk8Map}) => {
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [confirmMarker, setConfirmMarker] = useState(null)
+  const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"))
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -42,14 +44,12 @@ const Map = ({createNewSk8Map}) => {
   }, []);
 
   const updateSelection = selectedMarker => {
-    const action = {type: 'UPDATE_SELECTED_SPOT', selectedSpot: selectedMarker}
-    dispatch(action)
+    setSelectedSpot(selectedMarker)
   };
   
   const toggleConfirmationMarker = (loc) => {
     if (loc) {
       setConfirmMarker(loc)
-      // setConfirmMarker(marker)
     } else {
       setConfirmMarker(null)
     }
@@ -122,9 +122,9 @@ const Map = ({createNewSk8Map}) => {
             toggleConfirmationMarker={toggleConfirmationMarker}
             createNewSk8Map={createNewSk8Map}
             />)}
-          {state.selectedSpot && (
+          {selectedSpot && (
             <SpotInfoBox
-              selectedMarker={state.selectedSpot}
+              selectedMarker={selectedSpot}
               updateSelection={updateSelection}
               resetZoom={resetZoom}
             />

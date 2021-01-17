@@ -13,7 +13,14 @@ import {saveToLocal} from '../Common/Utilities/localStorage'
 
 function App() {
   const [state, dispatch] = useReducer(myReducer, {selectedSpot: getFromLocal("SELECTED-SK8MAP"), storedSpots: getFromLocal("ALL-SK8MAPS")});
+  
   const [newSk8Map, setNewSk8Map] = useState(null)
+  // const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"))
+  const [storedSpots, setStoredSpots] = useState(getFromLocal("ALL-SK8MAPS"))
+
+
+
+
 
   const saveNewMapToStoredMaps = (completeSk8Map) => {
     console.log(completeSk8Map);
