@@ -1,6 +1,15 @@
+
+
 export const tddMockData = {
+  mockNewSk8Map: {
+    id: '12345',
+    location: {
+      lat: 33,
+      lng: 33
+    }
+  },
   mockSpotAllData: {
-    id: 33,
+    id: 1,
     difficulty: 1,
     title: "Mock Spot",
     description:
@@ -266,4 +275,13 @@ export const tddMockData = {
       ],
     },
   ],
+};
+
+export const tddMockState = {
+  selectedSpot: tddMockData.mockSpotAllData,
+  storedSpots: tddMockData.mockAPIData,
+  userMaps: tddMockData.mockAPIData,
+  appView: "add-spot",
+  newSk8Map: tddMockData.mockNewSk8Map,
+  marker: tddMockData.mockSpotAllData
 };
