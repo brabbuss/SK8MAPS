@@ -1,10 +1,8 @@
-import React, { useState, useContext } from "react";
-import { Link, Redirect, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import "./DetailsForm.css";
-// import AppContext from "../App/AppContext";
 
 const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
-  // const [state, dispatch] = useContext(AppContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -16,8 +14,6 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
   const [security, setSecurity] = useState("");
   const [hazards, setHazards] = useState("");
   const [publicSkating, setPublicSkating] = useState("");
-
-console.log(newSk8Map);
 
   const makeNewSk8MapObject = () => {
     const newSk8MapObject = {
@@ -70,8 +66,8 @@ console.log(newSk8Map);
   const submitNewSk8Map = e => {
     e.preventDefault()
     saveNewSk8Map(makeNewSk8MapObject())
-    console.log(makeNewSk8MapObject())
     clearInputs();
+    return <Redirect to={`/spots/${newSk8Map.id}`} />
   };
 
   const clearInputs = () => {
@@ -224,40 +220,3 @@ console.log(newSk8Map);
 };
 
 export default DetailsForm;
-
-// begin with
-/*
-id
-location
-all props set to null
-*/
-
-// collect
-/*
-interpolate user name (stretch) to add to 'skated by: NAME'
-add user score
-add user difficulty
-
-title - string (min chars)
-description - string (min chars)
-features:
-  click yes/no
-    condition - out of 5
-    description
-    photo link
-Safety:
-  security
-  public
-  hazards
-Images
-  by URL
-*/
-// onSubmit
-/*
-add the completed newSpot to user's contributions
-add the completed newSpot to all spots
-set the completed newSpot as the selectedSpot
-  navigate to details page for newSpot
-push into array of spots
-set newSpot to null
-*/
