@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/jest-mocks": "^0.1.0",
     "@react-google-maps/api": "^2.1.0",
     "@testing-library/user-event": "^12.6.0",
     "react": "^17.0.1",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.3"
+    "@testing-library/react": "^11.2.3",
+    "jest-google-maps-mock": "^1.0.3"
   }
 }
