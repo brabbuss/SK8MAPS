@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import AppContext from '../App/AppContext'
-import "./FindSpotView.css";
+import "./FindSpotsView.css";
 import Map from "../Common/Map/Map";
 
 function FindSpotView() {
@@ -15,17 +15,19 @@ function FindSpotView() {
     dispatch(action)
   };
 
+  // console.log(state)
+
   return (
     <section className="fs-container">
       <h2>Find spots by:</h2>
       <div className="fs-sort-container">
         <ul className="fs-ul">
-          <li className="fs-">rails</li>
-          <li className="fs-">curbs</li>
-          <li className="fs-">flats</li>
-          <li className="fs-">stairs</li>
-          <li className="fs-">hills</li>
-          <li className="fs-">parks</li>
+          <li className="fs-" data-testid='f-1'>rails</li>
+          <li className="fs-" data-testid='f-2'>curbs</li>
+          <li className="fs-" data-testid='f-3'>flats</li>
+          <li className="fs-" data-testid='f-4'>stairs</li>
+          <li className="fs-" data-testid='f-5'>hills</li>
+          <li className="fs-" data-testid='f-6'>parks</li>
         </ul>
       </div>
       <div className="find-map-container">
