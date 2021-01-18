@@ -2,7 +2,7 @@
 
 export const tddMockData = {
   mockNewSk8Map: {
-    id: '12345',
+    id: 12345,
     location: {
       lat: 33,
       lng: 33

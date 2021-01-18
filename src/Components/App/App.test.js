@@ -125,6 +125,45 @@ describe("App", () => {
     expect(spotDetailTitle).toBeInTheDocument()
     expect(mainDescription).toBeInTheDocument()
   });
+
+  it("be able to create a new map", async () => {
+    
+    render(
+      <MemoryRouter initialEntries={["/add"]}>
+        <App />
+      </MemoryRouter>
+    );
+  
+    const googleMap = await waitFor(() => screen.getByTestId("google-map"));
+    expect(googleMap).toBeInTheDocument();
+    userEvent.click(googleMap)
+    
+    const confirmMarker = await waitFor(() => screen.getByRole('link', { name: /confirm placement/i }));
+    expect(confirmMarker).toBeInTheDocument();
+    userEvent.click(confirmMarker)
+
+    const feature1 = await waitFor(() => screen.getByRole('heading', { name: /curbs/i }))
+    // screen.getByRole('textbox')
+
+    screen.debug()
+  });
+
+  it("Redirect to home if navigating directly to add a spot", async () => {
+    
+    render(
+      <MemoryRouter initialEntries={["/add/details"]}>
+        <App />
+      </MemoryRouter>
+    );
+  
+    const title = screen.getByRole('heading', { name: /welcome to sk8maps !/i })
+    const welcomeCopy1 = screen.getByText('click to find some spots')
+    const welcomeCopy2 = screen.getByText('click to add a new spot')
+
+    expect(title).toBeInTheDocument();
+    expect(welcomeCopy1).toBeInTheDocument();
+    expect(welcomeCopy2).toBeInTheDocument();
+  });
 });
 
 
