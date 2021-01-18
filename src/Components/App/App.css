@@ -7,8 +7,9 @@ body {
 }
 
 .App-logo {
-  height: 15vmin;
-  pointer-events: none;
+  /* height: 15vmin !important; */
+  transform-origin: center !important;
+  pointer-events: none !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {

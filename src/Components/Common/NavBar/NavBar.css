@@ -8,6 +8,7 @@
   justify-content: space-evenly;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: solid 1px hotpink;
 }
 
 .links-container {
@@ -15,16 +16,25 @@
   align-items: center;
   width: fit-content;
   min-height:5em;
-  border: solid 1px red;
   overflow: hidden;
+  /* border: solid 1px red; */
 }
 
 .links-container .link-wrapper {
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 
 .nav-title {
   display: flex;
+}
+
+.nav-title h1 {
+  font-size: 3em !important;
+  font-weight: 900 !important;
+  font-size: 3em !important;
+  font-weight: 900 !important;
+  margin: auto !important;
+  color: hotpink !important;
 }
 
 .nav-btn {

@@ -24,7 +24,14 @@
   color: rgb(40,44,52);
 }
 
+.fs-container h2 {
+  font-weight: 200;
+  font-size: 0.7em;
+  text-align: initial;
+}
+
 .fs-ul {
+  margin: .2em 0;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
