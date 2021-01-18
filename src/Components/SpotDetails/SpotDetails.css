@@ -1,3 +1,7 @@
+* {
+  /* border: solid 1px purple; */
+}
+
 .detail-view {
   display: flex;
   flex-direction: row;
@@ -14,6 +18,15 @@
 
 .detail-view .info-wrapper {
  flex: 1;
+ display: flex;
+ /* flex-direction: column; */
+ justify-content: center;
+}
+
+.detail-view .info-wrapper .features-title{
+  /* height: 100%; */
+  text-orientation: upright;
+  writing-mode: vertical-lr;
 }
 
 .feature-container {
@@ -76,6 +89,8 @@
 .nothing-here-text h2 {
   font-weight: 200;
 }
+
+
 
 /* .features-section h2 {
   padding-right: 1em;

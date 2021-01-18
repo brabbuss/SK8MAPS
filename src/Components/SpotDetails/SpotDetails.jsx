@@ -57,12 +57,17 @@ const SpotDetails = (props) => {
   } else if (matchedMap) {  
     return (
       <div className="detail-view">
-        <div className="detail-title-container">
+        <section className="detail-title-container">
           <h1>{matchedMap.title}</h1>
           <p>{matchedMap.description}</p>
           {images()}
-        </div>
-        <div className="info-wrapper">{featureList}</div>
+        </section>
+        <section className="info-wrapper">
+          <span className='features-title'>
+           <h1>FEATURES</h1>
+          </span>
+          {featureList}
+        </section>
       </div>
     )
   } else {
