@@ -1,3 +1,15 @@
+.choice {
+  border: solid 2px #282c34;
+  padding: 9px;
+  border-radius: 15px;
+}
+.selected-choice {
+  background-color: orange;
+  color: #282c34;
+  padding: 9px;
+  border-radius: 15px;
+}
+
 .fs {
   cursor: pointer;
   transition: ease-in-out .18s;

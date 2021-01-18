@@ -27,10 +27,11 @@ function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
       }, [])
       setFilteredMaps(categoryMaps);
     }
+    setCategory(category)
   }
 
-  const getStylings = (selector, elementId) => {
-    let className = selector === elementId ? 'selected-choice' : 'choice';
+  const getStylings = (selector, id) => {
+    let className = selector === id ? 'selected-choice' : 'choice';
     return className
   }
 
@@ -39,13 +40,13 @@ function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
       <h2>Find spots by:</h2>
       <div className="fs-sort-container">
         <ul className="fs-ul">
-          <li onClick={(e) => handleFilter(e)} title="Rails" className={`fs ${getStylings(category)}`} data-testid='f-1'>rails</li>
-          <li onClick={(e) => handleFilter(e)} title="Curbs" className={`fs ${getStylings(category)}`} data-testid='f-2'>curbs</li>
-          <li onClick={(e) => handleFilter(e)} title="Flats" className={`fs ${getStylings(category)}`} data-testid='f-3'>flats</li>
-          <li onClick={(e) => handleFilter(e)} title="Stairs" className={`fs ${getStylings(category)}`} data-testid='f-4'>stairs</li>
-          <li onClick={(e) => handleFilter(e)} title="Hills" className={`fs ${getStylings(category)}`} data-testid='f-5'>hills</li>
-          <li onClick={(e) => handleFilter(e)} title="Parks" className={`fs ${getStylings(category)}`} data-testid='f-6'>parks</li>
-          <li onClick={(e) => handleFilter(e)} title="All" className={`fs ${getStylings(category)}`} data-testid='f-6'>ALL</li>
+          <li onClick={(e) => handleFilter(e)} title="Rails" className={`fs  ${getStylings(category, 'Rails')}`} data-testid='f-1'>rails</li>
+          <li onClick={(e) => handleFilter(e)} title="Curbs" className={`fs  ${getStylings(category, 'Curbs')}`} data-testid='f-2'>curbs</li>
+          <li onClick={(e) => handleFilter(e)} title="Flats" className={`fs  ${getStylings(category, 'Flats')}`} data-testid='f-3'>flats</li>
+          <li onClick={(e) => handleFilter(e)} title="Stairs" className={`fs  ${getStylings(category, 'Stairs')}`} data-testid='f-4'>stairs</li>
+          <li onClick={(e) => handleFilter(e)} title="Hills" className={`fs  ${getStylings(category, 'Hills')}`} data-testid='f-5'>hills</li>
+          <li onClick={(e) => handleFilter(e)} title="Parks" className={`fs  ${getStylings(category, 'Parks')}`} data-testid='f-6'>parks</li>
+          <li onClick={(e) => handleFilter(e)} title="All" className={`fs  ${getStylings(category, 'All')}`} data-testid='f-6'>ALL</li>
         </ul>
       </div>
       <div className="find-map-container">

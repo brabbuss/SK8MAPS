@@ -10,9 +10,17 @@
   color: white;
 }
 
-.link-container {
+.links-container {
   display: flex;
+  align-items: center;
   width: fit-content;
+  min-height:5em;
+  border: solid 1px red;
+  overflow: hidden;
+}
+
+.links-container .link-wrapper {
+  border: solid 1px red;
 }
 
 .nav-title {
@@ -43,6 +51,15 @@
   background: #e100a9;
   color: #282c34;
   border-color: #e100a9;
+}
+
+.nav-btn-selected {
+  background: #282c34;
+  color: #e100a9;
+  border-color: #e100a9;
+  border-width: 3px;
+  font-weight: 500;
+  /* background: #e100a9; */
 }
 
 .app-header {
