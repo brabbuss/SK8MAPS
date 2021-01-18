@@ -46,3 +46,41 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
+.welcome-container {
+  display: flex;
+  margin: 2em;
+  flex-direction: column;
+  align-items: center;
+}
+.welcome-container h1{
+  height: auto;
+  margin: auto;
+  font-weight: 200;
+}
+.welcome-container p{
+  line-height: .7em;
+  font-weight: 200;
+}
+.home-link {
+  flex: 1;
+  padding: 0.2em 0.4em;
+  height: fit-content;
+  width: fit-content;
+  font-size: clamp(13px, 1em, 2em);
+  font-weight: 300;
+  border: 1.4px solid white;
+  border-radius: 10px;
+  transition: ease-in-out 0.2s;
+  margin: 0 0.6em;
+  cursor: pointer;
+  color: white;
+  width: 45%;
+  font-weight: bolder;
+  text-decoration: none;
+}
+.home-link:hover {
+  background: hotpink;
+  color: #282c34;
+  border-color: hotpink;
+}

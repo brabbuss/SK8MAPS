@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { getFromLocal, saveToLocal } from "../Common/Utilities/localStorage";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import AddSpotView from "../AddSpotView/AddSpotView";
 import FindSpotView from "../FindSpotsView/FindSpotsView";
 import SpotDetails from "../SpotDetails/SpotDetails";
@@ -66,8 +66,11 @@ function App() {
               />}
             />
             <Route path="/">
-              <div>
-                <h1>Find some skate spots or add one</h1>
+              <div className='welcome-container'>
+                <h1>Welcome to <b>SK8MAPS</b>!</h1>
+                <br/>
+                <p>click <Link to='/search' className='nav-button home-link'>search</Link> to find some spots</p>
+                <p>click <Link to='/add' className='nav-button home-link'>contribute</Link> to add some spots</p>
               </div>
             </Route>
           </Switch>
