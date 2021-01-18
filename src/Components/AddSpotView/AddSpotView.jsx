@@ -16,7 +16,7 @@ function AddSpotView({
   return (
     <section className='fs-container'>
       <br/>
-      <h2>Click on a location to add a <b>SK8MAP</b></h2>
+      <h2>Click the map to add a new <b>SK8MAP</b></h2>
       <br/>
       <div className="find-map-container">
         <Map

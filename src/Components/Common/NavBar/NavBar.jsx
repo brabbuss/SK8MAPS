@@ -13,7 +13,7 @@ const NavBar = () => {
   
   return (
     <header className="nav-container">
-      <Link to="/" value='nav-title' className="app-name-link">
+      <Link to="/" value='nav-title' className="links-container app-name-link">
         {sk8Logo}
       </Link>
       <nav className="links-container">
@@ -24,7 +24,7 @@ const NavBar = () => {
         </div>
         <div className='link-wrapper'>
           <Link title='contribute' to="/add" className="nav-btn-link">
-            <div id='contribute' value='contribute' onClick={(e) => setSelection(e.target.id)} className={`nav-btn ${getStylings(selection, 'contribute')}`}>Contribute</div>
+            <div id='contribute' value='contribute' onClick={(e) => setSelection(e.target.id)} className={`nav-btn ${getStylings(selection, 'contribute')}`}>Add a SK8MAP</div>
           </Link>
         </div>
       </nav>

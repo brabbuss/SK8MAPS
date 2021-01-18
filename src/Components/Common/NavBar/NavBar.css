@@ -5,10 +5,19 @@
   width: -webkit-fill-available;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   font-size: calc(10px + 2vmin);
   color: white;
-  border-bottom: solid 1px hotpink;
+  border-bottom: double 28px hotpink;
+
+  /* max-height: fit-content; */
+  /* width: -webkit-fill-available; */
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  /* padding: 0em 13vw; */
 }
 
 .links-container {
@@ -17,6 +26,7 @@
   width: fit-content;
   min-height:5em;
   overflow: hidden;
+  margin: auto;
   /* border: solid 1px red; */
 }
 

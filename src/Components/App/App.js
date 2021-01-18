@@ -70,7 +70,7 @@ function App() {
                 <h1>Welcome to <b>SK8MAPS</b>!</h1>
                 <br/>
                 <p>click <Link to='/search' className='nav-button home-link'>search</Link> to find some spots</p>
-                <p>click <Link to='/add' className='nav-button home-link'>contribute</Link> to add some spots</p>
+                <p>click <Link to='/add' className='nav-button home-link'>Add a SK8MAP</Link> to add a new spot</p>
               </div>
             </Route>
           </Switch>

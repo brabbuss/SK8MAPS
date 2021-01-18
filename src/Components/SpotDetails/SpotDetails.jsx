@@ -3,24 +3,24 @@ import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
 import { longboard1 } from "../Common/Assets/longboard1";
 
-const SpotDetails = (props) => {
+const SpotDetails = props => {
   const { allSk8Maps, match, setMatchedMap, matchedMap } = props;
 
   useEffect(() => {
-    syncSk8Map()
+    syncSk8Map();
   }, []);
 
   const syncSk8Map = async () => {
-    const matchUrl = +match.params.spot_id
+    const matchUrl = +match.params.spot_id;
     const matchedSpot = await allSk8Maps.find(m => {
-      return m.id === matchUrl
-    })
-    if (matchedSpot && !matchedMap || matchedSpot !== matchedMap) {
-      setMatchedMap(matchedSpot)
+      return m.id === matchUrl;
+    });
+    if ((matchedSpot && !matchedMap) || matchedSpot !== matchedMap) {
+      setMatchedMap(matchedSpot);
     } else if (!matchedSpot) {
-      console.log('no match!')
-    } 
-  }
+      console.log("no match!");
+    }
+  };
 
   const featureList = (
     <div className="features-section">
@@ -30,7 +30,7 @@ const SpotDetails = (props) => {
             <h3>{`${f.type}`}</h3>
             <h3>{`${f.has ? "✅" : "❌"}`}</h3>
           </div>
-          {f.has && <p>{f.description}</p>}
+          <div className='feature-description'>{f.has && <p>{f.description}</p>}</div>
         </div>
       ))}
     </div>
@@ -40,11 +40,7 @@ const SpotDetails = (props) => {
     if (matchedMap?.images && matchedMap?.images[0]) {
       return <img alt="skating a curb" src={matchedMap.images[0]} />;
     } else {
-      return (
-        <div>
-          {longboard1}
-        </div>
-      );
+      return <div>{longboard1}</div>;
     }
   };
 
@@ -53,8 +49,8 @@ const SpotDetails = (props) => {
       <Route>
         <Redirect to="/search" />;
       </Route>
-    )
-  } else if (matchedMap) {  
+    );
+  } else if (matchedMap) {
     return (
       <div className="detail-view">
         <section className="detail-title-container">
@@ -63,19 +59,22 @@ const SpotDetails = (props) => {
           {images()}
         </section>
         <section className="info-wrapper">
-          <span className='features-title'>
-           <h1>FEATURES</h1>
+          <span className="features-title">
+            <h1>FEATURES</h1>
           </span>
           {featureList}
         </section>
       </div>
-    )
+    );
   } else {
     return (
-      <div className='nothing-here-text'>
+      <div className="nothing-here-text">
         <h1>Looks like that's not a valid URL</h1>
         <h2>Try double checking that the URL is correct,</h2>
-        <h2>or head over to the <Link to='/search'>search page</Link> to see all maps!</h2>
+        <h2>
+          or head over to the <Link to="/search">search page</Link> to see all
+          maps!
+        </h2>
       </div>
     );
   }
