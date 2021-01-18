@@ -1,0 +1,22 @@
+.confirm-button {
+  text-decoration: none;
+  border: solid 2px hotpink;
+  color: hotpink;
+  cursor: pointer;
+  transition: ease-in-out .12s;
+  height: fit-content;
+  border-radius: 7px;
+}
+
+.confirm-button:hover {
+  transform: scale(1.02);
+  background-color: hotpink;
+  color: white;
+}
+.confirm-button:hover::after {
+  content: 'Woo!';
+}
+
+.confirm-info-box {
+  overflow: hidden;
+}

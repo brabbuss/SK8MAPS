@@ -205,7 +205,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
         </div>
       </div>
       <form>
-        <Link to={`/spots/${newSk8Map.id}`} className="nav-btn-link">
+        <Link to={`/spots/${newSk8Map.id}`} className="form-btn nav-btn-link">
           <button className="nav-button" onClick={e => submitNewSk8Map(e)}>
             SUBMIT
           </button>
