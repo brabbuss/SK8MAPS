@@ -10,22 +10,12 @@ import {
 import userEvent from "@testing-library/user-event";
 import { tddMockData } from "../../tddMockData";
 import createGoogleMapsMock from 'jest-google-maps-mock';
-
-import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-// or mock out <Map /> to return google map mock object w/params?
-
-// import { initialize } from "@googlemaps/jest-mocks";
-// import { getFromLocal, saveToLocal } from "../Common/Utilities/localStorage";
-// jest.mock('../Common/Utilities/localStorage.js')
-// jest.mock("../Common/Utilities/myReducer", () => ({ myReducer: jest.fn() })); //**&*(&) */
+jest.mock('../Common/Map/Map')
 
 describe("App", () => {
   const {mockSpotAllData, mockAPIData, mockNewSk8Map} = tddMockData
-  let googleMaps;
-
 
   beforeEach(() => {
-    googleMaps = createGoogleMapsMock();
     localStorage.setItem('USER-SK8MAPS', JSON.stringify(mockAPIData))
     localStorage.setItem('SELECTED-SK8MAP', JSON.stringify(mockSpotAllData))
     localStorage.setItem('ALL-SK8MAPS', JSON.stringify(mockAPIData))
@@ -116,20 +106,24 @@ describe("App", () => {
   });
   
   it("be able to open a saved map", async () => {
-    // initialize()
-
+    
     render(
       <MemoryRouter initialEntries={["/search"]}>
         <App />
       </MemoryRouter>
     );
   
-  const loading = screen.getByText("Now where did I put that map...")
-  expect(loading).toBeInTheDocument()
-  await waitForElementToBeRemoved(loading)
-// const googleMap = await waitFor(() => screen.getByTestId("google-map"));
-// expect(googleMap).toBeInTheDocument();
-  screen.debug()
+    const googleMap = await waitFor(() => screen.getByTestId("google-map"));
+    expect(googleMap).toBeInTheDocument();
+    
+    const markerTitle = screen.getByRole('link', { name: /old church/i })
+    expect(markerTitle).toBeInTheDocument();
+    userEvent.click(markerTitle)
+
+    const spotDetailTitle = await waitFor(() => screen.getByRole('heading', { name: /old church/i }))
+    const mainDescription = screen.getByText('some description,some fine cracks, small pebbles can kill,stairs front of school good lan')
+    expect(spotDetailTitle).toBeInTheDocument()
+    expect(mainDescription).toBeInTheDocument()
   });
 });
 

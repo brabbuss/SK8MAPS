@@ -49,7 +49,7 @@ function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
           <li onClick={(e) => handleFilter(e)} title="All" className={`fs  ${getStylings(category, 'All')}`} data-testid='f-6'>ALL</li>
         </ul>
       </div>
-      <div className="find-map-container">
+      <div id='map-container' className="find-map-container">
         <Map 
           markerLocations={filteredMaps}
           updateSelection={updateSelection}
