@@ -11,9 +11,9 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
   const [flats, setFlats] = useState("");
   const [rails, setRails] = useState("");
   const [stairs, setStairs] = useState("");
-  const [security, setSecurity] = useState("");
-  const [hazards, setHazards] = useState("");
-  const [publicSkating, setPublicSkating] = useState("");
+  // const [security, setSecurity] = useState("");
+  // const [hazards, setHazards] = useState("");
+  // const [publicSkating, setPublicSkating] = useState("");
 
   const makeNewSk8MapObject = () => {
     const newSk8MapObject = {
@@ -77,9 +77,9 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
     setFlats("");
     setRails("");
     setStairs("");
-    setSecurity("");
-    setHazards("");
-    setPublicSkating("");
+    // setSecurity("");
+    // setHazards("");
+    // setPublicSkating("");
   };
 
   const form = () => {

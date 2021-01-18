@@ -33,7 +33,7 @@ const Map = ({updateSelection, selectedSpot, createNewSk8Map, markerLocations, a
     map.zoom = 12;
     setMap(map);
     map.panTo(center);
-  }, []);
+  }, [center]);
 
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
@@ -50,7 +50,7 @@ const Map = ({updateSelection, selectedSpot, createNewSk8Map, markerLocations, a
   const handleZoom = () => {
     if (map) {
       if (map.getZoom() >= 19) {
-        if (map.getMapTypeId() != window.google.maps.MapTypeId.HYBRID) {
+        if (map.getMapTypeId() !== window.google.maps.MapTypeId.HYBRID) {
           map.setMapTypeId(window.google.maps.MapTypeId.HYBRID)
           map.setTilt(25);
         }

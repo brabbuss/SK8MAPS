@@ -7,16 +7,17 @@ const SpotInfoBox = ({ resetZoom, selectedMarker, updateSelection }) => {
   const featureDetails = (
     <section className='infobox-wrapper feature-container'>
       {selectedMarker &&
-        selectedMarker.features.map(feat => {
+        selectedMarker.features.map((feat, i) => {
           if (feat.has) {
             return (
-              <div className="feature-details infobox-details">
+              <div key={i} className="feature-details infobox-details">
                 <p><b>{feat.type}</b></p>
                 <br/>
                 <p>quality{feat.condition > 2 ? '👍' : '👎'}</p>
               </div>
             );
           }
+          return null
         })}
     </section>
   );

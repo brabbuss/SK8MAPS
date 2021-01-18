@@ -1,4 +1,3 @@
-import logo from "../Assets/logo.svg";
 import './sk8Logo.css'
 
 export const sk8Logo = (

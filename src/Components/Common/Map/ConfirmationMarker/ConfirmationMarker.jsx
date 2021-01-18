@@ -1,11 +1,9 @@
-import React, {useContext} from "react";
-// import AppContext from "../../../App/AppContext";
+import React from "react";
 import { Link } from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
 import "./ConfirmationMarker.css";
 
 const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom, createNewSk8Map}) => {
-  // const [state, dispatch] = useContext(AppContext);
   
   const handleConfirm = () => {
     createSk8Map()

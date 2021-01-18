@@ -3,24 +3,23 @@ import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
 import { skatePlaceholder } from "../Common/Assets/skate-placeholder";
 
-const SpotDetails = props => {
-  const { allSk8Maps, match, setMatchedMap, matchedMap } = props;
+const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
 
   useEffect(() => {
+    const syncSk8Map = async () => {
+      const matchUrl = +match.params.spot_id;
+      const matchedSpot = await allSk8Maps.find(m => {
+        return m.id === matchUrl;
+      });
+      if ((matchedSpot && !matchedMap) || matchedSpot !== matchedMap) {
+        setMatchedMap(matchedSpot);
+      } else if (!matchedSpot) {
+        console.log("no match!");
+      }
+    };
     syncSk8Map();
   }, []);
-
-  const syncSk8Map = async () => {
-    const matchUrl = +match.params.spot_id;
-    const matchedSpot = await allSk8Maps.find(m => {
-      return m.id === matchUrl;
-    });
-    if ((matchedSpot && !matchedMap) || matchedSpot !== matchedMap) {
-      setMatchedMap(matchedSpot);
-    } else if (!matchedSpot) {
-      console.log("no match!");
-    }
-  };
+  
 
   const featureList = (
     <div className="features-section">
