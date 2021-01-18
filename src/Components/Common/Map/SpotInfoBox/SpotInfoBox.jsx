@@ -23,7 +23,7 @@ const SpotInfoBox = ({ resetZoom, selectedMarker, updateSelection }) => {
 
   const infoBox = (
     <div className="info-box">
-      <Link className='infobox-link' to={`/spots/${selectedMarker?.id}`}>
+      <Link className='infobox-link' to={`/spots/${selectedMarker?.id}`} onClick={() => updateSelection(null)}>
         <h1>{selectedMarker?.title}</h1>
       </Link>
       <p>{selectedMarker?.description}</p>

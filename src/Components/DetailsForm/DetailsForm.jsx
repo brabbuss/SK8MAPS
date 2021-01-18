@@ -85,8 +85,9 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
   const form = () => {
     return (
     <section className="form">
-      <div className="detail-view form-left-container">
-        <div className="detail-title-container form-left">
+      <div className="detail-view">
+        {/* <div className="detail-title-container form-left form-left-container"> */}
+        <div className="form-left">
           <div className="input-label">
             <h1>title</h1>
             <input
@@ -99,7 +100,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
           </div>
           <div className="input-label">
             <h3>description</h3>
-            <input
+            <textarea
               type="text"
               placeholder="Enter a short description"
               name="description"
@@ -126,7 +127,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
             )}
           </div>
         </div>
-        <div className="info-wrapper form-right">
+        <div className="form-right">
           <div className="form-features-section">
             <article className="form-feature-details form-feature-input-wrapper">
               <div className="form-feature-type">
@@ -137,7 +138,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 </div>
               </div>
               <div className="form-feature-input">
-                <input
+                <textarea
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
                   name="curbs"
@@ -155,7 +156,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 </div>
               </div>
               <div className="form-feature-input">
-                <input
+                <textarea
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
                   name="flats"
@@ -173,7 +174,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 </div>
               </div>
               <div className="form-feature-input">
-                <input
+                <textarea
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
                   name="rails"
@@ -191,7 +192,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 </div>
               </div>
               <div className="form-feature-input">
-                <input
+                <textarea
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
                   name="stairs"
