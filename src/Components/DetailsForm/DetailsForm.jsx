@@ -85,7 +85,7 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
   const form = () => {
     return (
     <section className="form">
-      <div className="detail-view">
+      <div className="detail-view form-left-container">
         <div className="detail-title-container form-left">
           <div className="input-label">
             <h1>title</h1>
@@ -127,16 +127,16 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
           </div>
         </div>
         <div className="info-wrapper form-right">
-          <div className="features-section">
-            <article className="feature-details feature-input-wrapper">
-              <div className="feature-type">
+          <div className="form-features-section">
+            <article className="form-feature-details form-feature-input-wrapper">
+              <div className="form-feature-type">
                 <h3>Curbs</h3>
                 <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <div className="feature-input">
+              <div className="form-feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -146,15 +146,15 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 />
               </div>
             </article>
-            <article className="feature-details feature-input-wrapper">
-              <div className="feature-type">
+            <article className="form-feature-details form-feature-input-wrapper">
+              <div className="form-feature-type">
                 <h3>Flats</h3>
                 <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <div className="feature-input">
+              <div className="form-feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -164,15 +164,15 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 />
               </div>
             </article>
-            <article className="feature-details feature-input-wrapper">
-              <div className="feature-type">
+            <article className="form-feature-details form-feature-input-wrapper">
+              <div className="form-feature-type">
                 <h3>Rails</h3>
                 <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <div className="feature-input">
+              <div className="form-feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"
@@ -182,15 +182,15 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
                 />
               </div>
             </article>
-            <article className="feature-details feature-input-wrapper">
-              <div className="feature-type">
+            <article className="form-feature-details form-feature-input-wrapper">
+              <div className="form-feature-type">
                 <h3>Stairs</h3>
                 <div className="form-yes-no">
                   <div>✅</div>
                   <div>❌</div>
                 </div>
               </div>
-              <div className="feature-input">
+              <div className="form-feature-input">
                 <input
                   type="text"
                   placeholder="Description (waxed, chunky, new...)"

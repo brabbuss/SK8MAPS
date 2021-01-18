@@ -58,18 +58,18 @@
 }
 
 .nav-btn:hover {
-  background: #e100a9;
+  background: hotpink;
   color: #282c34;
-  border-color: #e100a9;
+  border-color: hotpink;
 }
 
 .nav-btn-selected {
   background: #282c34;
-  color: #e100a9;
-  border-color: #e100a9;
+  color: hotpink;
+  border-color: hotpink;
   border-width: 3px;
   font-weight: 500;
-  /* background: #e100a9; */
+  /* background: hotpink; */
 }
 
 .app-header {
