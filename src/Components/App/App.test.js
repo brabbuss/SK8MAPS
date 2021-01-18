@@ -138,18 +138,22 @@ describe("App", () => {
     expect(googleMap).toBeInTheDocument();
     userEvent.click(googleMap)
     
-    const confirmMarker = await waitFor(() => screen.getByRole('link', { name: /confirm placement/i }));
+    const confirmMarker = await waitFor(() => screen.getByRole('button', { name: /confirm placement/i }));
     expect(confirmMarker).toBeInTheDocument();
     userEvent.click(confirmMarker)
 
     const feature1 = await waitFor(() => screen.getByRole('heading', { name: /curbs/i }))
-    // screen.getByRole('textbox')
+    const feature2 = screen.getByRole('heading', { name: /flats/i })
+    const feature3 = screen.getByRole('heading', { name: /rails/i })
+    const feature4 = screen.getByRole('heading', { name: /stairs/i })
 
-    screen.debug()
+    expect(feature1).toBeInTheDocument()
+    expect(feature2).toBeInTheDocument()
+    expect(feature3).toBeInTheDocument()
+    expect(feature4).toBeInTheDocument()
   });
 
   it("Redirect to home if navigating directly to add a spot", async () => {
-    
     render(
       <MemoryRouter initialEntries={["/add/details"]}>
         <App />
