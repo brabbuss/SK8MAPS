@@ -24,11 +24,29 @@
   line-height: 20px;
 }
 
-.detail-view .detail-title-container img {
+.detail-view .detail-title-container h1 {
+  -webkit-text-stroke-width: medium;
+  text-align: left;
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.detail-view .left .detail-title-container .main-image-wrapper {
   min-height: auto;
   min-width: 40%;
   max-width: 100%;
 }
+.main-image-wrapper img {
+  width: 100%;
+}
+
+.main-image-wrapper p {
+  font-size: .4em;
+  font-weight: 200;
+  margin: 0;
+  line-height: 1em;
+}
+
 .detail-view .place-description {
   /* max-width: 100%; */
   margin-top: 2%;
@@ -53,7 +71,7 @@
   /* font-size: 2em; */
   margin: 0 2%;
   flex: 1 1;
-  background-color: salmon;
+  /* background-color: salmon; */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -65,7 +83,8 @@
   font-size: 120%;
   letter-spacing: 2rem;
   /* color: salmon; */
-  color: rgb(40, 44, 52);
+  color: salmon;
+  /* color: rgb(40, 44, 52); */
   text-decoration: underline;
   /* font-size: 120%; */
   /* letter-spacing: 1px; */

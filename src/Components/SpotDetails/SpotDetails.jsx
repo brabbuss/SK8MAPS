@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
-import { longboard1 } from "../Common/Assets/longboard1";
+import { skatePlaceholder } from "../Common/Assets/skate-placeholder";
 
 const SpotDetails = props => {
   const { allSk8Maps, match, setMatchedMap, matchedMap } = props;
@@ -42,7 +42,12 @@ const SpotDetails = props => {
     if (matchedMap?.images && matchedMap?.images[0]) {
       return <img alt="skating a curb" src={matchedMap.images[0]} />;
     } else {
-      return <div>{longboard1}</div>;
+      return (
+
+      <div>
+        {skatePlaceholder}
+        </div>
+      )
     }
   };
 
@@ -58,7 +63,9 @@ const SpotDetails = props => {
         <div className='left'>
           <section className="detail-title-container">
             <h1>{matchedMap.title}</h1>
-            {images()}
+            <div className='main-image-wrapper'>
+              {images()}
+            </div>
           </section>
           <div className="place-description">
             <p>{matchedMap.description}</p>
