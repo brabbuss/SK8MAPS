@@ -1,23 +1,23 @@
-import React, {useContext, useEffect} from "react";
-import AppContext from "../App/AppContext";
+import React, {useState, useEffect} from "react";
 import Map from "../Common/Map/Map";
 
-function AddSpotView({createNewSk8Map}) {
-  const [state, dispatch] = useContext(AppContext);
-
+function AddSpotView({createNewSk8Map, allSk8Maps, updateSelection, selectedSpot}) {
+  const [appView, setAppView] = useState(null)
+  
   useEffect(() => {
-    changeViewAdd()
+    setAppView('add-spot')
   },[])
-
-  const changeViewAdd = () => {
-    const action = {type: 'CHANGE_VIEW', view: 'add-spot'}
-    dispatch(action)
-  };
 
   return (
     <section>
       <h1>click to add a spot</h1>
-      <Map createNewSk8Map={createNewSk8Map} />
+      <Map 
+        createNewSk8Map={createNewSk8Map} 
+        allSk8Maps={allSk8Maps}
+        updateSelection={updateSelection}
+        selectedSpot={selectedSpot}
+        appView={appView}
+      />
     </section>
   ) 
 }

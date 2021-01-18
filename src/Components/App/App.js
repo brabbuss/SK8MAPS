@@ -1,57 +1,68 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import AppContext from "./AppContext";
-import { getFromLocal } from "../Common/Utilities/localStorage";
+import { getFromLocal, saveToLocal } from "../Common/Utilities/localStorage";
 import { Switch, Route } from "react-router-dom";
 import AddSpotView from "../AddSpotView/AddSpotView";
 import FindSpotView from "../FindSpotsView/FindSpotsView";
 import SpotDetails from "../SpotDetails/SpotDetails";
 import NavBar from "../Common/NavBar/NavBar";
 import DetailsForm from '../DetailsForm/DetailsForm'
-import {myReducer} from '../Common/Utilities/myReducer'
-import {saveToLocal} from '../Common/Utilities/localStorage'
 
 function App() {
-  const [state, dispatch] = useReducer(myReducer, {selectedSpot: getFromLocal("SELECTED-SK8MAP"), storedSpots: getFromLocal("ALL-SK8MAPS")});
-  
   const [newSk8Map, setNewSk8Map] = useState(null)
-  // const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"))
   const [storedSpots, setStoredSpots] = useState(getFromLocal("ALL-SK8MAPS"))
-
-
-
-
-
-  const saveNewMapToStoredMaps = (completeSk8Map) => {
-    console.log(completeSk8Map);
-    const updatedSk8Maps = [...state.storedSpots, completeSk8Map]
-    saveToLocal("ALL-SK8MAPS", updatedSk8Maps)
-    saveToLocal("USER-SK8MAPS", updatedSk8Maps)
+  const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"))
+  const [matchedMap, setMatchedMap] = useState(null)
+    
+  const saveNewMapToStoredMaps = async (completeSk8Map) => {
+    const updatedSk8Maps = [...storedSpots, completeSk8Map]
+    await saveToLocal("ALL-SK8MAPS", updatedSk8Maps)
+    await saveToLocal("USER-SK8MAPS", updatedSk8Maps)
     setNewSk8Map(null)
+    setStoredSpots(await getFromLocal("ALL-SK8MAPS"))
+    setMatchedMap(completeSk8Map)
   }
 
   return (
-    <AppContext.Provider value={[state, dispatch]}>
       <div className="App">
         <header className="App-header">
           <NavBar />
           <Switch>
-            <Route path="/spots/:spot_id" component={SpotDetails} />
-            {/* <Route path='/add/details' component={DetailsForm}/> */}
+            <Route 
+              path='/spots/:spot_id' 
+              render={props => <SpotDetails 
+                matchedMap={matchedMap}
+                setMatchedMap={setMatchedMap}
+                allSk8Maps={storedSpots}
+                {...props}
+              />}
+            />
             <Route 
               path='/add/details' 
               render={props => <DetailsForm 
                 newSk8Map={newSk8Map}
+                selectedSpot={selectedSpot}
                 saveNewSk8Map={saveNewMapToStoredMaps}
+                {...props}
               />}
             />
-            
-            <Route path="/search" component={FindSpotView} />
-            
+            <Route 
+              path='/search' 
+              render={props => <FindSpotView 
+                allSk8Maps={storedSpots}
+                selectedSpot={selectedSpot}
+                updateSelection={setSelectedSpot}
+                {...props}
+              />}
+            />
             <Route 
               path='/add' 
               render={props => <AddSpotView 
+                allSk8Maps={storedSpots}
                 createNewSk8Map={setNewSk8Map}
+                selectedSpot={selectedSpot}
+                updateSelection={setSelectedSpot}
+                {...props}
               />}
             />
             <Route path="/">
@@ -62,7 +73,6 @@ function App() {
           </Switch>
         </header>
       </div>
-    </AppContext.Provider>
   );
 }
 

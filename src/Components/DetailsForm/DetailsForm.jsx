@@ -64,10 +64,8 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
 
 
   const submitNewSk8Map = e => {
-    e.preventDefault()
     saveNewSk8Map(makeNewSk8MapObject())
     clearInputs();
-    return <Redirect to={`/spots/${newSk8Map.id}`} />
   };
 
   const clearInputs = () => {

@@ -1,19 +1,14 @@
-import React, {useContext, useEffect} from "react";
-import AppContext from '../App/AppContext'
+import React, {useState, useEffect} from "react";
 import "./FindSpotsView.css";
 import Map from "../Common/Map/Map";
 
-function FindSpotView() {
-  const [state, dispatch] = useContext(AppContext);
+function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
 
+  const [appView, setAppView] = useState(null)
+  
   useEffect(() => {
-    changeViewFind()
+    setAppView('find-spot')
   },[])
-
-  const changeViewFind = () => {
-    const action = {type: "CHANGE_VIEW", view: 'find-spot'}
-    dispatch(action)
-  };
 
   return (
     <section className="fs-container">
@@ -29,7 +24,12 @@ function FindSpotView() {
         </ul>
       </div>
       <div className="find-map-container">
-        <Map />
+        <Map 
+          allSk8Maps={allSk8Maps}
+          updateSelection={updateSelection}
+          selectedSpot={selectedSpot}
+          appView={appView}          
+        />
       </div>
     </section>
   );

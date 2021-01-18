@@ -1,34 +1,30 @@
-import React, { useContext, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
-import AppContext from "../App/AppContext";
 import { longboard1 } from "../Common/Assets/longboard1";
 
-const SpotDetails = ({ match }) => {
-  const [state, dispatch] = useContext(AppContext);
-  const { selectedSpot } = state;
+const SpotDetails = (props) => {
+  const { allSk8Maps, match, setMatchedMap, matchedMap } = props;
 
   useEffect(() => {
-    syncSelectedSpot();
+    syncSk8Map()
   }, []);
 
-  const syncSelectedSpot = () => {
-    let matchedSpot = state.storedSpots?.find(
-      s => s.id === +match.params.spot_id
-    );
-    if (matchedSpot && match.params.spot_id !== matchedSpot.id || !selectedSpot) {
-      const action = {
-        type: "UPDATE_SELECTED_SPOT",
-        selectedSpot: matchedSpot,
-      };
-      dispatch(action);
-      return;
-    }
-  };
+  const syncSk8Map = async () => {
+    const matchUrl = +match.params.spot_id
+    const matchedSpot = await allSk8Maps.find(m => {
+      return m.id === matchUrl
+    })
+    if (matchedSpot && !matchedMap || matchedSpot !== matchedMap) {
+      setMatchedMap(matchedSpot)
+    } else if (!matchedSpot) {
+      console.log('no match!')
+    } 
+  }
 
   const featureList = (
     <div className="features-section">
-      {selectedSpot?.features.map((f, i) => (
+      {matchedMap?.features.map((f, i) => (
         <div className="feature-details" key={Date.now() + i}>
           <div className="feature-type">
             <h3>{`${f.type}`}</h3>
@@ -41,30 +37,29 @@ const SpotDetails = ({ match }) => {
   );
 
   const images = () => {
-    if (selectedSpot?.images && selectedSpot?.images[0]) {
-      return <img alt="skating a curb" src={selectedSpot.images[0]} />;
+    if (matchedMap?.images && matchedMap?.images[0]) {
+      return <img alt="skating a curb" src={matchedMap.images[0]} />;
     } else {
       return (
         <div>
           {longboard1}
-          {/* <img src={longboard1} className="App-logo longboard-icon" alt="logo" /> */}
         </div>
       );
     }
   };
 
-  if (!state.storedSpots.find(s => s.id === +match.params.spot_id)) {
+  if (!allSk8Maps) {
     return (
       <Route>
         <Redirect to="/search" />;
       </Route>
     )
-  } else if (selectedSpot) {  
+  } else if (matchedMap) {  
     return (
       <div className="detail-view">
         <div className="detail-title-container">
-          <h1>{selectedSpot.title}</h1>
-          <p>{selectedSpot.description}</p>
+          <h1>{matchedMap.title}</h1>
+          <p>{matchedMap.description}</p>
           {images()}
         </div>
         <div className="info-wrapper">{featureList}</div>
@@ -72,8 +67,10 @@ const SpotDetails = ({ match }) => {
     )
   } else {
     return (
-      <div>
-        <h1>Now where did I put that information...</h1>;
+      <div className='nothing-here-text'>
+        <h1>Looks like that's not a valid URL</h1>
+        <h2>Try double checking that the URL is correct,</h2>
+        <h2>or head over to the <Link to='/search'>search page</Link> to see all maps!</h2>
       </div>
     );
   }

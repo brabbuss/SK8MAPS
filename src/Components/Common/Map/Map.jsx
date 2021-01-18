@@ -1,8 +1,6 @@
-import React, { useState, useCallback, useContext, useEffect } from "react";
-import AppContext from "../../App/AppContext";
+import React, { useState, useCallback } from "react";
 import "./Map.css";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
-import {getFromLocal} from '../Utilities/localStorage'
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
 import ConfirmationMarker from './ConfirmationMarker/ConfirmationMarker'
@@ -18,17 +16,15 @@ let defaultPosition = {
   lng: -105.065,
 };
 
-const Map = ({createNewSk8Map}) => {
+const Map = ({updateSelection, selectedSpot, createNewSk8Map, allSk8Maps, appView}) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
   });
 
-  const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
   const [confirmMarker, setConfirmMarker] = useState(null)
-  const [selectedSpot, setSelectedSpot] = useState(getFromLocal("SELECTED-SK8MAP"))
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -43,10 +39,6 @@ const Map = ({createNewSk8Map}) => {
     setMap(null);
   }, []);
 
-  const updateSelection = selectedMarker => {
-    setSelectedSpot(selectedMarker)
-  };
-  
   const toggleConfirmationMarker = (loc) => {
     if (loc) {
       setConfirmMarker(loc)
@@ -76,7 +68,7 @@ const Map = ({createNewSk8Map}) => {
   }
 
   const handleMapClick = (e) => {
-    if (state.appView === "add-spot") {
+    if (appView === "add-spot") {
       const newPos = e.latLng
       map.zoom = 22
       setCenter(newPos);
@@ -94,7 +86,7 @@ const Map = ({createNewSk8Map}) => {
     handleZoom()
   };   
 
-  const markers = state.storedSpots?.map((spot, i) => (
+  const markers = allSk8Maps?.map((spot, i) => (
     <SpotMarker
       key={Date.now() + i}
       spot={spot}
@@ -137,11 +129,10 @@ const Map = ({createNewSk8Map}) => {
   if (loadError) {
     return (
       <div>
-        Can't find the map right now. I'll keep looking, come back later...
+        Can't find the map right now. I'll keep looking, try refreshing the page...
       </div>
     );
   }
-  // return renderMap();
   return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
 };
 
