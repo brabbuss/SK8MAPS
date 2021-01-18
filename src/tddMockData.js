@@ -9,7 +9,7 @@ export const tddMockData = {
     }
   },
   mockSpotAllData: {
-    id: 1,
+    id: 33,
     difficulty: 1,
     title: "Mock Spot",
     description:
