@@ -13,7 +13,7 @@ function AddSpotView({createNewSk8Map, allSk8Maps, updateSelection, selectedSpot
       <h1>click to add a spot</h1>
       <Map 
         createNewSk8Map={createNewSk8Map} 
-        allSk8Maps={allSk8Maps}
+        markerLocations={allSk8Maps}
         updateSelection={updateSelection}
         selectedSpot={selectedSpot}
         appView={appView}

@@ -1,3 +1,17 @@
+.fs {
+  cursor: pointer;
+  transition: ease-in-out .18s;
+  border-radius: 8px;
+  width: auto;
+  height: auto;
+}
+
+.fs:hover {
+  cursor: pointer;
+  background-color: orange;
+  color: rgb(40,44,52);
+}
+
 .fs-ul {
   display: flex;
   justify-content: space-between;

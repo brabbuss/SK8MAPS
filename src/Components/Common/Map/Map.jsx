@@ -16,7 +16,7 @@ let defaultPosition = {
   lng: -105.065,
 };
 
-const Map = ({updateSelection, selectedSpot, createNewSk8Map, allSk8Maps, appView}) => {
+const Map = ({updateSelection, selectedSpot, createNewSk8Map, markerLocations, appView}) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
@@ -86,7 +86,7 @@ const Map = ({updateSelection, selectedSpot, createNewSk8Map, allSk8Maps, appVie
     handleZoom()
   };   
 
-  const markers = allSk8Maps?.map((spot, i) => (
+  const markers = markerLocations?.map((spot, i) => (
     <SpotMarker
       key={Date.now() + i}
       spot={spot}
