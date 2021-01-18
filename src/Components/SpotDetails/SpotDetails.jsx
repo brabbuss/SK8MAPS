@@ -30,7 +30,9 @@ const SpotDetails = props => {
             <h3>{`${f.type}`}</h3>
             <h3>{`${f.has ? "✅" : "❌"}`}</h3>
           </div>
-          <div className='feature-description'>{f.has && <p>{f.description}</p>}</div>
+          <div className="feature-description">
+            {f.has && <p>{f.description}</p>}
+          </div>
         </div>
       ))}
     </div>
@@ -53,11 +55,15 @@ const SpotDetails = props => {
   } else if (matchedMap) {
     return (
       <div className="detail-view">
-        <section className="detail-title-container">
-          <h1>{matchedMap.title}</h1>
-          <p>{matchedMap.description}</p>
-          {images()}
-        </section>
+        <div className='left'>
+          <section className="detail-title-container">
+            <h1>{matchedMap.title}</h1>
+            {images()}
+          </section>
+          <div className="place-description">
+            <p>{matchedMap.description}</p>
+          </div>
+        </div>
         <section className="info-wrapper">
           <span className="features-title">
             <h1>FEATURES</h1>
