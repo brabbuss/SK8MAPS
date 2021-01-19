@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./FindSpotsView.css";
 import Map from "../Common/Map/Map";
+import PropTypes from 'prop-types';
 
 function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
 
@@ -62,3 +63,9 @@ function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
 }
 
 export default React.memo(FindSpotView);
+
+FindSpotView.propTypes = {
+  allSk8Maps: PropTypes.array,
+  updateSelection: PropTypes.func,
+  selectedSpot: PropTypes.object,
+};

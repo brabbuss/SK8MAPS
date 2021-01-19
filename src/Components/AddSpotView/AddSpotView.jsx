@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Map from "../Common/Map/Map";
+import PropTypes from 'prop-types';
 
 function AddSpotView({
   createNewSk8Map,
@@ -32,3 +33,10 @@ function AddSpotView({
 }
 
 export default React.memo(AddSpotView);
+
+AddSpotView.propTypes = {
+  createNewSk8Map: PropTypes.func,
+  allSk8Maps: PropTypes.array,
+  updateSelection: PropTypes.func,
+  selectedSpot: PropTypes.object,
+};

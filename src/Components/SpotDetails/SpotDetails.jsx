@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
 import { skatePlaceholder } from "../Common/Assets/skate-placeholder";
+import PropTypes from 'prop-types';
 
 const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
   
@@ -93,3 +94,10 @@ const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
 };
 
 export default SpotDetails;
+
+SpotDetails.propTypes = {
+  allSk8Maps: PropTypes.array,
+  match: PropTypes.object,
+  setMatchedMap: PropTypes.func,
+  matchedMap: PropTypes.object
+};
