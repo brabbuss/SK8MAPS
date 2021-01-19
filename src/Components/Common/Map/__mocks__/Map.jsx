@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import createGoogleMapsMock from "jest-google-maps-mock";
 import DetailsForm from "../../../DetailsForm/DetailsForm";
 import { Link } from "react-router-dom";
 import SpotMarker from '../SpotMarker/SpotMarker'
@@ -8,19 +7,19 @@ jest.mock("../SpotMarker/SpotMarker.jsx");
 jest.mock("../SpotInfoBox/SpotInfoBox.jsx");
 jest.mock("../ConfirmationMarker/ConfirmationMarker.jsx");
 
-let mockGoogleMap = createGoogleMapsMock();
-
 const Map = ({
-  updateSelection,
   selectedSpot,
-  createNewSk8Map,
   markerLocations,
-  appView,
+  updateSelection
 }) => {
   const [newSk8Map, setNewSk8Map] = useState(null);
 
+  const handleMarkerClick = (spot) => {
+    updateSelection(spot)
+  };   
+
   const markers = () => {
-    return markerLocations.map(marker => <SpotMarker key={marker.id} marker={marker}/>)
+    return markerLocations.map(marker => <SpotMarker handleMarkerClick={handleMarkerClick} key={marker.id} marker={marker}/>)
   };
 
   const setLoc = e => {

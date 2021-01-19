@@ -49,5 +49,29 @@ describe("Map", () => {
     expect(marker3).toBeInTheDocument();
     expect(marker4).toBeInTheDocument();
   });
+ 
+  it("calls fxn w/correct params when clicking marker", async () => {
+    const mockedUpdateSelection = jest.fn()
+    
+    render(
+      <MemoryRouter>
+        <Map 
+          markerLocations={tddMockData.mockAPIData}
+          updateSelection={mockedUpdateSelection}
+          selectedSpot={tddMockData.mockSpotAllData}
+          appView={'add-view'}          
+        />
+      </MemoryRouter>
+    )
+
+    await waitFor(() => screen.getByTestId('google-map'))
+    
+    const marker1 = await waitFor(() => screen.getByText('Mock Spot'))
+    userEvent.click(marker1);
+
+    expect(mockedUpdateSelection).toHaveBeenCalledTimes(1)
+    expect(mockedUpdateSelection).toHaveBeenCalledWith(tddMockData.mockAPIData[0])
+
+  });
     
 });

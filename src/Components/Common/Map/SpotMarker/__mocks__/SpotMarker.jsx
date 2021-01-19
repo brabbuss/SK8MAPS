@@ -1,10 +1,10 @@
 import React from 'react';
 
-const SpotMarker = ({marker}) => {
+const SpotMarker = ({marker, handleMarkerClick}) => {
+  
   return ( 
-    <div>
+    <div onClick={() => handleMarkerClick(marker)}>
       {marker.title}
-
     </div>
    );
 }
