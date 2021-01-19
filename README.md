@@ -84,7 +84,7 @@ That is the general understanding that guides implementation of various map obje
 
 Users are able to click and sort sk8maps by what they want out of a spot! Clicking on the link of the pulled up info window will navigate the user to details for that place. The details page is somewhat sparse with functionality at the moment for automatically presenting data in a pleasing way.
 
-![sk8-details](https://user-images.githubusercontent.com/66697338/104991909-1468f780-59dd-11eb-92ca-99bfaa697d8b.png)
+![SK8MAP-details](https://user-images.githubusercontent.com/66697338/105081308-3ef39880-5a4f-11eb-87d3-df18c07de23b.png)
 
 <details>
   <summary>**Under the Hood**</summary>
