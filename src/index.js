@@ -6,7 +6,7 @@ import App from './Components/App/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <BrowserRouter basename='/sk8maps'>
+  <BrowserRouter basename='skate-maps'>
     <App />
   </BrowserRouter>,
   document.getElementById('root')
