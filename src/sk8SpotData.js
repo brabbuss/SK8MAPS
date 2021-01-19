@@ -86,7 +86,7 @@ export const mockAPISkateSpots = [
   {
     id: 3,
     difficulty: 1,
-    title: "Big 25stair drop",
+    title: "Big 25 stair drop",
     description: "25 stair drop with good landing",
     location: {
       lat: 39.816,

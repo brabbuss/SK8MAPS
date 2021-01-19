@@ -25,8 +25,9 @@ const Map = () => {
 
   const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState(null);
-  // const [selectedMarker, setSelectedMarker] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
+
+  // console.log(state)
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -42,9 +43,7 @@ const Map = () => {
   }, []);
 
   const updateSelection = selectedMarker => {
-    // setSelectedMarker(selectedMarker)
     const action = {type: 'UPDATE_SELECTED_SPOT', selectedSpot: selectedMarker}
-    console.log(action.selectedSpot)
     dispatch(action)
   };
   
@@ -86,7 +85,6 @@ const Map = () => {
   }
 
   const handleMarkerClick = (e, spot) => {
-    // setSelectedMarker(spot);
     map.zoom = 19;
     setCenter(e.latLng);
     map.panTo(e.latLng);
@@ -104,7 +102,7 @@ const Map = () => {
 
   const renderMap = () => {
     return (
-      <div className="map-container">
+      <div className="map-container" data-testid='google-map'>
         <GoogleMap
           clickableIcons={false}
           mapContainerStyle={containerStyle}
@@ -120,7 +118,7 @@ const Map = () => {
           {state.selectedSpot && (
             <SpotInfoBox
               selectedMarker={state.selectedSpot}
-              setSelectedMarker={state.selectedSpot}
+              updateSelection={updateSelection}
               resetZoom={resetZoom}
             />
           )}
@@ -136,6 +134,7 @@ const Map = () => {
       </div>
     );
   }
+  // return renderMap();
   return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
 };
 

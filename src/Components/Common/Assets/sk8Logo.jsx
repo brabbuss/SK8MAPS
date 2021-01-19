@@ -1,4 +1,4 @@
-import logo from "../App/logo.svg";
+import logo from "../Assets/logo.svg";
 
 export const sk8Logo = (
   <div className='nav-title'>

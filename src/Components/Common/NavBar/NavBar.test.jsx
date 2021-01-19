@@ -11,12 +11,12 @@ describe("NavBar", () => {
       </MemoryRouter>
     );
 
-    const navHome = screen.getByRole("link", { name: /home/i });
-    const navFav = screen.getByRole("link", { name: /favorites/i });
-    const heading = screen.getByRole("heading", { name: /moodytunes/i });
+    const contribute = screen.getByRole("link", { name: /contribute/i });
+    const search = screen.getByRole('link', { name: /search/i })
+    const heading = screen.getByRole('link', { name: /sk8maps logo/i })
 
     expect(heading).toBeInTheDocument();
-    expect(navHome).toBeInTheDocument();
-    expect(navFav).toBeInTheDocument();
+    expect(contribute).toBeInTheDocument();
+    expect(search).toBeInTheDocument();
   });
 });
