@@ -2,6 +2,92 @@
   /* border: solid 1px purple; */
 }
 
+@media only screen and (max-width: 414px) {
+  body {
+      width: 100%;
+      /* display: flex; */
+      flex-wrap: wrap !important;
+    }
+  .detail-view {
+    flex-direction: column !important;
+    margin: 0em .4em !important;
+}
+  .links-container {
+    display: flex;
+    width: -moz-fit-content;
+    margin: auto;
+  }
+  .links-container {
+    display: flex;
+    width: -moz-fit-content;
+    margin: auto;
+  }
+  .nav-container {
+    max-height: -moz-fit-content;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    border-bottom: double 28px hotpink;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  .detail-view .detail-title-container {
+    flex: 1 1;
+    font-size: 2em;
+    line-height: 20px;
+  }
+
+  .detail-view .detail-title-container h1 {
+    margin-bottom: .5em !important;
+    margin-top: 0 !important;
+  }
+
+  .detail-view .place-description {
+    margin: .5em 0 !important;
+    border: solid 1px white !important;
+    padding: .3em;
+  }
+  .detail-view .info-wrapper .features-title {
+    -webkit-text-orientation: upright;
+    text-orientation: upright !important;
+    writing-mode: horizontal-tb !important;
+    flex: initial !important;
+    margin: 1em !important;
+    overflow: hidden;
+    display: flex;
+    }
+    .detail-view .info-wrapper {
+      flex: 1 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  .feature-details {
+    flex-direction: column !important;
+  }
+  .feature-details .feature-description {
+    width: 100% !important;
+  }
+
+  .feature-details .feature-type {
+    flex-direction: row !important;
+    min-height: 2em !important;
+    width: 100% !important;
+    margin: .4em 1em !important;
+    border: solid 2px salmon !important;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    max-height: 4em;
+    max-width: 100% !important;
+  }
+}
+ 
+
 .detail-view {
   display: flex;
   flex-direction: row;
@@ -29,6 +115,7 @@
   text-align: left;
   text-decoration: underline;
   text-transform: uppercase;
+  line-height: 1;
 }
 
 .detail-view .left .detail-title-container .main-image-wrapper {
@@ -106,7 +193,7 @@
   width: -webkit-fill-available;
   flex-direction: column;
   min-height: 60vh;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .feature-details {

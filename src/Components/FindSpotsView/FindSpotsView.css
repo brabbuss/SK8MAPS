@@ -46,3 +46,21 @@
 .find-map-container {
   margin-bottom: 2em;
 }
+
+@media only screen and (max-width: 414px) {
+  .choice {
+    line-height: 2em;
+    font-size: .8em;
+  }
+  .fs-container {
+    width: 100%;
+  }
+  .fs-container h2 {
+    text-align: center !important;
+    font-size: 1em !important;
+    line-height: .1em !important;
+  }
+  .find-map-container {
+    margin-bottom: 0 !important;
+  }
+}

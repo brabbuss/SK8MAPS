@@ -22,17 +22,21 @@ const SpotDetails = ({ allSk8Maps, match, setMatchedMap, matchedMap }) => {
 
   const featureList = (
     <div className="features-section">
-      {matchedMap?.features.map((f, i) => (
-        <div className="feature-details" key={Date.now() + i}>
-          <div className="feature-type">
-            <h3>{`${f.type}`}</h3>
-            <h3>{`${f.has ? "✅" : "❌"}`}</h3>
-          </div>
-          <div className="feature-description">
-            {f.has && <p>{f.description}</p>}
-          </div>
-        </div>
-      ))}
+      {matchedMap?.features.map((f, i) => {
+        if (f.has) {
+          return (
+            <div className="feature-details" key={Date.now() + i}>
+              <div className="feature-type">
+                <h3>{`${f.type}`}</h3>
+                <h3>{`${f.has ? "✅" : "❌"}`}</h3>
+              </div>
+              <div className="feature-description">
+                {f.has && <p>{f.description}</p>}
+              </div>
+            </div>
+          );
+        }
+      })}
     </div>
   );
 

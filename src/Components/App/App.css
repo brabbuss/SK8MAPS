@@ -84,3 +84,10 @@ body {
   color: #282c34;
   border-color: hotpink;
 }
+
+@media only screen and (max-width: 414px) {
+  .welcome-container p {
+    line-height: 3em !important;
+  }
+
+}
