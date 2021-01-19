@@ -4,6 +4,7 @@
   border-radius: 15px;
 }
 .selected-choice {
+  border: solid 2px #282c3400;
   background-color: orange;
   color: #282c34;
   padding: 9px;
@@ -47,7 +48,35 @@
   margin-bottom: 2em;
 }
 
+@media only screen and (max-width: 320px) {
+  .choice {
+    padding: 1px !important;
+  }
+  .app-name-link {
+    width: max-content;
+  }
+  .nav-title {
+    width: 320px;
+  }
+  .detail-view .info-wrapper .features-title h1 {
+    letter-spacing: 1.18em !important;
+  }
+  .info-box-link p{
+    font-size: 1.3em !important;
+  }
+}
+
 @media only screen and (max-width: 414px) {
+  .info-box-link {
+    padding: 0;
+    font-size: 1.3em !important;
+  }
+  .info-box-link p{
+    font-size: 1.3em !important;
+  }
+  .welcome-container {
+    margin: 1em !important;
+  }
   .choice {
     line-height: 2em;
     font-size: .8em;

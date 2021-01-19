@@ -25,3 +25,30 @@
 .info-box h2 {
   font-size: 1em !important;
 }
+
+@media only screen and (max-width: 420px) {
+  .info-box {
+    padding: 0;
+    display: inline;
+  }
+  .info-box-link {
+    padding: 0;
+    font-size: 1.3em !important;
+  }
+  .info-box-link {
+    font-size: 1.3em !important;
+  }
+  .feature-container {
+    flex-wrap: wrap !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .info-box-link {
+    font-size: 1.3em !important;
+  }
+  .info-box {
+    padding: 0;
+    display: inline;
+  }
+}
