@@ -29,6 +29,7 @@
   text-align: left;
   text-decoration: underline;
   text-transform: uppercase;
+  line-height: 1;
 }
 
 .detail-view .left .detail-title-container .main-image-wrapper {
