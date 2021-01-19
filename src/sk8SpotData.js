@@ -4,7 +4,7 @@ export const mockAPISkateSpots = [
     difficulty: 1,
     title: "Old church",
     description:
-      "some description,some fine cracks, small pebbles can kill,stairs front of school good lan",
+      "Old church with lots of skateable things. Just be respectful and don't go on Sundays duh",
     location: {
       lat: 39.82597138963928,
       lng: -105.08527641669075,
@@ -20,19 +20,19 @@ export const mockAPISkateSpots = [
         type: "Flats",
         has: true,
         condition: 3,
-        description: "some fine cracks, small pebbles can kill",
+        description: "some fine cracks, small pebbles can be deathly",
       },
       {
         type: "Rails",
         has: true,
         condition: 3,
-        description: "about 10ft long",
+        description: "about 10ft long section near entrance ramp",
       },
       {
         type: "Stairs",
         has: true,
         condition: 5,
-        description: "10 stairs front of school good landing",
+        description: "10 stairs front of building - short runway but good landing",
       },
       {
         type: "Hills",
@@ -63,7 +63,7 @@ export const mockAPISkateSpots = [
     difficulty: 1,
     title: "Secrest Park",
     description:
-      "some description,some fine cracks, small pebbles can kill,stairs front of school good lan",
+      "Awesome spot if you need a big open flat area. Open skating rink, basketball court",
     location: {
       lat: 39.8155,
       lng: -105.0726,
@@ -73,13 +73,13 @@ export const mockAPISkateSpots = [
         type: "Curbs",
         has: true,
         condition: 2,
-        description: "getting old and chunky",
+        description: "Getting old and chunky, but a parking lot full of them",
       },
       {
         type: "Flats",
         has: true,
         condition: 5,
-        description: "a whole skating rink",
+        description: "A whole skating rink and basketball court. Be sure to clean up puck chips or you're going to get floored",
       },
       { type: "Rails", has: false, condition: null, description: null },
       { type: "Stairs", has: false, condition: null, description: null },
@@ -93,7 +93,7 @@ export const mockAPISkateSpots = [
         type: "Parks",
         has: true,
         condition: 5,
-        description: "not a skate park, but a nice park",
+        description: "Not a skate park, but a nice park",
       },
     ],
     safety: {
@@ -111,7 +111,7 @@ export const mockAPISkateSpots = [
     id: 3,
     difficulty: 1,
     title: "Big 25 stair drop",
-    description: "25 stair drop with good landing",
+    description: "Huge 25 stair drop with good landing",
     location: {
       lat: 39.816,
       lng: -105.065,
@@ -119,12 +119,12 @@ export const mockAPISkateSpots = [
     features: [
       { type: "Curbs", has: false, condition: null, description: null },
       { type: "Flats", has: false, condition: null, description: null },
-      { type: "Rails", has: false, condition: null, description: null },
+      { type: "Rails", has: true, condition: 1, description: "Rails in good condition, but they aren't usable unless you're really good, really stupid, really brave, or any combo of those" },
       {
         type: "Stairs",
         has: true,
         condition: 4,
-        description: "big 15 stairs with good runway",
+        description: "Big 25 stair drop with good runway. Security is...diligent",
       },
       {
         type: "Hills",
@@ -154,7 +154,7 @@ export const mockAPISkateSpots = [
     id: 4,
     difficulty: 1,
     title: "Arvada SkatePark",
-    description: "Colorado's best fakkin skatepark",
+    description: "Colorado's best skatepark. Lots of features. Maybe a little cramped, but geeze it's cool. Big bowls, hills, etc.",
     location: {
       lat: 39.82663239233444,
       lng: -105.14309411715244,
@@ -164,25 +164,25 @@ export const mockAPISkateSpots = [
         type: "Curbs",
         has: true,
         condition: 5,
-        description: "it's all glorious",
+        description: "Ledges everywhere for your boardsliding needs",
       },
       {
         type: "Flats",
         has: true,
         condition: 5,
-        description: "it's all glorious",
+        description: "Lots, and quite clean with no debris",
       },
       {
         type: "Rails",
         has: true,
         condition: 5,
-        description: "it's all glorious",
+        description: "A couple rails interspersed throughout",
       },
       {
         type: "Stairs",
         has: true,
         condition: 4,
-        description: "small drops all over",
+        description: "Small drops all over",
       },
       {
         type: "Hills",
@@ -212,7 +212,7 @@ export const mockAPISkateSpots = [
     id: 423,
     difficulty: 5,
     title: "16th St Hill Bomb",
-    description: "Amazing when it's not busy - try during shutdown",
+    description: "Try on Sundays. Nice and easy. Amazing when it's not busy. Was an incredible ride down a longboard during the COVID shutdown",
     location: {
       lat: 39.74183386800573, 
       lng: -104.98783430459216,
@@ -234,7 +234,7 @@ export const mockAPISkateSpots = [
         type: "Rails",
         has: false,
         condition: 5,
-        description: "DEATH BECKONS",
+        description: "",
       },
       {
         type: "Stairs",
@@ -246,7 +246,7 @@ export const mockAPISkateSpots = [
         type: "Hills",
         has: true,
         condition: 5,
-        description: "",
+        description: "Awesome. Gentle, long slope. Cops might stop you or they might not. Lots of luck during the shutdowns or non-busy hours. Sundays used to be reliable",
       },
       {
         type: "Parks",
@@ -264,6 +264,64 @@ export const mockAPISkateSpots = [
       hazards: "scooter kids",
       public: true,
     },
-    images: ["https://www.northwestskater.com/arvada7915b8412.jpg", "https://lh3.googleusercontent.com/proxy/Sc8-Dwj4mCltRmivJKm2m14rw4Sa7iZEKHeYZ6lg7XQ-vX2RSA_0uZOqc-Y8dJwvpNExg4ZzuKE1Nbkr_UxWUZrpyECGFX9__a09xltGljHnxxYZAXCtEXAETUfJiUvwnAru4KeO7YE", "https://i.redd.it/f76cll0aufny.jpg"]
+    images: ["https://cache-graphicslib.viator.com/graphicslib/page-images/742x525/159210_Viator_Shutterstock_119788.jpg", "https://i.redd.it/f76cll0aufny.jpg"]
+  },
+  {
+    id: 424,
+    difficulty: 5,
+    title: "Denver Skatepark",
+    description: "Boasting 60,000 square feet of skateable, concrete terrain, the park challenges boarders, bladers, and bikers of all levels (bring your own gear - no rentals available.) Pegs are not allowed on bicycles. Admission is free and the park is open seven days a week.",
+    location: {
+      lat: 39.7596647443845, 
+      lng:  -105.00274160515092,
+    },
+    features: [
+      {
+        type: "Curbs",
+        has: true,
+        condition: 5,
+        description: "Ledges galore all well maintained",
+      },
+      {
+        type: "Flats",
+        has: true,
+        condition: 5,
+        description: "Plenty of space",
+      },
+      {
+        type: "Rails",
+        has: true,
+        condition: 5,
+        description: "Strategically placed where it makes sense (along stairs into a bowl)",
+      },
+      {
+        type: "Stairs",
+        has: true,
+        condition: 4,
+        description: "Many short flights to practice landing",
+      },
+      {
+        type: "Hills",
+        has: true,
+        condition: 5,
+        description: "Fun hills all over the place",
+      },
+      {
+        type: "Parks",
+        has: true,
+        condition: 5,
+        description: "One of the nation's top 10 skate parks",
+      },
+    ],
+    safety: {
+      security: {
+        has: false,
+        cheese_level: 1,
+        description: null,
+      },
+      hazards: "scooter kids",
+      public: true,
+    },
+    images: ["https://img1.10bestmedia.com/Images/Photos/316562/p-maxresdefault_55_660x440.jpg"]
   },
 ];
