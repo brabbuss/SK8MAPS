@@ -11,7 +11,7 @@
   .detail-view {
     flex-direction: column !important;
     margin: 0em .4em !important;
-}
+  }
   .links-container {
     display: flex;
     width: -moz-fit-content;
@@ -57,13 +57,16 @@
     margin: 1em !important;
     overflow: hidden;
     display: flex;
-    }
-    .detail-view .info-wrapper {
-      flex: 1 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
+  }
+  .detail-view .info-wrapper {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .features-section {
+    min-height: fit-content;
+  }
   .feature-details {
     flex-direction: column !important;
   }
