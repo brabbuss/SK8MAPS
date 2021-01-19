@@ -1,48 +1,53 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect'
 import userEvent from "@testing-library/user-event";
 import Map from "./Map";
-import AppContext from '../../App/AppContext'
 import {tddMockData} from '../../../tddMockData'
-import createGoogleMapsMock from 'jest-google-maps-mock';
+import { MemoryRouter } from "react-router-dom";
+jest.mock('./Map')
 
 describe("Map", () => {
-  let googleMaps;
 
-  beforeEach(() => {
-    googleMaps = createGoogleMapsMock();
-  });
-
-  const customRender = (component, { providerProps, ...renderOptions }) => {
-    return render(
-      <AppContext.Provider {...providerProps}>
-        {component}
-      </AppContext.Provider>,
-      renderOptions
-    )
-  }  
-
-  it("renders a Map", () => {
-    
-    const providerProps = {
-      state: {appView: "find-spot",
-      storedSpots: [tddMockData.mockSpotAllData]}
-    }
-
-    // customRender(<Map />, {providerProps})
-    const wrapper = ({children}) => (
-      <AppContext.Provider value={providerProps}>
-        {children}
-      </AppContext.Provider>
+  it("renders a Map", async () => {
+    render(
+      <MemoryRouter>
+        <Map 
+          markerLocations={tddMockData.mockAPIData}
+          updateSelection={jest.fn}
+          selectedSpot={tddMockData.mockSpotAllData}
+          appView={'add-view'}          
+        />
+      </MemoryRouter>
     )
 
-    render(<Map />, {wrapper})
-
-
-    const map = screen.getByTestId('google-map')
-
+    const map = await waitFor(() => screen.getByTestId('google-map'))
     expect(map).toBeInTheDocument();
+  });
+  
+  it("renders sk8map markers", async () => {
+    render(
+      <MemoryRouter>
+        <Map 
+          markerLocations={tddMockData.mockAPIData}
+          updateSelection={jest.fn}
+          selectedSpot={tddMockData.mockSpotAllData}
+          appView={'add-view'}          
+        />
+      </MemoryRouter>
+    )
+
+    await waitFor(() => screen.getByTestId('google-map'))
+    
+    const marker1 = await waitFor(() => screen.getByText('Mock Spot'))
+    const marker2 = screen.getByText('Old church')
+    const marker3 = screen.getByText('Secrest Park')
+    const marker4 = screen.getByText('Big 25stair drop')
+
+    expect(marker1).toBeInTheDocument();
+    expect(marker2).toBeInTheDocument();
+    expect(marker3).toBeInTheDocument();
+    expect(marker4).toBeInTheDocument();
   });
     
 });

@@ -2,8 +2,6 @@ import React from "react";
 import {
   render,
   screen,
-  waitFor,
-  waitForElementToBeRemoved,
   cleanup,
 } from "@testing-library/react";
 import DetailsForm from "./DetailsForm";

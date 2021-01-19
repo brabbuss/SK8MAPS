@@ -5,7 +5,7 @@ import "./DetailsForm.css";
 const DetailsForm = ({ newSk8Map, saveNewSk8Map }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState('');
   const [curbs, setCurbs] = useState([false, ""]);
   const [flats, setFlats] = useState([false, ""]);
   const [rails, setRails] = useState([false, ""]);
@@ -57,7 +57,7 @@ const DetailsForm = ({ newSk8Map, saveNewSk8Map }) => {
         hazards: "some big cracks",
         public: false,
       },
-      images: !images?.includes('https://www.' || 'http://www.' || 'http') ? [null] : [images],
+      images: [images],
     };
     return newSk8MapObject;
   };

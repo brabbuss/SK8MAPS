@@ -5,15 +5,13 @@ import {
   render,
   screen,
   waitFor,
-  waitForElementToBeRemoved,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { tddMockData } from "../../tddMockData";
-import createGoogleMapsMock from 'jest-google-maps-mock';
 jest.mock('../Common/Map/Map')
 
 describe("App", () => {
-  const {mockSpotAllData, mockAPIData, mockNewSk8Map} = tddMockData
+  const {mockSpotAllData, mockAPIData} = tddMockData
 
   beforeEach(() => {
     localStorage.setItem('USER-SK8MAPS', JSON.stringify(mockAPIData))
