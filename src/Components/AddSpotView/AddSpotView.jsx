@@ -1,25 +1,34 @@
-import React, {useContext, useEffect} from "react";
-import AppContext from "../App/AppContext";
+import React, { useState, useEffect } from "react";
 import Map from "../Common/Map/Map";
 
-function AddSpotView() {
-  const [state, dispatch] = useContext(AppContext);
+function AddSpotView({
+  createNewSk8Map,
+  allSk8Maps,
+  updateSelection,
+  selectedSpot,
+}) {
+  const [appView, setAppView] = useState(null);
 
   useEffect(() => {
-    changeViewAdd()
-  },[])
-
-  const changeViewAdd = () => {
-    const action = {type: 'CHANGE_VIEW', view: 'add-spot'}
-    dispatch(action)
-  };
+    setAppView("add-spot");
+  }, []);
 
   return (
-    <section>
-      <h1>click to add a spot</h1>
-      <Map />
+    <section className='fs-container'>
+      <br/>
+      <h2>Click the map to add a new <b>SK8MAP</b></h2>
+      <br/>
+      <div className="find-map-container">
+        <Map
+          createNewSk8Map={createNewSk8Map}
+          markerLocations={allSk8Maps}
+          updateSelection={updateSelection}
+          selectedSpot={selectedSpot}
+          appView={appView}
+        />
+      </div>
     </section>
-  ) 
+  );
 }
 
 export default React.memo(AddSpotView);

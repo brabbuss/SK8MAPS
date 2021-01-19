@@ -1,4 +1,37 @@
+.choice {
+  border: solid 2px #282c34;
+  padding: 9px;
+  border-radius: 15px;
+}
+.selected-choice {
+  background-color: orange;
+  color: #282c34;
+  padding: 9px;
+  border-radius: 15px;
+}
+
+.fs {
+  cursor: pointer;
+  transition: ease-in-out .18s;
+  border-radius: 8px;
+  width: auto;
+  height: auto;
+}
+
+.fs:hover {
+  cursor: pointer;
+  background-color: orange;
+  color: rgb(40,44,52);
+}
+
+.fs-container h2 {
+  font-weight: 200;
+  font-size: 0.7em;
+  text-align: initial;
+}
+
 .fs-ul {
+  margin: .2em 0;
   display: flex;
   justify-content: space-between;
   list-style-type: none;

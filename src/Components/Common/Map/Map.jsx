@@ -1,5 +1,4 @@
-import React, { useState, useCallback, useContext, useEffect } from "react";
-import AppContext from "../../App/AppContext";
+import React, { useState, useCallback } from "react";
 import "./Map.css";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
@@ -17,17 +16,15 @@ let defaultPosition = {
   lng: -105.065,
 };
 
-const Map = () => {
+const Map = ({updateSelection, selectedSpot, createNewSk8Map, markerLocations, appView}) => {
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: API_KEY,
   });
 
-  const [state, dispatch] = useContext(AppContext);
   const [map, setMap] = useState(null);
   const [center, setCenter] = useState(defaultPosition);
-
-  // console.log(state)
+  const [confirmMarker, setConfirmMarker] = useState(null)
 
   const onLoad = useCallback(async function callback(map) {
     const bounds = await new window.google.maps.LatLngBounds();
@@ -42,15 +39,12 @@ const Map = () => {
     setMap(null);
   }, []);
 
-  const updateSelection = selectedMarker => {
-    const action = {type: 'UPDATE_SELECTED_SPOT', selectedSpot: selectedMarker}
-    dispatch(action)
-  };
-  
-  const showConfirmationMarker = (loc) => {
-    const marker = { location: loc }
-    const action = {type: 'ADD_CONFIRMATION_MARKER', marker: marker}
-    dispatch(action)
+  const toggleConfirmationMarker = (loc) => {
+    if (loc) {
+      setConfirmMarker(loc)
+    } else {
+      setConfirmMarker(null)
+    }
   }
 
   const handleZoom = () => {
@@ -67,32 +61,32 @@ const Map = () => {
     }
   }
 
-  const resetZoom = () => {
-    map.zoom = 15
+  const resetZoom = (level) => {
+    level ? map.zoom = 18 : map.zoom = 15
     map.panTo(center);
     handleZoom()
   }
 
   const handleMapClick = (e) => {
-    if (state.appView === "add-spot") {
+    if (appView === "add-spot") {
       const newPos = e.latLng
       map.zoom = 22
       setCenter(newPos);
       map.panTo(newPos);
-      showConfirmationMarker(newPos)
+      toggleConfirmationMarker(newPos)
       handleZoom()
     } 
   }
 
   const handleMarkerClick = (e, spot) => {
+    map.panTo(e.latLng);
     map.zoom = 19;
     setCenter(e.latLng);
-    map.panTo(e.latLng);
     updateSelection(spot);
     handleZoom()
   };   
 
-  const markers = state.storedSpots?.map((spot, i) => (
+  const markers = markerLocations?.map((spot, i) => (
     <SpotMarker
       key={Date.now() + i}
       spot={spot}
@@ -113,11 +107,16 @@ const Map = () => {
           onLoad={onLoad}
           onUnmount={onUnmount}>
           {markers}
-          {state.marker && (
-            <ConfirmationMarker />)}
-          {state.selectedSpot && (
+          {confirmMarker && (
+            <ConfirmationMarker
+            confirmMarker={confirmMarker}
+            resetZoom={resetZoom}
+            toggleConfirmationMarker={toggleConfirmationMarker}
+            createNewSk8Map={createNewSk8Map}
+            />)}
+          {selectedSpot && (
             <SpotInfoBox
-              selectedMarker={state.selectedSpot}
+              selectedMarker={selectedSpot}
               updateSelection={updateSelection}
               resetZoom={resetZoom}
             />
@@ -130,12 +129,11 @@ const Map = () => {
   if (loadError) {
     return (
       <div>
-        Can't find the map right now. I'll keep looking, come back later...
+        Can't find the map right now. I'll keep looking, try refreshing the page...
       </div>
     );
   }
-  // return renderMap();
   return isLoaded ? renderMap() : <h1>Now where did I put that map...</h1>;
 };
 
-export default React.memo(Map);
+export default Map;

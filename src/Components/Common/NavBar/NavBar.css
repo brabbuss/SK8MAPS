@@ -5,18 +5,46 @@
   width: -webkit-fill-available;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: double 28px hotpink;
+
+  /* max-height: fit-content; */
+  /* width: -webkit-fill-available; */
+  /* display: flex; */
+  /* align-items: center; */
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  /* padding: 0em 13vw; */
 }
 
-.link-container {
+.links-container {
   display: flex;
+  align-items: center;
   width: fit-content;
+  min-height:5em;
+  overflow: hidden;
+  margin: auto;
+  /* border: solid 1px red; */
+}
+
+.links-container .link-wrapper {
+  /* border: solid 1px red; */
 }
 
 .nav-title {
   display: flex;
+}
+
+.nav-title h1 {
+  font-size: 3em !important;
+  font-weight: 900 !important;
+  font-size: 3em !important;
+  font-weight: 900 !important;
+  margin: auto !important;
+  color: hotpink !important;
 }
 
 .nav-btn {
@@ -40,9 +68,18 @@
 }
 
 .nav-btn:hover {
-  background: #e100a9;
+  background: hotpink;
   color: #282c34;
-  border-color: #e100a9;
+  border-color: hotpink;
+}
+
+.nav-btn-selected {
+  background: #282c34;
+  color: hotpink;
+  border-color: hotpink;
+  border-width: 3px;
+  font-weight: 500;
+  /* background: hotpink; */
 }
 
 .app-header {

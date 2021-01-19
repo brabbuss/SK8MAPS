@@ -1,0 +1,8 @@
+.logo-container {
+  overflow: hidden;
+}
+
+.logo-svg {
+  stroke: white;
+  height: 5.2em;
+}

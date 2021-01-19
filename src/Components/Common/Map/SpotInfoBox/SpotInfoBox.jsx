@@ -5,14 +5,15 @@ import "./SpotInfoBox.css";
 
 const SpotInfoBox = ({ resetZoom, selectedMarker, updateSelection }) => {
   const featureDetails = (
-    <section className='feature-container'>
+    <section className='infobox-wrapper feature-container'>
       {selectedMarker &&
         selectedMarker.features.map(feat => {
           if (feat.has) {
             return (
-              <div className="feature-details">
+              <div className="feature-details infobox-details">
                 <p><b>{feat.type}</b></p>
-                <p>{feat.condition}</p>
+                <br/>
+                <p>quality{feat.condition > 2 ? '👍' : '👎'}</p>
               </div>
             );
           }
@@ -22,7 +23,7 @@ const SpotInfoBox = ({ resetZoom, selectedMarker, updateSelection }) => {
 
   const infoBox = (
     <div className="info-box">
-      <Link to={`/spots/${selectedMarker?.id}`}>
+      <Link className='infobox-link' to={`/spots/${selectedMarker?.id}`} onClick={() => updateSelection(null)}>
         <h1>{selectedMarker?.title}</h1>
       </Link>
       <p>{selectedMarker?.description}</p>

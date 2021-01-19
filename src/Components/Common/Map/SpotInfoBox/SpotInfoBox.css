@@ -1,3 +1,13 @@
+.infobox-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.infobox-details {
+  display: flex !important;
+  flex-direction: column !important;
+  line-height: 0;
+}
 
 .info-box {
   color: black;
@@ -7,3 +17,12 @@
 
 }
 
+.infobox-link h1 {
+  font-size: 2em !important;
+}
+.info-box p {
+  font-size: 2em !important;
+}
+.info-box h2 {
+  font-size: 1em !important;
+}
