@@ -86,7 +86,6 @@ const DetailsForm = ({newSk8Map, saveNewSk8Map}) => {
     return (
     <section className="form">
       <div className="detail-view">
-        {/* <div className="detail-title-container form-left form-left-container"> */}
         <div className="form-left">
           <div className="input-label">
             <h1>title</h1>

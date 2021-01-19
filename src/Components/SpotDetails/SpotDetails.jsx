@@ -4,8 +4,7 @@ import "./SpotDetails.css";
 import { skatePlaceholder } from "../Common/Assets/skate-placeholder";
 
 const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
-// console.log(allSk8Maps)
-
+  
   useEffect(() => {
     const syncSk8Map = async () => {
       const matchUrl = +match.params.spot_id;

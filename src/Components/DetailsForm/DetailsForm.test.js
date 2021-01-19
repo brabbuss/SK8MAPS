@@ -8,43 +8,26 @@ import {
 } from "@testing-library/react";
 import DetailsForm from "./DetailsForm";
 import "@testing-library/jest-dom";
-import AppContext from "../App/AppContext";
-import { tddMockState, tddMockData } from "../../tddMockData";
+import { tddMockData } from "../../tddMockData";
 import { MemoryRouter } from "react-router-dom";
-import App from "../App/App";
-import { saveToLocal, getFromLocal } from "../Common/Utilities/localStorage";
-import { myReducer } from "../Common/Utilities/myReducer";
-jest.mock("../Common/Utilities/myReducer")
-jest.mock("../Common/Utilities/localStorage")
-
-// const mockReducer = myReducer
-
-beforeEach(() => {
-  myReducer.mockResolvedValue(tddMockState)
-  saveToLocal("SELECTED-SK8MAP", tddMockData.mockSpotAllData)
-  saveToLocal("USER-SK8MAPS", tddMockData.mockAPIData)
-  saveToLocal("ALL-SK8MAPS", tddMockData.mockAPIData)
-  // myReducer.mockResolvedValue(tddMockState);  // )(*)(*)(*)
-  // jest.resetModules();
-  // initialize();
-});
 
 afterEach(cleanup);
 
 describe("DetailsForm", () => {
+  const {mockNewSk8Map} = tddMockData
+
   it("Elements render properly", async () => {
     render(
       <MemoryRouter initialEntries={["/add/details"]}>
-        <AppContext.Provider value={[tddMockState, jest.fn()]}>
-          <App>
-            <DetailsForm />
-          </App>
-        </AppContext.Provider>
+        <DetailsForm
+          newSk8Map={mockNewSk8Map}
+          saveNewSk8Map={jest.fn}
+        />
       </MemoryRouter>
     );
 
-    const titleInput = screen.getByRole('textbox')
-    expect(titleInput).toBeInTheDocument();
+    const inputs = screen.getAllByRole('textbox')
+    expect(inputs.length).toBe(7);
   });
 
   // it("spot details render properly", async () => {

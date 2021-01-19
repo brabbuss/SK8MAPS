@@ -9,9 +9,9 @@ export const skatePlaceholder = (
       x="0"
       y="143"
       // fill="#000000"
-      font-size=".2em"
-      font-weight='100'
-      font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">
+      fontSize=".2em"
+      fontWeight='100'
+      fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">
       ...we need some photos!
     </text>
   </svg>
