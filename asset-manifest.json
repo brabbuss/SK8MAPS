@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/SK8MAPS/static/css/main.eb96d60e.chunk.css",
+    "main.css": "/SK8MAPS/static/css/main.07f7eff1.chunk.css",
     "main.js": "/SK8MAPS/static/js/main.d6a96148.chunk.js",
     "main.js.map": "/SK8MAPS/static/js/main.d6a96148.chunk.js.map",
     "runtime-main.js": "/SK8MAPS/static/js/runtime-main.d917fd0f.js",
@@ -10,13 +10,13 @@
     "static/js/3.e095d191.chunk.js": "/SK8MAPS/static/js/3.e095d191.chunk.js",
     "static/js/3.e095d191.chunk.js.map": "/SK8MAPS/static/js/3.e095d191.chunk.js.map",
     "index.html": "/SK8MAPS/index.html",
-    "static/css/main.eb96d60e.chunk.css.map": "/SK8MAPS/static/css/main.eb96d60e.chunk.css.map",
+    "static/css/main.07f7eff1.chunk.css.map": "/SK8MAPS/static/css/main.07f7eff1.chunk.css.map",
     "static/js/2.6d0ad736.chunk.js.LICENSE.txt": "/SK8MAPS/static/js/2.6d0ad736.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d917fd0f.js",
     "static/js/2.6d0ad736.chunk.js",
-    "static/css/main.eb96d60e.chunk.css",
+    "static/css/main.07f7eff1.chunk.css",
     "static/js/main.d6a96148.chunk.js"
   ]
 }
