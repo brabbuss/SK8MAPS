@@ -1,4 +1,4 @@
->[Moody Tunes deployed site](https://brabbuss.github.io/SK8MAPS/)
+>[SK8MAPS deployed site](https://brabbuss.github.io/SK8MAPS/)
 
 ---
 
