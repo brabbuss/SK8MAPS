@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Map from "../Common/Map/Map";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function AddSpotView({
   createNewSk8Map,
@@ -15,11 +15,13 @@ function AddSpotView({
   }, []);
 
   return (
-    <section className='fs-container'>
-      <br/>
-      <h2>Click the map to add a new <b>SK8MAP</b></h2>
-      <br/>
-      <div id='map-container' className="find-map-container">
+    <section className="fs-container">
+      <br />
+      <h2>
+        Click the map to add a new <b>SK8MAP</b>
+      </h2>
+      <br />
+      <div id="map-container" className="find-map-container">
         <Map
           createNewSk8Map={createNewSk8Map}
           markerLocations={allSk8Maps}
