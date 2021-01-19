@@ -53,13 +53,13 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.welcome-container h1{
+.welcome-container h1 {
   height: auto;
   margin: auto;
   font-weight: 200;
 }
-.welcome-container p{
-  line-height: .7em;
+.welcome-container p {
+  line-height: 0.7em;
   font-weight: 200;
 }
 .home-link {

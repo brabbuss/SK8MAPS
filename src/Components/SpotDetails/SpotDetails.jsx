@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { Redirect, Route, Link } from "react-router-dom";
 import "./SpotDetails.css";
 import { skatePlaceholder } from "../Common/Assets/skate-placeholder";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
-  
+const SpotDetails = ({ allSk8Maps, match, setMatchedMap, matchedMap }) => {
   useEffect(() => {
     const syncSk8Map = async () => {
       const matchUrl = +match.params.spot_id;
@@ -20,7 +19,6 @@ const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
     };
     syncSk8Map();
   }, []);
-  
 
   const featureList = (
     <div className="features-section">
@@ -42,12 +40,7 @@ const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
     if (matchedMap?.images && matchedMap?.images[0]) {
       return <img alt="skating a curb" src={matchedMap.images[0]} />;
     } else {
-      return (
-
-      <div>
-        {skatePlaceholder}
-        </div>
-      )
+      return <div>{skatePlaceholder}</div>;
     }
   };
 
@@ -60,12 +53,10 @@ const SpotDetails = ({allSk8Maps, match, setMatchedMap, matchedMap}) => {
   } else if (matchedMap) {
     return (
       <div className="detail-view">
-        <div className='left'>
+        <div className="left">
           <section className="detail-title-container">
             <h1>{matchedMap.title}</h1>
-            <div className='main-image-wrapper'>
-              {images()}
-            </div>
+            <div className="main-image-wrapper">{images()}</div>
           </section>
           <div className="place-description">
             <p>{matchedMap.description}</p>
@@ -99,5 +90,5 @@ SpotDetails.propTypes = {
   allSk8Maps: PropTypes.array,
   match: PropTypes.object,
   setMatchedMap: PropTypes.func,
-  matchedMap: PropTypes.object
+  matchedMap: PropTypes.object,
 };

@@ -3,7 +3,7 @@
   border: solid 2px hotpink;
   color: hotpink;
   cursor: pointer;
-  transition: ease-in-out .12s;
+  transition: ease-in-out 0.12s;
   height: fit-content;
   border-radius: 7px;
 }
@@ -14,7 +14,7 @@
   color: white;
 }
 .confirm-button:hover::after {
-  content: 'Woo!';
+  content: "Woo!";
 }
 
 .confirm-info-box {

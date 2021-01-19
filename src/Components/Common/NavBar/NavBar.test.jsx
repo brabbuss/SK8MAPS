@@ -12,8 +12,8 @@ describe("NavBar", () => {
     );
 
     const contribute = screen.getByRole("link", { name: /contribute/i });
-    const search = screen.getByRole('link', { name: /search/i })
-    const heading = screen.getByRole('link', { name: /sk8maps/i })
+    const search = screen.getByRole("link", { name: /search/i });
+    const heading = screen.getByRole("link", { name: /sk8maps/i });
 
     expect(heading).toBeInTheDocument();
     expect(contribute).toBeInTheDocument();

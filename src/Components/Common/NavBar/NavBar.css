@@ -1,4 +1,4 @@
-.nav-container { 
+.nav-container {
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: -webkit-fill-available;
@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   width: fit-content;
-  min-height:5em;
+  min-height: 5em;
   overflow: hidden;
   margin: auto;
 }
