@@ -7,9 +7,19 @@ import ConfirmationMarker from "./ConfirmationMarker/ConfirmationMarker";
 import PropTypes from "prop-types";
 const API_KEY = process.env.REACT_APP_YOUR_API_KEY;
 
-const containerStyle = {
-  width: "100%",
-  height: "20em",
+const containerStyle = () => {
+  let windowWidth = window.innerWidth;
+  if (windowWidth > "414px") {
+    return {
+      width: "100%",
+      height: "20em",
+    };
+  } else {
+    return {
+      width: "100%",
+      height: "59.4vh",
+    };
+  }
 };
 
 let defaultPosition = {
@@ -109,7 +119,7 @@ const Map = ({
       <div className="map-container" data-testid="google-map">
         <GoogleMap
           clickableIcons={false}
-          mapContainerStyle={containerStyle}
+          mapContainerStyle={containerStyle()}
           center={center}
           zoom={12}
           onZoomChanged={handleZoom}

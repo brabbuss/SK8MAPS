@@ -81,14 +81,12 @@ function App() {
               </h1>
               <br />
               <p>
-                click{" "}
                 <Link to="/search" className="nav-button home-link">
                   search
                 </Link>{" "}
                 to find some spots
               </p>
               <p>
-                click{" "}
                 <Link to="/add" className="nav-button home-link">
                   Add a SK8MAP
                 </Link>{" "}

@@ -5,7 +5,7 @@
 @media only screen and (max-width: 414px) {
   body {
       width: 100%;
-      display: flex;
+      /* display: flex; */
       flex-wrap: wrap !important;
     }
   .detail-view {
@@ -38,6 +38,12 @@
     font-size: 2em;
     line-height: 20px;
   }
+
+  .detail-view .detail-title-container h1 {
+    margin-bottom: .5em !important;
+    margin-top: 0 !important;
+  }
+
   .detail-view .place-description {
     margin: .5em 0 !important;
     border: solid 1px white !important;
@@ -187,7 +193,7 @@
   width: -webkit-fill-available;
   flex-direction: column;
   min-height: 60vh;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .feature-details {
