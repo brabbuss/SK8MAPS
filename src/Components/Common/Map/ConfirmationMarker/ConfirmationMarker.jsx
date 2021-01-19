@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { InfoWindow } from "@react-google-maps/api";
 import "./ConfirmationMarker.css";
+import PropTypes from "prop-types";
 
 const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom, createNewSk8Map}) => {
   
@@ -44,3 +45,7 @@ const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom,
 };
 
 export default ConfirmationMarker;
+
+ConfirmationMarker.propTypes = {
+  confirmMarker: PropTypes.object, toggleConfirmationMarker: PropTypes.func, resetZoom: PropTypes.func, createNewSk8Map: PropTypes.func
+};

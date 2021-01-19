@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "./DetailsForm.css";
+import PropTypes from 'prop-types';
 
 const DetailsForm = ({ newSk8Map, saveNewSk8Map }) => {
   const [title, setTitle] = useState("");
@@ -269,3 +270,8 @@ const DetailsForm = ({ newSk8Map, saveNewSk8Map }) => {
 };
 
 export default DetailsForm;
+
+DetailsForm.propTypes = {
+  newSk8Map: PropTypes.object, 
+  saveNewSk8Map: PropTypes.func
+};

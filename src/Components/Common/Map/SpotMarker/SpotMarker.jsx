@@ -1,5 +1,6 @@
 import React from "react";
 import { Marker } from "@react-google-maps/api";
+import PropTypes from "prop-types";
 
 const SpotMarker = ({ spot, handleMarkerClick }) => {
   return (
@@ -15,3 +16,8 @@ const SpotMarker = ({ spot, handleMarkerClick }) => {
 };
 
 export default SpotMarker;
+
+SpotMarker.propTypes = {
+  spot: PropTypes.object,
+  handleMarkerClick: PropTypes.func
+};

@@ -4,6 +4,7 @@ import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import SpotMarker from "./SpotMarker/SpotMarker";
 import SpotInfoBox from "./SpotInfoBox/SpotInfoBox";
 import ConfirmationMarker from './ConfirmationMarker/ConfirmationMarker'
+import PropTypes from 'prop-types';
 const API_KEY = process.env.REACT_APP_YOUR_API_KEY;
 
 const containerStyle = {
@@ -137,3 +138,11 @@ const Map = ({updateSelection, selectedSpot, createNewSk8Map, markerLocations, a
 };
 
 export default Map;
+
+Map.propTypes = {
+  updateSelection: PropTypes.func,
+  createNewSk8Map: PropTypes.func,
+  markerLocations: PropTypes.array,
+  appView: PropTypes.string,
+  selectedSpot: PropTypes.object,
+};
