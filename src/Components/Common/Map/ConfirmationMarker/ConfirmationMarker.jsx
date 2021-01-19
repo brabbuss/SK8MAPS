@@ -26,8 +26,8 @@ const ConfirmationMarker = ({confirmMarker, toggleConfirmationMarker, resetZoom,
   const infoBox = (
     <div className="confirm-info-box info-box">
       <h1>Add a new SK8MAP here?</h1>
-      <Link to='/add/details' className="confirm-button">
-        <div onClick={handleConfirm}><h1><b>Confirm Placement</b></h1></div>
+      <Link onClick={handleConfirm} to='/add/details' className="confirm-button">
+        <h1><b>Confirm Placement</b></h1>
       </Link>
     </div>
   )
