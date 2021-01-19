@@ -11,7 +11,7 @@
   .detail-view {
     flex-direction: column !important;
     margin: 0em .4em !important;
-}
+  }
   .links-container {
     display: flex;
     width: -moz-fit-content;
@@ -42,6 +42,7 @@
   .detail-view .detail-title-container h1 {
     margin-bottom: .5em !important;
     margin-top: 0 !important;
+    font-weight: 900 !important;
   }
 
   .detail-view .place-description {
@@ -57,13 +58,16 @@
     margin: 1em !important;
     overflow: hidden;
     display: flex;
-    }
-    .detail-view .info-wrapper {
-      flex: 1 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
+  }
+  .detail-view .info-wrapper {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .features-section {
+    min-height: fit-content;
+  }
   .feature-details {
     flex-direction: column !important;
   }
@@ -85,7 +89,28 @@
     max-height: 4em;
     max-width: 100% !important;
   }
+  /* .info-box-link {
+    padding: 0;
+    font-size: 1.3em !important;
+  }
+  .info-box-link p{
+    font-size: 1.3em !important;
+  } */
 }
+
+@media only screen and (max-width: 320) {
+  .app-name-link {
+    width: inherit !important;
+  }
+  /* .info-box-link {
+    padding: 0;
+    font-size: 1.3em !important;
+  }
+  .info-box-link p{
+    font-size: 1.3em !important;
+  } */
+}
+
  
 
 .detail-view {
