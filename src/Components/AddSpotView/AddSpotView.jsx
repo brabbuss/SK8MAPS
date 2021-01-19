@@ -18,7 +18,7 @@ function AddSpotView({
       <br/>
       <h2>Click the map to add a new <b>SK8MAP</b></h2>
       <br/>
-      <div className="find-map-container">
+      <div id='map-container' className="find-map-container">
         <Map
           createNewSk8Map={createNewSk8Map}
           markerLocations={allSk8Maps}

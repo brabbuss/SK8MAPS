@@ -2,42 +2,34 @@ import React from "react";
 import { render, screen, waitFor, waitForElementToBeRemoved } from "@testing-library/react";
 import FindSpotsView from "./FindSpotsView";
 import "@testing-library/jest-dom";
-import AppContext from "../App/AppContext";
-import { tddMockState } from "../../tddMockData";
 
 describe("FindSpotsView", () => {
   it("Elements render properly", async () => {
     render(
-      <AppContext.Provider value={[tddMockState, jest.fn()]}>
-        <div>
-          <FindSpotsView />
-        </div>
-      </AppContext.Provider>
+      <FindSpotsView />
     );
 
     const findHeader = screen.getByRole('heading', { name: /find spots by:/i })
-    const searchOption1 = screen.getByTestId('f-1')
-    const searchOption2 = screen.getByTestId('f-2')
-    const searchOption3 = screen.getByTestId('f-3')
-    const searchOption4 = screen.getByTestId('f-4')
-    const searchOption5 = screen.getByTestId('f-5')
-    const searchOption6 = screen.getByTestId('f-6')
+    const filter1 = screen.getByTestId('f-1')
+    const filter2 = screen.getByTestId('f-2')
+    const filter3 = screen.getByTestId('f-3')
+    const filter4 = screen.getByTestId('f-4')
+    const filter5 = screen.getByTestId('f-5')
+    const filter6 = screen.getByTestId('f-6')
+    const filter7 = screen.getByTestId('f-7')
     expect(findHeader).toBeInTheDocument();
-    expect(searchOption1).toBeInTheDocument();
-    expect(searchOption2).toBeInTheDocument();
-    expect(searchOption3).toBeInTheDocument();
-    expect(searchOption4).toBeInTheDocument();
-    expect(searchOption5).toBeInTheDocument();
-    expect(searchOption6).toBeInTheDocument();
+    expect(filter1).toBeInTheDocument();
+    expect(filter2).toBeInTheDocument();
+    expect(filter3).toBeInTheDocument();
+    expect(filter4).toBeInTheDocument();
+    expect(filter5).toBeInTheDocument();
+    expect(filter6).toBeInTheDocument();
+    expect(filter7).toBeInTheDocument();
   });
 
   it("renders a loading message", async () => {
     render(
-      <AppContext.Provider value={[tddMockState, jest.fn()]}>
-        <div>
-          <FindSpotsView />
-        </div>
-      </AppContext.Provider>
+      <FindSpotsView />
     );
 
     const mapLoad = await waitFor(() => screen.getByText('Now where did I put that map...'));

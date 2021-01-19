@@ -3,87 +3,102 @@ import {
   render,
   screen,
   waitFor,
-  waitForElementToBeRemoved,
   cleanup,
 } from "@testing-library/react";
 import SpotDetails from "./SpotDetails";
 import "@testing-library/jest-dom";
-import AppContext from "../App/AppContext";
-import { tddMockState, tddMockData } from "../../tddMockData";
 import { MemoryRouter } from "react-router-dom";
-import App from "../App/App";
-import { saveToLocal, getFromLocal } from "../Common/Utilities/localStorage";
-import { myReducer } from "../Common/Utilities/myReducer";
-// jest.mock('../Common/Utilities/localStorage')
-// jest.mock('../Common/Utilities/myReducer.js')
-// myReducer.mockResolvedValue(tddMockState)
-
-// beforeEach(() => {
-//   saveToLocal("SELECTED-SK8MAP", tddMockData.mockSpotAllData)
-//   saveToLocal("USER-SK8MAPS", tddMockData.mockAPIData)
-//   saveToLocal("ALL-SK8MAPS", tddMockData.mockAPIData)
-//   // getFromLocal.mockResolvedValue(tddMockState)
-//   // myReducer.mockResolvedValue(tddMockState);  // )(*)(*)(*)
-//   // jest.resetModules();
-//   // initialize();
-// });
+import {tddMockData} from '../../tddMockData'
 
 afterEach(cleanup);
 
 describe("SpotDetails", () => {
   it("Elements render properly", async () => {
+    
     let match = {
-      params: { spot_id: "3" },
+      params: { spot_id: "33" },
     };
 
     render(
-      <MemoryRouter initialEntries={["/spots/3"]}>
-        <AppContext.Provider value={[tddMockState, jest.fn()]}>
-          <App>
-            <SpotDetails match={match} />
-          </App>
-        </AppContext.Provider>
+      <MemoryRouter initialEntries={["/spots/33"]}>
+        <SpotDetails 
+          matchedMap={tddMockData.mockSpotAllData}
+          setMatchedMap={jest.fn()}
+          allSk8Maps={tddMockData.mockAPIData}
+          match={match} />
       </MemoryRouter>
     );
-
+    
+    const features = screen.getByRole('heading', { name: /features/i })
     const curbs = screen.getByRole("heading", { name: /curbs/i });
     const flats = screen.getByRole("heading", { name: /flats/i });
     const rails = screen.getByRole("heading", { name: /rails/i });
     const stairs = screen.getByRole("heading", { name: /stairs/i });
 
+    expect(features).toBeInTheDocument();
     expect(curbs).toBeInTheDocument();
     expect(flats).toBeInTheDocument();
     expect(rails).toBeInTheDocument();
     expect(stairs).toBeInTheDocument();
   });
 
-  it("spot details render properly", async () => {
+  it("SK8MAP details render properly", async () => {
     let match = {
-      params: { spot_id: "3" },
+      params: { spot_id: "33" },
     };
 
     render(
-      <MemoryRouter initialEntries={["/spots/3"]}>
-        <AppContext.Provider value={[tddMockState, jest.fn()]}>
-          <App>
-            <SpotDetails match={match} />
-          </App>
-        </AppContext.Provider>
+      <MemoryRouter initialEntries={["/spots/33"]}>
+        <SpotDetails 
+          matchedMap={tddMockData.mockSpotAllData}
+          setMatchedMap={jest.fn()}
+          allSk8Maps={tddMockData.mockAPIData}
+          match={match} 
+        />        
       </MemoryRouter>
     );
 
-    const description = screen.getByText("25 stair drop with good landing");
-    const none = screen.getAllByRole("heading", { name: /❌/i });
-    const title = screen.getByRole("heading", { name: /big 25 stair drop/i });
+    const title = screen.getByText("Mock Spot");
+    const description = screen.getByText("Mock description");
+    const has = screen.getAllByRole('heading', { name: /✅/i })
+    const none = screen.getByRole("heading", { name: /❌/i });
     const image = screen.getByRole("img", { name: /skating a curb/i });
-    const stairsDescription = screen.getByText(
-      "big 15 stairs with good runway"
-    );
+    
+    const curbsDescription = screen.getByText("Mock description Curbs");
+    const flatsDescription = screen.getByText("Mock description Flats");
+    const railsDescription = screen.getByText("Mock description Rails");
 
     expect(description).toBeInTheDocument();
-    expect(none[0]).toBeInTheDocument();
+    expect(none).toBeInTheDocument();
+    expect(has[0]).toBeInTheDocument();
     expect(title).toBeInTheDocument();
     expect(image).toBeInTheDocument();
-    expect(stairsDescription).toBeInTheDocument();
+    expect(curbsDescription).toBeInTheDocument();
+    expect(flatsDescription).toBeInTheDocument();
+    expect(railsDescription).toBeInTheDocument();
+  });
+
+  it("should make sure that URL endpoint matches w/fxn call with correct params", async () => {
+    let props = {
+      match: {  
+        params: { spot_id: "33" },
+      }
+    };
+
+    const mockSetMatchedMap = jest.fn()
+
+    render(
+      <MemoryRouter initialEntries={["/spots/33"]}>
+        <SpotDetails 
+          matchedMap={tddMockData.mockSpotMissingData}
+          setMatchedMap={mockSetMatchedMap}
+          allSk8Maps={tddMockData.mockAPIData}
+          {...props}
+        />        
+      </MemoryRouter>
+    );
+    await waitFor(() => screen.getByRole('heading', { name: /curbs/i }))
+    expect(mockSetMatchedMap).toHaveBeenCalledTimes(1)
+    expect(mockSetMatchedMap).toHaveBeenCalledWith(tddMockData.mockAPIData[0])
   });
 });

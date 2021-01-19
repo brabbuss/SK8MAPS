@@ -41,7 +41,6 @@ function App() {
               path='/add/details' 
               render={props => <DetailsForm 
                 newSk8Map={newSk8Map}
-                selectedSpot={selectedSpot}
                 saveNewSk8Map={saveNewMapToStoredMaps}
                 {...props}
               />}

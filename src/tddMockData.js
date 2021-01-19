@@ -2,14 +2,14 @@
 
 export const tddMockData = {
   mockNewSk8Map: {
-    id: '12345',
+    id: 12345,
     location: {
       lat: 33,
       lng: 33
     }
   },
   mockSpotAllData: {
-    id: 1,
+    id: 33,
     difficulty: 1,
     title: "Mock Spot",
     description:
@@ -39,9 +39,9 @@ export const tddMockData = {
       },
       {
         type: "Stairs",
-        has: true,
+        has: false,
         condition: 2,
-        description: "Mock description Stairs",
+        description: "",
       },
     ],
     safety: {
@@ -105,6 +105,55 @@ export const tddMockData = {
     images: [],
   },
   mockAPIData: [
+    {
+      id: 33,
+      difficulty: 1,
+      title: "Mock Spot",
+      description:
+        "Mock description",
+      location: {
+        lat: 0,
+        lng: 0,
+      },
+      features: [
+        {
+          type: "Curbs",
+          has: true,
+          condition: 5,
+          description: "Mock description Curbs",
+        },
+        {
+          type: "Flats",
+          has: true,
+          condition: 4,
+          description: "Mock description Flats",
+        },
+        {
+          type: "Rails",
+          has: true,
+          condition: 3,
+          description: "Mock description Rails",
+        },
+        {
+          type: "Stairs",
+          has: true,
+          condition: 2,
+          description: "Mock description Stairs",
+        },
+      ],
+      safety: {
+        security: {
+          has: true,
+          cheese_level: 1,
+          description: "Mock description security",
+        },
+        hazards: "Mock description hazards",
+        public: true,
+      },
+      images: [
+        "https://3.bp.blogspot.com/-6wKDdxzO8AI/WBjzlwaP6dI/AAAAAAAABnY/Vh3Y4pTrQE0jh7WFpTpIjdULQhljrp9ywCEw/s1600/04%2BJoe.PNG",
+      ],
+    },
     {
       id: 1,
       difficulty: 1,

@@ -10,6 +10,10 @@
   border-radius: 15px;
 }
 
+.fs-container {
+  width: 90%;
+  /* height: 90%; */
+}
 .fs {
   cursor: pointer;
   transition: ease-in-out .18s;

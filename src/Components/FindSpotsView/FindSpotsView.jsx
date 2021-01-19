@@ -46,10 +46,10 @@ function FindSpotView({allSk8Maps, updateSelection, selectedSpot}) {
           <li onClick={(e) => handleFilter(e)} title="Stairs" className={`fs  ${getStylings(category, 'Stairs')}`} data-testid='f-4'>stairs</li>
           <li onClick={(e) => handleFilter(e)} title="Hills" className={`fs  ${getStylings(category, 'Hills')}`} data-testid='f-5'>hills</li>
           <li onClick={(e) => handleFilter(e)} title="Parks" className={`fs  ${getStylings(category, 'Parks')}`} data-testid='f-6'>parks</li>
-          <li onClick={(e) => handleFilter(e)} title="All" className={`fs  ${getStylings(category, 'All')}`} data-testid='f-6'>ALL</li>
+          <li onClick={(e) => handleFilter(e)} title="All" className={`fs  ${getStylings(category, 'All')}`} data-testid='f-7'>ALL</li>
         </ul>
       </div>
-      <div className="find-map-container">
+      <div id='map-container' className="find-map-container">
         <Map 
           markerLocations={filteredMaps}
           updateSelection={updateSelection}
