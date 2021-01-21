@@ -1,4 +1,4 @@
->[SK8MAPS deployed site](https://brabbuss.github.io/SK8MAPS/)
+>[SK8MAPS deployed site](https://sk8maps.herokuapp.com/SK8MAPS/)
 
 ---
 
