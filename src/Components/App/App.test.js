@@ -25,8 +25,8 @@ describe("App", () => {
     const title = screen.getByRole("heading", {
       name: /welcome to sk8maps !/i,
     });
-    const welcomeCopy1 = screen.getByText("click to find some spots");
-    const welcomeCopy2 = screen.getByText("click to add a new spot");
+    const welcomeCopy1 = screen.getByText("to find some spots");
+    const welcomeCopy2 = screen.getByText("to add a new spot");
     const navSearchBtn = screen.getAllByRole("link", { name: /search/i });
     const navContributeBtn = screen.getAllByRole("link", {
       name: /contribute/i,
@@ -181,8 +181,8 @@ describe("App", () => {
     const title = screen.getByRole("heading", {
       name: /welcome to sk8maps !/i,
     });
-    const welcomeCopy1 = screen.getByText("click to find some spots");
-    const welcomeCopy2 = screen.getByText("click to add a new spot");
+    const welcomeCopy1 = screen.getByText("to find some spots");
+    const welcomeCopy2 = screen.getByText("to add a new spot");
 
     expect(title).toBeInTheDocument();
     expect(welcomeCopy1).toBeInTheDocument();
